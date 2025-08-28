@@ -96,8 +96,14 @@ console.log(checkPalidrome('Кекс')); // false
 console.info('Это палиндром (пробелы) - Лёша на полке клопа нашёл');
 console.log(checkPalidrome('Лёша на полке клопа нашёл ')); // true
 
-console.info('Это палиндром (цифры) - 12345671');
-console.log(checkPalidrome(12345671)); // false
+console.info('Это палиндром (сложные фразы со знаками препинания) - "Привет!" - "Как дела?" - "Хорошо." - "Пока, желаю хорошо провести время."');
+console.log(checkPalidrome('Привет! - Как дела? - Хорошо. - Пока, желаю хорошо провести время.')); // false, а должно быть true (как было показано на видео)
+
+console.info('Это палиндром (цифры) - 12321');
+console.log(checkPalidrome(12321)); // true
+
+console.info('Это не палиндром (цифры) - 2327573');
+console.log(checkPalidrome(2327573)); // false
 
 /*
 Техническое задание:
