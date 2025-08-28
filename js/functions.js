@@ -25,7 +25,7 @@ console.log(checkLineLength('проверяемая строка', 'провер
 console.log(checkLineLength('проверяемая строка', 18)); // true
 
 console.info('Отрицательное число имеет ли максимальная длина?');
-console.log(checkLineLength('проверяемая строка', '-10')); // false
+console.log(checkLineLength('проверяемая строка', -10)); // false
 
 console.info('Строка короче 20 символов');
 console.log(checkLineLength('проверяемая строка', 20)); // true
@@ -73,8 +73,7 @@ function checkLineLength(line, maxLength) {
 console.log('Задание второе');
 
 function checkPalidrome(phrase) {
-  const normalizeLine = phrase.replaceAll(' ', '').toUpperCase();
-  // const normalizeLine = phrase.replaceAll(' ', '').toLowerCase();
+  const normalizeLine = phrase.toString().replaceAll(' ', '').toLowerCase().replace(/\s|[,.!?"/-]/g, '');
   let emptyLine = '';
   for (let i = normalizeLine.length - 1; i >= 0; i--) {
     emptyLine += normalizeLine[i];
@@ -82,47 +81,61 @@ function checkPalidrome(phrase) {
   return normalizeLine === emptyLine;
 }
 
-checkPalidrome();
+// checkPalidrome();
+
+// Проверка:
+console.info('Строка является палиндромом - топот');
+console.log(checkPalidrome('топот')); // true
+
+console.info('Несмотря на разный регистр, тоже палиндром - ДовОд');
+console.log(checkPalidrome('ДовОд')); // true
+
+console.info('Это не палиндром - Кекс');
+console.log(checkPalidrome('Кекс')); // false
+
+console.info('Это палиндром (пробелы) - Лёша на полке клопа нашёл');
+console.log(checkPalidrome('Лёша на полке клопа нашёл ')); // true
+
+console.info('Это палиндром (цифры) - 12345671');
+console.log(checkPalidrome(12345671)); // false
 
 /*
 Техническое задание:
 1. Создать функцию для проверки - является ли строка палиндромом -- +
   (палиндром — это слово или фраза, которые одинаково читаются и слева направо и справа налево)
-2. Проверить строку на «палиндромность»:
+2. Проверить строку на «палиндромность»: -- +
   - является ли палиндромом;
   - разный регистр - палиндром ли;
   - не палиндром.
-3 (доп). Предусмотреть, когда в строке встречаются пробелы (?)
-Например:
+3 (доп). Предусмотреть, когда в строке встречаются пробелы (???)
+Проверка:
 2. // Строка является палиндромом
-имяФункции('топот'); // true
-// Несмотря на разный регистр, тоже палиндром
-имяФункции('ДовОд'); // true
-// Это не палиндром
-имяФункции('Кекс');  // false
+  имяФункции('топот'); // true
+  // Несмотря на разный регистр, тоже палиндром
+  имяФункции('ДовОд'); // true
+  // Это не палиндром
+  имяФункции('Кекс');  // false
 3. // Это палиндром
-имяФункции('Лёша на полке клопа нашёл '); // true
-
+  имяФункции('Лёша на полке клопа нашёл '); // true
 Что использовать?
 + объявить функцию с одним параметром — строкой (phrase)
   function checkPalidrome(phrase) {}
-- Проверить строку на «палиндромность»:
-  - «Нормализовать» полученную строку:
++ Проверить строку на «палиндромность»:
+  + «Нормализовать» полученную строку:
     убрать с помощью метода replaceAll() все пробелы,
     привести строку к верхнему (метод toUpperCase())
     или к нижнему (метод toLowerCase()) регистру,
     записать полученную строку в новую переменную.
     function checkPalidrome(phrase) {
       const normalizeLine = phrase.replaceAll(' ', '').toUpperCase();
-      const normalizeLine = phrase.replaceAll(' ', '').toLowerCase();
+      //const normalizeLine = phrase.replaceAll(' ', '').toLowerCase();
     }
-  - Создать новую пустую строку и сохранить её в ещё одну переменную.
+  + Создать новую пустую строку и сохранить её в ещё одну переменную.
     function checkPalidrome(phrase) {
       const normalizeLine = phrase.replaceAll(' ', '').toUpperCase();
-      const normalizeLine = phrase.replaceAll(' ', '').toLowerCase();
       let emptyLine = '';
     }
-  - Создать цикл for, переменная-счётчик которого
+  + Создать цикл for, переменная-счётчик которого
     отсчитывает порядковые номера (индексы) символов
     в «нормализованной» строке с конца к началу, то есть:
     изначально счётчик равен индексу последнего символа
@@ -132,29 +145,26 @@ checkPalidrome();
     на каждой итерации счётчик уменьшается на 1.
     function checkPalidrome(phrase) {
       const normalizeLine = phrase.replaceAll(' ', '').toUpperCase();
-      const normalizeLine = phrase.replaceAll(' ', '').toLowerCase();
       let emptyLine = '';
       for (let i = normalizeLine.length - 1; i >= 0; i--) {
       }
     }
-  - В теле цикла на каждой итерации получать
+  + В теле цикла на каждой итерации получать
     очередной символ «нормализованной» строки
     (с помощью квадратных скобок или метода at()).
     С помощью оператора += дозаписать этот символ
     в созданную на втором шаге строку.
     function checkPalidrome(phrase) {
       const normalizeLine = phrase.replaceAll(' ', '').toUpperCase();
-      const normalizeLine = phrase.replaceAll(' ', '').toLowerCase();
       let emptyLine = '';
       for (let i = normalizeLine.length - 1; i >= 0; i--) {
         emptyLine += normalizeLine[i];
       }
     }
-  - После того, как цикл отработает, полученную перевёрнутую строку сравнить (===) с «нормализованной».
+  + После того, как цикл отработает, полученную перевёрнутую строку сравнить (===) с «нормализованной».
     Вернуть результат этого сравнения.
     function checkPalidrome(phrase) {
       const normalizeLine = phrase.replaceAll(' ', '').toUpperCase();
-      const normalizeLine = phrase.replaceAll(' ', '').toLowerCase();
       let emptyLine = '';
       for (let i = normalizeLine.length - 1; i >= 0; i--) {
         emptyLine += normalizeLine[i];
