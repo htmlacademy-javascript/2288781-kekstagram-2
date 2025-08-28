@@ -1,18 +1,20 @@
 // Задание 1
 function checkString(string, maxLength) {
-  if (string.length <= maxLength) {
+  if (string?.length <= maxLength) {
     return true;
   }
 
   return false;
 }
 
-// checkString();
-checkString('проверяемая строка', 20);
-
+// тренарный оператор
 // const checkString(string = '', maxLength = 1) => string.length <= maxLength;
 
-// Проверка
+checkString();
+// eslint-disable-next-line no-console
+console.log(checkString('проверяемая строка', 8)); // false
+
+// Проверка:
 // Строка короче 20 символов
 // checkString('проверяемая строка', 20); // true
 
@@ -24,7 +26,6 @@ checkString('проверяемая строка', 20);
 
 /*
 // Техническое задание
-
 Что использовать?
 - Для решения этой задачи вам потребуется объявить функцию с двумя параметрами:
 строкой (string) и максимальной длиной (maxLength).
