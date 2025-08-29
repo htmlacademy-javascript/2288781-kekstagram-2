@@ -78,7 +78,7 @@ function checkPalidrome(phrase) {
   for (let i = normalizeLine.length - 1; i >= 0; i--) {
     emptyLine += normalizeLine[i];
   }
-  return normalizeLine === emptyLine;
+  return normalizeLine === emptyLine.split('').join('');
 }
 
 // checkPalidrome();
@@ -96,14 +96,16 @@ console.log(checkPalidrome('Кекс')); // false
 console.info('Это палиндром (пробелы) - Лёша на полке клопа нашёл');
 console.log(checkPalidrome('Лёша на полке клопа нашёл ')); // true
 
-console.info('Это палиндром (сложные фразы со знаками препинания) - "Привет!" - "Как дела?" - "Хорошо." - "Пока, желаю хорошо провести время."');
-console.log(checkPalidrome('Привет! - Как дела? - Хорошо. - Пока, желаю хорошо провести время.')); // false, а должно быть true (как было показано на видео)
+console.info('Это не палиндром (сложные фразы со знаками препинания) - "Привет!" - "Как дела?" - "Хорошо." - "Пока, желаю хорошо провести время."');
+console.log(checkPalidrome('Привет! - Как дела? - Хорошо. - Пока, желаю хорошо провести время.')); // false (пока непонятно, почему на видео true)
 
 console.info('Это палиндром (цифры) - 12321');
 console.log(checkPalidrome(12321)); // true
 
 console.info('Это не палиндром (цифры) - 2327573');
 console.log(checkPalidrome(2327573)); // false
+
+console.info('Проверка завершена');
 
 /*
 Техническое задание:
@@ -178,3 +180,6 @@ console.log(checkPalidrome(2327573)); // false
       return normalizeLine === emptyLine;
     }
 */
+
+// Дополнительное задание
+
