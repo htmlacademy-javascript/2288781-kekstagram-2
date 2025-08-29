@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+
 // Задание 1. Создать функцию для проверки длины строки
 console.info('Задание первое');
 /*
@@ -22,7 +23,13 @@ function checkLineLength(line, maxLength) {
 //   return result;
 // };
 // еще покороче - стрелочная функция
-const checkLineLength = (line = '', maxLength = 18) => (line.length <= maxLength);
+/**
+ * Проверяет длину строки
+ * @param {string} line - строка
+ * @param {number} maxLength - максимальное число знаков
+ * @returns {boolean}
+ */
+const checkLineLength = (line = '', maxLength = 1) => (line.length <= maxLength);
 checkLineLength('проверяемая строка', 18);
 // Проверка
 console.info('Проверка первого параметра - строка: является ли строкой?');
@@ -97,14 +104,24 @@ console.info('Задание второе');
 // }
 
 // стрелочная функция
-const checkPalidrome = (phrase) => {
-  const normalizePhrase = phrase.replaceAll(' ', '').toLowerCase();
-  let emptyLine = '';
-  for (let i = normalizePhrase.length - 1; i >= 0; i--) {
-    emptyLine += normalizePhrase[i];
-  }
-  const result = (normalizePhrase === emptyLine);
-  return result;
+// const checkPalidrome = (phrase = '') => {
+//   const normalizePhrase = phrase.replaceAll(' ', '').toLowerCase();
+//   let emptyLine = '';
+//   for (let i = normalizePhrase.length - 1; i >= 0; i--) {
+//     emptyLine += normalizePhrase[i];
+//   }
+//   const result = (normalizePhrase === emptyLine);
+//   return result;
+// };
+// еще короче - стрелочная функция
+/**
+ * Проверяет, является ли строка палидромом
+ * @param {*} phrase - строка
+ * @returns {boolean}
+ */
+const checkPalidrome = (phrase = '') => {
+  const normalizePhrase = phrase.replace(/\s+/g, '').toLowerCase();
+  return normalizePhrase === [...normalizePhrase].reverse().join('');
 };
 checkPalidrome('топот');
 // Проверка:
@@ -196,28 +213,33 @@ console.info('Проверка завершена');
 console.info('Задание дополнительное');
 // создаем функцию принимает строку, где извлекает содержащиеся в ней цифры от 0 до 9
 // и возвращает их в виде целого положительного числа
-
-function extractsNumbers(line) {
-  let numberFromLine = '';
-  if(typeof(line) !== 'string'){
-    line = line.toString().replace(/\D/g, '');
-  }
-  // цикл — для перебора полученной строки,
-  for(let i = 0; i < line.length; i++){
-    // функция Number.isNaN() — чтобы проверить, получилось ли превратить символ в число
-    // функция parseInt() — для превращения в число отдельных символов и результирующей строки
-    if(!isNaN(parseInt(line[i], 10))){
-      numberFromLine += line[i];
-    }
-  }
-  return (numberFromLine === '') ? NaN : parseInt(numberFromLine, 10);
-}
-
+// function extractsNumbers(line) {
+//   let numberFromLine = '';
+//   if(typeof(line) !== 'string'){
+//     line = line.toString().replace(/\D/g, '');
+//   }
+//   // цикл — для перебора полученной строки,
+//   for(let i = 0; i < line.length; i++){
+//     // функция Number.isNaN() — чтобы проверить, получилось ли превратить символ в число
+//     // функция parseInt() — для превращения в число отдельных символов и результирующей строки
+//     if(!isNaN(parseInt(line[i], 10)) === false){
+//       numberFromLine += line[i];
+//     }
+//   }
+//   return (numberFromLine === '') ? NaN : parseInt(numberFromLine, 10);
+// }
 // стрелочная функция
-// const extractsNumbers = (line) => {
-//   const numberFromLine = line.toString().replace(/\D/g, '');
-//   return parseInt(numberFromLine, 10);
-// };
+const extractsNumbers = (line) => {
+  const numberFromLine = line.toString().replace(/\D+/g, '');
+  return parseInt(numberFromLine, 10);
+};
+// еще короче - стрелочная функция
+/**
+ * Принимает строку и извлекает содержащиеся в ней цифры
+ * @param {*} line - строка
+ * @returns {number|NaN}
+ */
+// const extractsNumbers = (line = '') => Math.abs(parseInt(line.replace(/\D+/g, ''), 10));
 extractsNumbers('2023 год');
 // Проверка
 console.log(extractsNumbers('2023 год')); // 2023
@@ -229,6 +251,7 @@ console.log(extractsNumbers('а я томат')); // NaN
 console.log(extractsNumbers(2023)); // 2023
 console.log(extractsNumbers(-1)); // 1
 console.log(extractsNumbers(1.5)); // 15
+console.info('Проверка завершена');
 /*
 Техническое задание:
 1. Функция принимает строку,
