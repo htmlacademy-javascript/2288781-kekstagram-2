@@ -126,8 +126,6 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-
-getRandomInteger();
 console.log(getRandomInteger());
 console.log(getRandomInteger(1, 25));
 console.log(getRandomInteger(15, 200));
@@ -138,7 +136,6 @@ console.log(getRandomInteger(1, 6));
  * @param {int} element - сам массив
  * @param {string} result - элемент массива - element
  */
-
 const getRandomElements = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 /** Функция для генерации идентификатора - id
@@ -153,9 +150,6 @@ const getIdGenerator = () => {
     return firstGenerateId;
   };
 };
-
-getIdGenerator();
-console.log(getIdGenerator());
 
 /** Функция присвоения индентификатора - id
  * для фотографии
@@ -187,9 +181,6 @@ const generateCommentsPhoto = () => {
   return arrayComments;
 };
 
-generateCommentsPhoto();
-console.table(generateCommentsPhoto());
-
 /** Функция для создания объекта с описанием фотографии
   * @param {int} id - идентификатор фотографии
   * @param {string} url - ссылка на фотографию
@@ -210,17 +201,8 @@ const getPhotoUsers = () => ({
   comments: generateCommentsPhoto(),
 });
 
-getPhotoUsers();
-// eslint-disable-next-line no-console
-console.table(getPhotoUsers());
-console.table(getPhotoUsers());
-console.table(getPhotoUsers());
-console.table(getPhotoUsers());
-console.table(getPhotoUsers());
-
 /** Функция для создания массива объектов длиной PHOTOS с описанием фотографий
 */
 const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, getPhotoUsers);
 
-getAllPhotoUsers();
-console.table(getAllPhotoUsers());
+console.log(getAllPhotoUsers());
