@@ -79,7 +79,6 @@ const MESSAGES = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-// const MAX_MESSAGES = 2;
 
 /** имя комментатора
  * поле name - составляем случайный набор имён комментаторов
@@ -126,11 +125,6 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-console.log(getRandomInteger());
-console.log(getRandomInteger(1, 25));
-console.log(getRandomInteger(15, 200));
-console.log(getRandomInteger(0, 30));
-console.log(getRandomInteger(1, 6));
 
 /** Функция для генерации случайного элемента массива
  * @param {int} element - сам массив
