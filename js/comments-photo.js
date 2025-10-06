@@ -24,4 +24,6 @@ const generateCommentsPhoto = () => {
   return arrayComments;
 };
 
-export { generateCommentsPhoto };
+export {
+  generateCommentsPhoto
+};
