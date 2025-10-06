@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 
+
 // точка входа - модуль, который связывает другие модули
 
 import { MAX_PHOTOS, LIKES, DESCRIPTIONS } from './data.js';
@@ -7,6 +8,7 @@ import { getRandomInteger } from './utils.js';
 import { getRandomElements } from './utils.js';
 import { generatePhotoId, generatePhotoUrl } from './get-id.js';
 import { generateCommentsPhoto } from './comments-photo.js';
+
 
 /** Функция для создания объекта с описанием фотографии
   * @param {int} id - идентификатор фотографии
@@ -28,8 +30,11 @@ const getPhotoUsers = () => ({
   comments: generateCommentsPhoto(),
 });
 
+
 /** Функция для создания массива объектов длиной PHOTOS с описанием фотографий
 */
 const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, getPhotoUsers);
 
+
 console.log(getAllPhotoUsers());
+
