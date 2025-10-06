@@ -9,4 +9,8 @@ const generatePhotoId = getIdGenerator();
 const generatePhotoUrl = getIdGenerator();
 const generateCommentsId = getIdGenerator();
 
-export { generatePhotoId, generatePhotoUrl, generateCommentsId };
+export {
+  generatePhotoId,
+  generatePhotoUrl,
+  generateCommentsId
+};
