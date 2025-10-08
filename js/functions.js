@@ -1,9 +1,7 @@
 /* eslint-disable no-console */
 
 // Задание из module5-task2
-let i = 0;
-const pre = () => ++i;
-const post = () => i++;
+console.info('Задание "Делу - время"');
 /*
 Техническое задание: написать функцию, которая принимает время начала и конца рабочего дня,
 а также время старта и продолжительность встречи в минутах и возвращает true,
@@ -18,17 +16,40 @@ const post = () => i++;
 
 /** Написать функцию, которая принимает время начала и конца рабочего дня (workStart, workEnd),
     а также время старта (timeStart) и продолжительность встречи в минутах и возвращает true (duration),
-    если встреча не выходит за рамки рабочего дня, и false, если выходит
- *
- * workStart - время начала рабочего дня
- * workEnd   - время конца рабочего дня
- * timeStart - время начала встречи в минутах!
- * duration  - продолжительность встречи в минутах!
-*/
+    если встреча не выходит за рамки рабочего дня, и false, если выходитs *
+ * @param {*} workStart - время начала рабочего дня
+ * @param {*} workEnd   - время конца рабочего дня
+ * @param {*} timeStart - время начала встречи в минутах!
+ * @param {*} duration  - продолжительность встречи в минутах!
+ * @returns {*}
+ */
 const acceptsTimeWorkDay = (workStart, workEnd, timeStart, duration) => {
-  // время в минуты с утра
+  // преобразуем время в минуты с утра с начала утра
+  const timeToMinutes = (time) => {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  };
+  // конвертируем времена в минуты
+  const workStartMinutes = timeToMinutes(workStart);
+  const workEndMinutes = timeToMinutes(workEnd);
+  const meetingStartMinutes = timeToMinutes(timeStart);
+  // вычисляем время окончания встречи
+  const meetingEndMinutes = meetingStartMinutes + duration;
+  // проверяем встречу - рабочее ли это время
+  return (
+    meetingStartMinutes >= workStartMinutes && meetingEndMinutes <= workEndMinutes
+  );
+};
 
-}
+console.log(
+  acceptsTimeWorkDay('08:00', '17:30', '14:00', 90), // true
+  acceptsTimeWorkDay('8:0', '10:0', '8:0', 120), // true
+  acceptsTimeWorkDay('08:00', '14:30', '14:00', 90), // false
+  acceptsTimeWorkDay('14:00', '17:30', '08:0', 90), // false
+  acceptsTimeWorkDay('8:00', '17:30', '08:00', 900) // false
+);
+// console.log(acceptsTimeWorkDay());
+
 
 // Задания из module2-task1
 // Задание 1. Создать функцию для проверки длины строки
