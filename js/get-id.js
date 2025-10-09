@@ -12,5 +12,5 @@ const generateCommentsId = getIdGenerator();
 export {
   generatePhotoId,
   generatePhotoUrl,
-  generateCommentsId
+  generateCommentsId,
 };

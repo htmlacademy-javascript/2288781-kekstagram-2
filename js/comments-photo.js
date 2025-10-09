@@ -1,6 +1,5 @@
 import { COMMENTS, AVATARS, MESSAGES, NAMES } from './data.js';
-import { getRandomInteger } from './utils.js';
-import { getRandomElements } from './utils.js';
+import { getRandomInteger, getRandomElements } from './utils.js';
 import { generateCommentsId } from './get-id.js';
 
 /** Функция для создания комментария к фото
@@ -11,7 +10,7 @@ import { generateCommentsId } from './get-id.js';
   * @param {Array} return arrayComments[] - возвращает массив комментариев
   *
 */
-const generateCommentsPhoto = () => {
+export const generateCommentsPhoto = () => {
   const arrayComments = [];
   for (let i = 0; i < getRandomInteger(COMMENTS.MIN, COMMENTS.MAX); i++) {
     arrayComments.push({
@@ -22,8 +21,4 @@ const generateCommentsPhoto = () => {
     });
   }
   return arrayComments;
-};
-
-export {
-  generateCommentsPhoto
 };
