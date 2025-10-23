@@ -1,7 +1,18 @@
-/* eslint-disable no-console */
-// точка входа - модуль, который связывает другие модули
+// модуль, который создаёт данные - константы и массивы
 
-import { getAllPhotoUsers } from './create-data.js';
+// КОНСТАНТЫ
+/** количество загруженных фотографий
+ * photo: устанавливаем количество загружаемых фотографий
+ */
+const MAX_PHOTOS = 25;
+
+/** количество лайков
+ * likes, число — количество лайков, где случайное число от 15 до 200
+*/
+const LIKES = {
+  MIN: 15,
+  MAX: 200,
+};
 
 /** количество комментариев
  * все комментарии генерируются случайным образом
@@ -21,11 +32,9 @@ const AVATARS = {
   MAX: 6,
 };
 
-
 // МАССИВЫ
 /** массив из 25 сгенерированных объектов
  * создаем массив из 25 сгенерированных объектов, где каждый объект массива — описание фотографии
- *
  * description - строка — самостоятельное описание фотографии
 */
 const DESCRIPTIONS = [
@@ -58,7 +67,6 @@ const DESCRIPTIONS = [
 
 /** массив объектов — список комментариев
  * отсюда берем рандомно текст комментария и используем
- *
  * для формирования текста комментария — message — вам необходимо взять одно или два случайных предложения из представленных ниже
  */
 const MESSAGES = [
@@ -101,92 +109,12 @@ const NAMES = [
   'Елена'
 ];
 
-
-// ФУНКЦИИ
-/**
- * Функция для генерации случайного числа в диапозоне от а до b
- * @param {int} a - нижняя граница диапазона,
- * @param {int} b - верхняя граница диапазона,
- * @returns {int} result - возвращает случайное число в диапазоне от a до b,
- */
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b)); // округляет в большую сторону
-  const upper = Math.floor(Math.max(a, b)); // округляет в меньшую сторону
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
+export {
+  MAX_PHOTOS,
+  LIKES,
+  COMMENTS,
+  AVATARS,
+  DESCRIPTIONS,
+  MESSAGES,
+  NAMES
 };
-
-/** Функция для генерации случайного элемента массива
- * @param {int} element - сам массив
- * @param {string} result - элемент массива - element
- */
-const getRandomElements = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-/** Функция для генерации идентификатора - id
- * идентификаторы не должны повторяться
- * id - это число от 1 до 25
- * @param {int} result - число — идентификатор опубликованной фотографии
- */
-const getIdGenerator = () => {
-  let firstGenerateId = 0;
-  return function () {
-    firstGenerateId += 1;
-    return firstGenerateId;
-  };
-};
-
-/** Функция присвоения индентификатора - id
- * для фотографии
- * для URL - адрес будет отличаться только числом
- * для комментариев
-*/
-const generatePhotoId = getIdGenerator();
-const generatePhotoUrl = getIdGenerator();
-const generateCommentsId = getIdGenerator();
-
-/** Функция для создания комментария к фото
-  * @param {int} id - идентификатор комментария
-  * @param {string} avatar - это строка, где значение которой формируется по правилу: img/avatar-{{случайное число от 1 до 6}}.svg
-  * @param {string} message - сам комментарий
-  * @param {string} name - имя комментатора
-  * @param {Array} return arrayComments[] - возвращает массив комментариев
-  *
-*/
-const generateCommentsPhoto = () => {
-  const arrayComments = [];
-  for (let i = 0; i < getRandomInteger(COMMENTS.MIN, COMMENTS.MAX); i++) {
-    arrayComments.push({
-      id: generateCommentsId(),
-      avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-      message: getRandomElements(MESSAGES),
-      name: getRandomElements(NAMES),
-    });
-  }
-  return arrayComments;
-};
-
-/** Функция для создания объекта с описанием фотографии
-  * @param {int} id - идентификатор фотографии
-  * @param {string} url - ссылка на фотографию
-  * @param {string} description - описание фотографии
-  * @param {int} likes - количество лайков
-  * @param {Array} generateCommentsToPhoto() - массив комментариев
- * Структура каждого объекта должна быть следующей:
-   - id, число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
-   - url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-   - description, строка — описание фотографии. Описание придумайте самостоятельно.
-   - comments, массив объектов — список комментариев, оставленных другими пользователями к этой фотографии. Количество комментариев к каждой фотографии — случайное число от 0 до 30. Все комментарии генерируются случайным образом. Пример описания объекта с комментарием:
-*/
-const getPhotoUsers = () => ({
-  id: generatePhotoId(),
-  url: `photos/${generatePhotoUrl()}.jpg`,
-  description: getRandomElements(DESCRIPTIONS),
-  likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
-  comments: generateCommentsPhoto(),
-});
-
-/** Функция для создания массива объектов длиной PHOTOS с описанием фотографий
-*/
-const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, getPhotoUsers);
-
-console.log(getAllPhotoUsers());
