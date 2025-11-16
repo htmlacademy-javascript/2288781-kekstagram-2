@@ -3,8 +3,7 @@
 // точка входа - модуль, который связывает другие модули
 
 import { MAX_PHOTOS, LIKES, DESCRIPTIONS } from './data.js';
-import { getRandomInteger } from './utils.js';
-import { getRandomElements } from './utils.js';
+import { getRandomInteger, getRandomElements } from './utils.js';
 import { generatePhotoId, generatePhotoUrl } from './get-id.js';
 import { generateCommentsPhoto } from './comments-photo.js';
 
