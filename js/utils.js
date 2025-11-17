@@ -13,15 +13,11 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-export { getRandomInteger };
-
 /** Функция для генерации случайного элемента массива
  * @param {int} element - сам массив
  * @param {string} result - элемент массива - element
  */
 const getRandomElements = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-export { getRandomElements };
 
 /** Функция для генерации идентификатора - id
  * идентификаторы не должны повторяться
@@ -36,4 +32,4 @@ const getIdGenerator = () => {
   };
 };
 
-export { getIdGenerator };
+export { getRandomInteger, getRandomElements, getIdGenerator };
