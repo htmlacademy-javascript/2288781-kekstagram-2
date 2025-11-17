@@ -3,12 +3,12 @@
 import { getDataArrays } from './data.js';
 import { getRandomInteger, getRandomElements } from './utils.js';
 import { generatePhotoId, generatePhotoUrl } from './get-id.js';
-import { generateCommentsPhoto } from './comments-photo.js';
+import { getAllComments } from './comments-photo.js';
 
 /**
  * Деструктуризация импортированных данных
  */
-const { MAX_PHOTOS, LIKES, DESCRIPTIONS } = getDataArrays();
+const { MAX_PHOTOS, LIKES, DESCRIPTIONS, NAMES, MESSAGES } = getDataArrays();
 
 /** Функция для создания объекта с описанием фотографии
   * @param {int} id - идентификатор фотографии
@@ -22,13 +22,17 @@ const { MAX_PHOTOS, LIKES, DESCRIPTIONS } = getDataArrays();
    - description, строка — описание фотографии. Описание придумайте самостоятельно.
    - comments, массив объектов — список комментариев, оставленных другими пользователями к этой фотографии. Количество комментариев к каждой фотографии — случайное число от 0 до 30. Все комментарии генерируются случайным образом. Пример описания объекта с комментарием:
 */
-const getPhotoUsers = () => ({
-  id: generatePhotoId(),
-  url: `photos/${generatePhotoUrl()}.jpg`,
-  description: getRandomElements(DESCRIPTIONS),
-  likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
-  comments: generateCommentsPhoto(),
-});
+const getPhotoUsers = () => {
+  const getId = generatePhotoId();
+  const getPhoto = {
+    id: getId,
+    url: `photos/${getId}.jpg`,
+    description: getRandomElements(DESCRIPTIONS[getId - 1]),
+    likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
+    comments: getAllComments(NAMES, MESSAGES, getId),
+  };
+  return getPhoto;
+};
 
 /** Функция для создания массива объектов длиной PHOTOS с описанием фотографий
 */

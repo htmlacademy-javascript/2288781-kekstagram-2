@@ -17,17 +17,19 @@ export const getAllComments = () => {
     *
   */
   const generateCommentsPhoto = () => {
-    const arrayComments = [];
-    for (let i = 0; i < getRandomInteger(COMMENTS.MIN, COMMENTS.MAX); i++) {
-      arrayComments.push({
+    const comments = [];
+    const commentsNumber = getRandomInteger(COMMENTS.MIN, COMMENTS.MAX);
+    for (let i = 0; i < commentsNumber; i++) {
+      const comment = {
         id: generateCommentsId(),
         avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
         message: getRandomElements(MESSAGES),
         name: getRandomElements(NAMES),
-      });
+      };
+      comments.push(comment);
     }
-    return arrayComments;
+    return comments;
   };
 
-  return {generateCommentsPhoto};
+  return { generateCommentsPhoto };
 };
