@@ -1,6 +1,6 @@
 import { getDataArrays } from './data.js';
 import { getRandomInteger, getRandomElements } from './utils.js';
-import { generateCommentsId } from './get-id.js';
+import { generateCommentsId } from './create-photos/create-id.js';
 
 export const getAllComments = () => {
   /**
@@ -9,7 +9,7 @@ export const getAllComments = () => {
   const { COMMENTS, AVATARS, MESSAGES, NAMES } = getDataArrays();
 
   /** Функция для создания комментария к фото
-    * @param {int} id - идентификатор комментария
+    * @param {number} id - идентификатор комментария
     * @param {string} avatar - это строка, где значение которой формируется по правилу: img/avatar-{{случайное число от 1 до 6}}.svg
     * @param {string} message - сам комментарий
     * @param {string} name - имя комментатора
