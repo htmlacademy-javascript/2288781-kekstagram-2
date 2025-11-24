@@ -1,35 +1,31 @@
-import { getDataArrays } from './data.js';
-import { getRandomInteger, getRandomElements } from './utils.js';
-import { generateCommentsId } from './create-photos/create-id.js';
+import { getDataArrays } from '/js/data.js';
+import { generateAvatarId } from '/js/create-photos/get-id.js';
+import { getRandomElements } from '/js/utils.js';
 
-export const getAllComments = () => {
-  /**
-   * Деструктуризация импортированных данных
-   */
-  const { COMMENTS, AVATARS, MESSAGES, NAMES } = getDataArrays();
+/**
+ * Деструктуризация импортированных данных
+ */
+const { MESSAGES, NAMES } = getDataArrays();
 
-  /** Функция для создания комментария к фото
-    * @param {number} id - идентификатор комментария
-    * @param {string} avatar - это строка, где значение которой формируется по правилу: img/avatar-{{случайное число от 1 до 6}}.svg
-    * @param {string} message - сам комментарий
-    * @param {string} name - имя комментатора
-    * @param {Array} return arrayComments[] - возвращает массив комментариев
-    *
-  */
-  const generateCommentsPhoto = () => {
-    const comments = [];
-    const commentsNumber = getRandomInteger(COMMENTS.MIN, COMMENTS.MAX);
-    for (let i = 0; i < commentsNumber; i++) {
-      const comment = {
-        id: generateCommentsId(),
-        avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-        message: getRandomElements(MESSAGES),
-        name: getRandomElements(NAMES),
-      };
-      comments.push(comment);
-    }
-    return comments;
+/** Функция, которая создает комментарии к фотографиям
+  * @param {*} id - идентификатор комментария
+  * @param {*} avatar - это строка, где значение которой формируется по правилу: img/avatar-{{случайное число от 1 до 6}}.svg
+  * @param {*} message - сам комментарий
+  * @param {*} name - имя комментатора
+  * @param {Array} return getComment - возвращает массив комментариев
+  *
+*/
+const createComments = () => {
+  let id = 1;
+  return () => {
+    const getComment = [];
+    getComment.id = id;
+    getComment.avatar = `img/avatar-${generateAvatarId()}.svg`;
+    getComment.message = `${getRandomElements(MESSAGES)}`;
+    getComment.name = `${getRandomElements(NAMES)}`;
+    id++;
+    return getComment;
   };
-
-  return { generateCommentsPhoto };
 };
+
+export { createComments };

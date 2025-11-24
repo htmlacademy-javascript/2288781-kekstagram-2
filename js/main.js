@@ -1,7 +1,7 @@
-// точка входа - модуль, который связывает другие модули
+// главный модуль и точка входа - модуль, который связывает другие модули
 
-import { getAllPhotoUsers } from './create-photos/create-data.js';
-import { createPhotos } from './create-photos/thumbnails.js';
+import { getAllPhotoUsers } from '/js/create-photos/create-data.js';
+import { renderPictures } from '/js/create-photos/thumbnails.js';
 
 const photosArray = getAllPhotoUsers();
-createPhotos(photosArray);
+renderPictures(photosArray);

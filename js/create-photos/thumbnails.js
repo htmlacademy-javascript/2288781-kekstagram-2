@@ -1,27 +1,34 @@
-import { getDataArrays } from './data.js';
+// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИТЮР (thumbnails)
+// Задача - отобразить фотографии других пользователей
 
+// Шаблон изображения случайного пользователя
+const pictureTemplateFragment = document.querySelector('#picture').content;
+// Одна фотография
+const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
 // Список с фотографиями
-const pictureList = document.querySelector('.pictures');
-// Шаблон для фотографии
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const picturesList = document.querySelector('.pictures');
 // Фрагмент
-const pictureFragment = document.createDocumentFragment();
-
-const createPhotos = getDataArrays();
+const DocumentFragment = document.createDocumentFragment();
 
 /**
- * Отрисовать сгенерированные DOM-элементы в блоке .pictures
+ * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
+ * @param {string} url - адрес изображения с атрибутом src
+ * @param {string} description - описание изображения в атрибуте alt
+ * @param {*} likes - описание лайков (блок .picture__likes)
+ * @param {*} comments - количество комментариев (блок .picture__comments)
+ * @param {*} DocumentFragment - вставка элементов
  */
-createPhotos.forEach(({ url, description, likes, comments }) => {
-  const picturesListItem = pictureTemplate.cloneNode(true);
-  const image = picturesListItem.querySelector('.picture__img');
-  image.setAttribute('src', url);
-  image.setAttribute('alt', description);
-  const likesNumber = picturesListItem.querySelector('.picture__likes');
-  likesNumber.textContent = likes;
-  const commentsNumber = picturesListItem.querySelector('.picture__comments');
-  commentsNumber.textContent = comments.length;
-  pictureFragment.appendChild(picturesListItem);
-});
+const renderPictures = (element) => {
+  element.forEach(({ url, description, likes, comments }) => {
+    const pictureElement = pictureTemplate.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = url;
+    pictureElement.querySelector('.picture__img').alt = description;
+    pictureElement.querySelector('.picture__likes').textContent = likes;
+    pictureElement.querySelector('.picture__comments').textContent = comments.length;
+    DocumentFragment.appendChild(pictureElement);
+  });
 
-pictureList.appendChild(pictureFragment);
+  picturesList.appendChild(DocumentFragment);
+};
+
+export { renderPictures };
