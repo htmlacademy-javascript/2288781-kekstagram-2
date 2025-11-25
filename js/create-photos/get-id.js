@@ -1,15 +1,15 @@
-import { getDataArrays } from '/js/data.js';
-import { createIdGenerator } from '/js/utils.js';
-
-/**
- * Деструктуризация импортированных данных
- */
-export const { COMMENTS, AVATARS, LIKES } = getDataArrays();
+import { createIdGenerator } from '../utils.js';
 
 const generatePhotoId = createIdGenerator();
 const generatePhotoUrl = createIdGenerator();
+const generateCommentsId = createIdGenerator();
+const generateAvatarsId = createIdGenerator();
+const generateLikesId = createIdGenerator();
 
 export {
   generatePhotoId,
   generatePhotoUrl,
+  generateCommentsId,
+  generateAvatarsId,
+  generateLikesId
 };

@@ -3,5 +3,5 @@
 import { getAllPhotoUsers } from '/js/create-photos/create-data.js';
 import { renderPictures } from '/js/create-photos/thumbnails.js';
 
-const photosArray = getAllPhotoUsers();
-renderPictures(photosArray);
+const getPhotosArray = getAllPhotoUsers();
+renderPictures(getPhotosArray);

@@ -1,14 +1,12 @@
-import { getDataArrays } from '/js/data.js';
-import { getRandomElements } from '/js/utils.js';
+import { getDataArrays } from '../data.js';
+import { getRandomInteger, getRandomElements } from '../utils.js';
 import { generatePhotoId, generatePhotoUrl } from '/js/create-photos/get-id.js';
 import { createComments } from '/js/create-photos/comments-photo.js';
-import { getRandomInteger } from '../utils';
-import { COMMENTS, LIKES } from './get-id';
 
 /**
  * Деструктуризация импортированных данных
  */
-const { DESCRIPTIONS, MAX_PHOTOS } = getDataArrays();
+const { DESCRIPTIONS, LIKES, COMMENTS, MAX_PHOTOS } = getDataArrays();
 
 /** Функция для создания объекта с описанием фотографии
   * @param {number} id - идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться
@@ -19,15 +17,14 @@ const { DESCRIPTIONS, MAX_PHOTOS } = getDataArrays();
   * @returns
 */
 const getPhotoUsers = () => ({
-    id : generatePhotoId(),
-    url :`photos/${generatePhotoUrl()}.jpg`,
-    description : `${getRandomElements(DESCRIPTIONS)}`,
-    likes : getRandomInteger(LIKES.MIN, LIKES.MAX),
-    comments: Array.from({length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createComments()),
-  });
-
+  id: generatePhotoId(),
+  url: `photos/${ generatePhotoUrl() }.jpg`,
+  description: getRandomElements(DESCRIPTIONS),
+  likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
+  comments: Array.from({ length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX) }, createComments()),
+});
 
 /**
- * Функция для создания массива объектов длиной PHOTOS с описанием фотографий
+ * Функция для создания массива объектов длиной MAX_PHOTOS с описанием фотографий
 */
 export const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, getPhotoUsers);
