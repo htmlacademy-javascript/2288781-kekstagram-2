@@ -1,6 +1,6 @@
 import { getDataArrays } from '../data.js';
 import { getRandomElements, getRandomInteger } from '../utils.js';
-import { COMMENTS } from '../create-photos/get-id.js';
+import { COMMENTS } from '/js/create-photos/get-id.js';
 
 /**
  * Деструктуризация импортированных данных
