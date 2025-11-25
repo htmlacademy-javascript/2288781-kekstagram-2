@@ -1,4 +1,4 @@
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИТЮР (thumbnails)
+// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
 // Задача - отобразить фотографии других пользователей
 
 // Шаблон изображения случайного пользователя
@@ -16,7 +16,7 @@ const DocumentFragment = document.createDocumentFragment();
  * @param {string} description - описание изображения в атрибуте alt
  * @param {*} likes - описание лайков (блок .picture__likes)
  * @param {*} comments - количество комментариев (блок .picture__comments)
- * @param {*} DocumentFragment - вставка элементов
+ * @param {*} DocumentFragment - вставка фото в элемент
  */
 const renderPictures = (element) => {
   element.forEach(({ url, description, likes, comments }) => {
