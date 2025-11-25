@@ -15,14 +15,15 @@ export const getRandomInteger = (a, b) => {
 };
 
 /**
- *
+ * Функция для генерации случайного элемента массива
  * @param {*} elements
  * @returns
  */
 export const getRandomElements = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 /**
- *
+ * Функция для генерации идентификатора - id
+ * id - это число от 1 до 25
  * @param {*} start
  * @returns
  */
