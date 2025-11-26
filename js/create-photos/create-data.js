@@ -8,7 +8,8 @@ import { createComments } from '/js/create-photos/comments-photo.js';
  */
 const { DESCRIPTIONS, LIKES, COMMENTS, MAX_PHOTOS } = getDataArrays();
 
-/** Функция для создания объекта с описанием фотографии
+/**
+  * Функция для создания объекта с описанием фотографии
   * @param {number} id - идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться
   * @param {string} url - строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться
   * @param {string} description - строка — описание фотографии. Описание придумайте самостоятельно
