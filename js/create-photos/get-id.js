@@ -1,21 +1,15 @@
-import { getDataArrays } from '/js/data.js';
-import { getRandomInteger, createIdGenerator } from '/js/utils.js';
+import { createIdGenerator } from '../utils.js';
 
-/**
- * Деструктуризация импортированных данных
- */
-const { COMMENTS, AVATARS, LIKES } = getDataArrays();
-
-const generateCommentsId = createIdGenerator(COMMENTS.MIN, COMMENTS.MAX);
-const generateAvatarId = createIdGenerator(AVATARS.MIN, AVATARS.MAX);
-const generateLikesId = createIdGenerator(LIKES.MIN, LIKES.MAX);
 const generatePhotoId = createIdGenerator();
-const generatePhotoUrl = getRandomInteger();
+const generatePhotoUrl = createIdGenerator();
+const generateCommentsId = createIdGenerator();
+const generateAvatarsId = createIdGenerator();
+const generateLikesId = createIdGenerator();
 
 export {
   generatePhotoId,
   generatePhotoUrl,
   generateCommentsId,
-  generateAvatarId,
+  generateAvatarsId,
   generateLikesId
 };

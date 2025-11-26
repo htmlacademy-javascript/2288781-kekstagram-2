@@ -1,4 +1,4 @@
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
+// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИТЮР (thumbnails)
 // Задача - отобразить фотографии других пользователей
 
 // Шаблон изображения случайного пользователя
@@ -7,8 +7,6 @@ const pictureTemplateFragment = document.querySelector('#picture').content;
 const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
 // Список с фотографиями
 const picturesList = document.querySelector('.pictures');
-// Фрагмент
-const DocumentFragment = document.createDocumentFragment();
 
 /**
  * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
@@ -16,13 +14,17 @@ const DocumentFragment = document.createDocumentFragment();
  * @param {string} description - описание изображения в атрибуте alt
  * @param {*} likes - описание лайков (блок .picture__likes)
  * @param {*} comments - количество комментариев (блок .picture__comments)
- * @param {*} DocumentFragment - вставка фото в элемент
+ * @param {*} DocumentFragment - вставка элементов
  */
 const renderPictures = (element) => {
+  const DocumentFragment = document.createDocumentFragment();
+  // eslint-disable-next-line no-console
+  console.log(element);
   element.forEach(({ url, description, likes, comments }) => {
     const pictureElement = pictureTemplate.cloneNode(true);
-    pictureElement.querySelector('.picture__img').src = url;
-    pictureElement.querySelector('.picture__img').alt = description;
+    const isImage = pictureElement.querySelector('.picture__img');
+    isImage.src = url;
+    isImage.alt = description;
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
     DocumentFragment.appendChild(pictureElement);

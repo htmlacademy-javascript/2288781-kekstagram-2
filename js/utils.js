@@ -15,18 +15,16 @@ export const getRandomInteger = (a, b) => {
 };
 
 /**
- * Функция для генерации случайного элемента массива
- * @param {Array} elements - массив элементов
- * @returns elements
+ * Функция получения случайного элемента массива
+ * @param {*} elements
+ * @returns
  */
 export const getRandomElements = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 /**
- * Функция получения уникального идентификатора (автоинкремент) опубликованной фотографии
- * идентификаторы не должны повторяться
- * id - это число от 1 до 25
- * @param {number} start
- * @returns lastGenerationId
+ * Функция получения уникального идентификатора
+ * @param {*} start
+ * @returns
  */
 export const createIdGenerator = (start = 0) => {
   let lastGeneratedId = start;
