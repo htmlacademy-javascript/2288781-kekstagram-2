@@ -1,6 +1,7 @@
-/* eslint-disable no-console */
-// точка входа - модуль, который связывает другие модули
+// ГЛАВНЫЙ МОДУЛЬ И ТОЧКА ВХОДА - модуль, который связывает другие модули
 
-import { getAllPhotoUsers } from './create-data.js';
+import { getAllPhotoUsers } from '/js/create-photos/create-data.js';
+import { renderPictures } from '/js/create-photos/thumbnails.js';
 
-console.log(getAllPhotoUsers());
+const getPhotosArray = getAllPhotoUsers();
+renderPictures(getPhotosArray);
