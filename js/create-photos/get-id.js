@@ -1,5 +1,7 @@
 import { createIdGenerator } from '../utils.js';
-
+/**
+ * Генерация id
+ */
 const generatePhotoId = createIdGenerator();
 const generatePhotoUrl = createIdGenerator();
 const generateCommentsId = createIdGenerator();
