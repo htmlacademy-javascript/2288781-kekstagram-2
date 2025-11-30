@@ -7,8 +7,7 @@ import { generateCommentsId } from '/js/create-photos/get-id.js';
  */
 const { COMMENTS, AVATARS, MESSAGES, NAMES } = getDataArrays();
 
-/**
-  * Функция, которая создает комментарии к фотографиям
+/** Функция, которая создает комментарии к фотографиям
   * @param {*} id - идентификатор комментария
   * @param {*} avatar - это строка, где значение которой формируется по правилу: img/avatar-{{случайное число от 1 до 6}}.svg
   * @param {*} message - сам комментарий

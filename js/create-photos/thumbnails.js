@@ -12,7 +12,7 @@ const picturesList = document.querySelector('.pictures');
  * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
  * @param {string} url - адрес изображения с атрибутом src
  * @param {string} description - описание изображения в атрибуте alt
- * @param {*} likes - описание лайков (блок .picture__likes)
+ * @param {*} likes - количество лайков (блок .picture__likes)
  * @param {*} comments - количество комментариев (блок .picture__comments)
  * @param {*} DocumentFragment - вставка элементов
  */

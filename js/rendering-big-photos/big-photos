@@ -1,0 +1,50 @@
+import { сloseOnEscapeKeyDown } from '../utils.js'
+
+// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ ОКНА С ПОЛНОРАЗМЕРНЫМ ИЗОБРАЖЕНИЕМ
+
+; /**
+; Задача - реализовать сценарий просмотра фотографий в полноразмерном режиме.
+; В таком режиме пользователь получает несколько дополнительных возможностей:
+; - детально рассмотреть изображение,
+; - поставить «лайк»,
+; - почитать комментарии, оставленные другими пользователями
+; */
+
+// Для отображения окна нужно удалять класс hidden у элемента .big-picture
+const bigPicture = document.querySelector('.big-picture');
+
+// и каждый раз заполнять его данными о конкретной фотографии:
+// - адрес изображения url подставьте как src изображения внутри блока .big-picture__img
+const bigPictureImage = bigPicture.querySelector('.big-picture__img img');
+// - количество лайков likes подставьте как текстовое содержание элемента .likes-count
+const likesCount = bigPicture.querySelector('.likes-count');
+// - количество показанных комментариев подставьте как текстовое содержание элемента .social__comment-shown-count
+const socialCommentsShownCount = bigPicture.querySelector('.social__comment-shown-count');
+// - общее количество комментариев к фотографии comments подставьте как текстовое содержание элемента .social__comment-total-count
+const socialCommentsTotalCount = bigPicture.querySelector('.social__comment-total-count');
+// - cписок комментариев под фотографией: комментарии должны вставляться в блок .social__comments.
+const socialComments = bigPicture.querySelector('.social__comments');
+// - описание фотографии description вставьте строкой в блок .social__caption
+const socialCaption = bigPicture.querySelector('.social__caption');
+
+// Шаблон комментария
+;  Разметка каждого комментария должна выглядеть так:
+; <li class="social__comment">
+;   <img
+;     class="social__picture"
+;     src="{{аватар}}"
+;     alt="{{имя комментатора}}"
+;     width="35" height="35">
+;   <p class="social__text">{{текст комментария}}</p>
+; </li>
+const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
+
+// Кнопка для загрузки новой порции комментариев
+const commentsLoader = bigPicture.querySelector('.comments-loader');
+
+// Форма для отправки комментария
+const socialFooterText = bigPicture.querySelector('.social__footer-text');
+const commentFragment = document.createDocumentFragment();
+
+// Кнопка для выхода из полноэкранного просмотра изображения
+const pictureCloseButton = document.querySelector('.big-picture__cancel');

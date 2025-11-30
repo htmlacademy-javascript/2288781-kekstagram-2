@@ -33,3 +33,13 @@ export const createIdGenerator = (start = 0) => {
     return lastGeneratedId;
   };
 };
+
+/**
+ * Кнопка "Escape" при помощи табуляции - Окно должно закрываться при клике на модальное окно с полноразмерным изображением
+ * @param {*} evt
+ * @returns
+ */
+export const сloseOnEscapeKeyDown = (evt) => evt.key === 'Escape';
+
+// Окно должно открываться при клике на миниатюру
+// const isEnterKey = (evt) => evt.key === 'Enter';
