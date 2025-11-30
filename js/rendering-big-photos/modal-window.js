@@ -56,7 +56,7 @@ const renderItemDetails = (data, target) => {
 
   target.querySelector('.social__caption').textContent = description;
   target.querySelector('.likes-count').textContent = likes;
-  target.querySelector('.comments-count').textContent = comments.length;
+  target.querySelector('.social__comment-count').textContent = comments.length;
 
   renderComments(comments);
 };
@@ -84,3 +84,5 @@ export { renderItemDetails };
 //   >
 //   <p class="social__text">{{текст комментария}}</p>
 // </li>
+
+// ??? ('.social__comment-shown-count' + ' из ' + '.social__comment-total-count' + ' комментариев')
