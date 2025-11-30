@@ -35,11 +35,26 @@ export const createIdGenerator = (start = 0) => {
 };
 
 /**
- * Кнопка "Escape" при помощи табуляции - Окно должно закрываться при клике на модальное окно с полноразмерным изображением
+ * Функция-переключатель
+ * @param {*} element
+ * @param {*} className
+ */
+export const toggleClass = (element, className = '') => {
+  if (element) {
+    element.classList.toggle(className);
+  }
+};
+
+/**
+ * Функция проверки нажатой клавиши Esc
  * @param {*} evt
  * @returns
  */
-export const сloseOnEscapeKeyDown = (evt) => evt.key === 'Escape';
+export const isEscapeKeydown = (evt) => evt.key === 'Escape';
 
-// Окно должно открываться при клике на миниатюру
-// const isEnterKey = (evt) => evt.key === 'Enter';
+/**
+ * Функция проверки нажатой клавиши Enter
+ * @param {*} evt
+ * @returns
+ */
+export const isEnterKeydown = (evt) => evt.key === 'Enter';
