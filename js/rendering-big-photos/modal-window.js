@@ -56,7 +56,11 @@ const renderItemDetails = (data, target) => {
 
   target.querySelector('.social__caption').textContent = description;
   target.querySelector('.likes-count').textContent = likes;
-  target.querySelector('.social__comment-count').textContent = comments.length;
+  target.querySelector('.social__comment-shown-count').textContent = comments.length;
+
+  // После открытия окна спрячьте блоки счётчика комментариев .social__comment-count и загрузки новых комментариев .comments-loader, добавив им класс hidden, с ними мы разберёмся позже, в другом домашнем задании.
+  target.querySelector('.social__comment-count').classList.add('hidden');
+  target.querySelector('.comments-loader').classList.add('hidden');
 
   renderComments(comments);
 };
@@ -85,4 +89,8 @@ export { renderItemDetails };
 //   <p class="social__text">{{текст комментария}}</p>
 // </li>
 
-// ??? ('.social__comment-shown-count' + ' из ' + '.social__comment-total-count' + ' комментариев')
+// После открытия окна добавьте тегу <body> класс modal-open, чтобы контейнер с фотографиями позади не прокручивался при скролле. При закрытии окна не забудьте удалить этот класс.
+
+// Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия.
+
+// Подключите модуль в проект.
