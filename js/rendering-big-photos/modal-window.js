@@ -1,12 +1,18 @@
 const commentList = document.querySelector('.social__comments');
-
+const bigPicture = document.querySelector('.big-picture');
+const bigImage = document.querySelector('.big-picture__img img');
+const bigImageCaption = document.querySelector('.social__caption');
+const bigImageLikes = document.querySelector('.likes-count');
+const bigImageShownComments = document.querySelector('.social__comment-shown-count');
+const bigImageTotalComment = document.querySelector('.social__comment-count');
+const bigImageLoader = document.querySelector('.comments-loader');
 /**
 * Шаблон комментария
 * @param {Object} comment - объект с одним комментарием
 * @returns {Element}
 */
 const createComment = (comment) => {
-  const {avatar, name, message} = comment;
+  const { avatar, name, message } = comment;
 
   const commentLiElement = document.createElement('li');
   commentLiElement.classList.add('social__comment');
@@ -46,21 +52,19 @@ const renderComments = (comments) => {
 /**
 * Меняет данные полноразмерной фотографии
 */
-const renderItemDetails = (data, target) => {
+const renderItemDetails = (data) => {
   const { url, description, likes, comments } = data;
-
-  const bigImage = target.querySelector('.big-picture__img img');
-
+  bigPicture.classList.remove('hidden');
   bigImage.src = url;
   bigImage.alt = description;
 
-  target.querySelector('.social__caption').textContent = description;
-  target.querySelector('.likes-count').textContent = likes;
-  target.querySelector('.social__comment-shown-count').textContent = comments.length;
+  bigImageCaption.textContent = description;
+  bigImageLikes.textContent = likes;
+  bigImageShownComments.textContent = comments.length;
 
   // После открытия окна спрячьте блоки счётчика комментариев .social__comment-count и загрузки новых комментариев .comments-loader, добавив им класс hidden, с ними мы разберёмся позже, в другом домашнем задании.
-  target.querySelector('.social__comment-count').classList.add('hidden');
-  target.querySelector('.comments-loader').classList.add('hidden');
+  bigImageTotalComment.classList.add('hidden');
+  bigImageLoader.classList.add('hidden');
 
   renderComments(comments);
 };

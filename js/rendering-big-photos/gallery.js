@@ -18,5 +18,4 @@ const onPictureClick = (evt) => {
     renderItemDetails(photo);
   }
 };
-
 pictures.addEventListener('click', onPictureClick);
