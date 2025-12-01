@@ -51,10 +51,3 @@ export const toggleClass = (element, className = '') => {
  * @returns
  */
 export const isEscapeKeydown = (evt) => evt.key === 'Escape';
-
-/**
- * Функция проверки нажатой клавиши Enter
- * @param {*} evt
- * @returns
- */
-export const isEnterKeydown = (evt) => evt.key === 'Enter';
