@@ -20,13 +20,14 @@ const renderPictures = (element) => {
   const DocumentFragment = document.createDocumentFragment();
   // eslint-disable-next-line no-console
   console.log(element);
-  element.forEach(({ url, description, likes, comments }) => {
+  element.forEach(({ url, description, likes, comments, id }) => {
     const pictureElement = pictureTemplate.cloneNode(true);
     const isImage = pictureElement.querySelector('.picture__img');
     isImage.src = url;
     isImage.alt = description;
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
+    pictureElement.dataset.id = id;
     DocumentFragment.appendChild(pictureElement);
   });
 
