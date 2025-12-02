@@ -1,27 +1,16 @@
-import { toggleClass, isEscapeKeydown } from '../utils.js';
-
 // МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ ОКНА С ПОЛНОРАЗМЕРНЫМ ИЗОБРАЖЕНИЕМ
 
 // Задача - реализовать сценарий просмотра фотографий в полноразмерном режиме.
 // В таком режиме пользователь получает несколько дополнительных возможностей:
-// - детально рассмотреть изображение,
+// + детально рассмотреть изображение,
 // - поставить «лайк»,
 // - почитать комментарии, оставленные другими пользователями
 
-const isBody = document.body;
-
-const bigPicture = document.querySelector('.big-picture');
-const bigImage = document.querySelector('.big-picture__img img');
-const bigImageLikes = document.querySelector('.likes-count');
-const bigImageButtonClose = bigPicture.querySelector('.big-picture__cancel');
-const commentList = document.querySelector('.social__comments');
-const bigImageCaption = document.querySelector('.social__caption');
-const bigImageShownComments = document.querySelector('.social__comment-shown-count');
-const bigImageTotalComment = document.querySelector('.social__comment-count');
-const bigImageLoader = document.querySelector('.comments-loader');
+import { isBody, bigPicture, bigImage, bigImageLikes, commentList, bigImageCaption, bigImageShownComments, bigImageTotalComment, bigImageLoader } from '/js/rendering-big-photos/const-big-photos.js';
+import { onDocumentKeydown } from '/js/rendering-big-photos/modal-window.js';
 
 /**
-* Шаблон комментария
+* 1. Шаблон комментария
 * @param {Object} comment - объект с одним комментарием
 * @returns {Element}
 */
@@ -99,38 +88,8 @@ export const openModal = (data) => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-// Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия.
-const toggleModal = () => {
-  toggleClass(bigPicture, 'hidden');
-  toggleClass(isBody, 'modal-open');
 
-  bigImageTotalComment.classList.remove('hidden');
-  bigImageLoader.classList.remove('hidden');
-
-  // eslint-disable-next-line no-use-before-define
-  document.removeEventListener('keydown', onDocumentKeydown);
-};
-
-// Обработчик нажатия клавиши
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKeydown(evt)) {
-    evt.preventDefault();
-    toggleModal();
-  }
-};
-
-// Обработчик клика по кнопке с крестиком
-bigImageButtonClose.addEventListener('click', toggleModal);
-
-// Обработчик клика вокруг модального окна
-bigPicture.addEventListener('click', (evt) => {
-  if (evt.target === bigPicture) {
-    toggleModal();
-  }
-});
-
-
-// Для отображения окна нужно удалять класс hidden у элемента .big-picture
+// 1. Для отображения окна нужно удалять класс hidden у элемента .big-picture
 // и каждый раз заполнять его данными о конкретной фотографии:
 // + адрес изображения url подставьте как src изображения внутри блока .big-picture__img
 // + количество показанных комментариев подставьте как текстовое содержание элемента .social__comment-shown-count
