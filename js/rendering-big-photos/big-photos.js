@@ -6,65 +6,15 @@
 // - поставить «лайк»,
 // - почитать комментарии, оставленные другими пользователями
 
-import { isBody, bigPicture, bigImage, bigImageLikes, commentList, bigImageCaption, bigImageShownComments, bigImageTotalComment, bigImageLoader } from '/js/rendering-big-photos/const-big-photos.js';
+import { isBody, bigPicture, bigImage, bigImageLikes, bigImageCaption, bigImageShownComments, bigImageTotalComment, bigImageLoader } from '/js/rendering-big-photos/const-big-photos.js';
 import { onDocumentKeydown } from '/js/rendering-big-photos/modal-window.js';
+import { renderComments } from '/js/rendering-big-photos/comments-big-photo.js';
 
 /**
-* 1. Шаблон комментария
-* @param {Object} comment - объект с одним комментарием
-* @returns {Element}
-*/
-const createComment = (comment) => {
-  const { avatar, name, message } = comment;
-
-  const commentLiElement = document.createElement('li');
-  commentLiElement.classList.add('social__comment');
-
-  const commentImageElement = document.createElement('img');
-  commentImageElement.classList.add('social__picture');
-  commentImageElement.src = avatar;
-  commentImageElement.alt = name;
-  commentImageElement.width = 35;
-  commentImageElement.height = 35;
-
-  const commentParagraphElement = document.createElement('p');
-  commentParagraphElement.classList.add('social__text');
-  commentParagraphElement.textContent = message;
-  commentLiElement.appendChild(commentImageElement);
-  commentLiElement.appendChild(commentParagraphElement);
-
-  return commentLiElement;
-};
-
-/**
- * Обновляет количество показанных комментариев
- */
-const updatesNumberComentsShown = () => {
-  const numberComentsCount = commentList.querySelectorAll('.social__comment').length;
-  bigImageShownComments.textContent = numberComentsCount;
-};
-
-/**
-* Отрисовывает комментарии внутри полноразмерной фотографии
-*/
-const renderComments = (comments) => {
-  commentList.innerHTML = '';
-
-  const fragmentComments = document.createDocumentFragment();
-
-  comments.forEach((comment) => {
-    const commentElement = createComment(comment);
-    fragmentComments.appendChild(commentElement);
-  });
-
-  updatesNumberComentsShown();
-};
-
-/**
-* Меняет данные полноразмерной фотографии
+* Отрисовываем из миниатюр окно полноразмерной фотографии
 */
 export const openModal = (data) => {
-  // После открытия окна добавьте тегу <body> класс modal-open, чтобы контейнер с фотографиями позади не прокручивался при скролле. При закрытии окна не забудьте удалить этот класс.
+  // 2. После открытия окна добавьте тегу <body> класс modal-open, чтобы контейнер с фотографиями позади не прокручивался при скролле. При закрытии окна не забудьте удалить этот класс.
   isBody.classList.add('modal-open');
   // Показываем окно
   bigPicture.classList.remove('hidden');
@@ -84,7 +34,6 @@ export const openModal = (data) => {
   renderComments(data.comments);
 
   // Обработчик клавиши Esc для закрытия модального окна
-  // eslint-disable-next-line no-use-before-define
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
@@ -110,8 +59,6 @@ export const openModal = (data) => {
 //   <p class="social__text">{{текст комментария}}</p>
 // </li>
 
-// После открытия окна добавьте тегу <body> класс modal-open, чтобы контейнер с фотографиями позади не прокручивался при скролле. При закрытии окна не забудьте удалить этот класс.
-
-// Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия.
-
-// Подключите модуль в проект.
+// ?????????
+// модуль с лайком
+// комментарии
