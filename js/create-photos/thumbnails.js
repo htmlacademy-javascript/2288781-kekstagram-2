@@ -1,12 +1,14 @@
 // МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
 // Задача - отобразить фотографии других пользователей
 
-// Шаблон изображения случайного пользователя
-const pictureTemplateFragment = document.querySelector('#picture').content;
-// Одна фотография
-const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
-// Список с фотографиями
-const picturesList = document.querySelector('.pictures');
+const photosList = document.querySelector('.pictures'); // cписок с фотографиями
+const photosFragment = document.createDocumentFragment(); // вставка элементов
+const photoFragment = document.querySelector('#picture').content; // шаблон изображения случайного пользователя
+
+const photoTemplate = photoFragment.querySelector('.picture'); // одна фотография
+const imageElement = photoFragment.querySelector('.picture__img');
+const likesElement = photoFragment.querySelector('.picture__likes');
+const commentsElement = photoFragment.querySelector('.picture__comments');
 
 /**
  * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
@@ -14,24 +16,21 @@ const picturesList = document.querySelector('.pictures');
  * @param {string} description - описание изображения в атрибуте alt
  * @param {*} likes - количество лайков (блок .picture__likes)
  * @param {*} comments - количество комментариев (блок .picture__comments)
- * @param {*} DocumentFragment - вставка элементов
  */
-const renderPictures = (element) => {
-  const DocumentFragment = document.createDocumentFragment();
-  // eslint-disable-next-line no-console
-  console.log(element);
-  element.forEach(({ url, description, likes, comments, id }) => {
-    const pictureElement = pictureTemplate.cloneNode(true);
-    const isImage = pictureElement.querySelector('.picture__img');
-    isImage.src = url;
-    isImage.alt = description;
-    pictureElement.querySelector('.picture__likes').textContent = likes;
-    pictureElement.querySelector('.picture__comments').textContent = comments.length;
-    pictureElement.dataset.id = id;
-    DocumentFragment.appendChild(pictureElement);
+const renderPhotos = (element) => {
+  const clonePhotoFragment = photoTemplate.cloneNode(true);
+
+  element.forEach(({ id, url, description, likes, comments }) => {
+    photoTemplate.dataset.id = id;
+    imageElement.src = url;
+    imageElement.alt = description;
+    likesElement.textContent = likes;
+    commentsElement.textContent = comments.length;
+
+    photosFragment.appendChild(clonePhotoFragment);
   });
 
-  picturesList.appendChild(DocumentFragment);
+  photosList.appendChild(photosFragment);
 };
 
-export { renderPictures };
+export { renderPhotos };

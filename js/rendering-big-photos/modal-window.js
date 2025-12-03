@@ -2,14 +2,14 @@
 // + 3. Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия
 
 import { toggleClass, isEscapeKeydown } from '../utils.js';
-import { isBody, bigPicture, bigImageButtonClose, bigImageTotalComment, bigImageLoader } from '/js/rendering-big-photos/const-big-photos.js';
+import { isBody, bigPicture, bigImageButtonClose, socialCommentTotalCount, commentsLoader } from '/js/rendering-big-photos/const-big-photos.js';
 
 const toggleModal = () => {
   toggleClass(bigPicture, 'hidden');
   toggleClass(isBody, 'modal-open');
 
-  bigImageTotalComment.classList.remove('hidden');
-  bigImageLoader.classList.remove('hidden');
+  socialCommentTotalCount.classList.remove('hidden');
+  commentsLoader.classList.remove('hidden');
 
   // eslint-disable-next-line no-use-before-define
   document.removeEventListener('keydown', onDocumentKeydown);

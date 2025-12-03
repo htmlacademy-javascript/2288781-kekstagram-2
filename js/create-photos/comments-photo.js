@@ -15,17 +15,11 @@ const { COMMENTS, AVATARS, MESSAGES, NAMES } = getDataArrays();
   * @param {Array} return createComments - возвращает массив комментариев
   *
 */
-const createComments = () => {
-  const arrayComments = [];
-  for (let i = 0; i < getRandomInteger(COMMENTS.MIN, COMMENTS.MAX); i++) {
-    arrayComments.push({
-      id: generateCommentsId(),
-      avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-      message: getRandomElements(MESSAGES),
-      name: getRandomElements(NAMES),
-    });
-  }
-  return createComments;
-};
+const createComments = () => ({
+  id: generateCommentsId(),
+  avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
+  message: getRandomElements(MESSAGES),
+  name: getRandomElements(NAMES),
+});
 
-export { createComments };
+export const generateComment = () => Array.from({ length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createComments);

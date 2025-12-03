@@ -6,7 +6,7 @@
 // - поставить «лайк»,
 // - почитать комментарии, оставленные другими пользователями
 
-import { isBody, bigPicture, bigImage, bigImageLikes, bigImageCaption, bigImageShownComments, bigImageTotalComment, bigImageLoader } from '/js/rendering-big-photos/const-big-photos.js';
+import { isBody, bigPicture, bigImage, socialCaption, likesCount, socialCommentShownCount, socialCommentTotalCount, commentsLoader } from '/js/rendering-big-photos/const-big-photos.js';
 import { onDocumentKeydown } from '/js/rendering-big-photos/modal-window.js';
 import { renderComments } from '/js/rendering-big-photos/comments-big-photo.js';
 
@@ -22,13 +22,13 @@ export const openModal = (data) => {
   // Данные фотокарточки
   bigImage.src = data.url;
   bigImage.alt = data.description;
-  bigImageLikes.textContent = data.likes;
-  bigImageShownComments.textContent = data.comments.length;
-  bigImageCaption.textContent = data.description;
+  likesCount.textContent = data.likes;
+  socialCommentShownCount.textContent = data.comments.length;
+  socialCaption.textContent = data.description;
 
   // После открытия окна спрячьте блоки счётчика комментариев .social__comment-count и загрузки новых комментариев .comments-loader, добавив им класс hidden, с ними мы разберёмся позже, в другом домашнем задании.
-  bigImageTotalComment.classList.add('hidden');
-  bigImageLoader.classList.add('hidden');
+  socialCommentTotalCount.classList.add('hidden');
+  commentsLoader.classList.add('hidden');
 
   // Рендерируем комментарий из объекта data
   renderComments(data.comments);
@@ -58,7 +58,3 @@ export const openModal = (data) => {
 //   >
 //   <p class="social__text">{{текст комментария}}</p>
 // </li>
-
-// ?????????
-// модуль с лайком
-// комментарии
