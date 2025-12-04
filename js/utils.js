@@ -15,6 +15,29 @@ export const getRandomInteger = (a, b) => {
 };
 
 /**
+ * Функция получения уникального случайного идентификатора
+ * @param {*} min
+ * @param {*} max
+ * @returns
+ */
+export const createRandomIntegerFromRangeGenerator = (min, max) => {
+  const previousValues = [];
+  return function () {
+    let currentValue = getRandomInteger(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      // eslint-disable-next-line no-console
+      console.error(`Перебраны все числа из диапазона от ${ min } до ${ max }`);
+      return null;
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInteger(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+};
+
+/**
  * Функция получения случайного элемента массива
  * @param {*} elements
  * @returns

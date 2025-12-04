@@ -1,17 +1,20 @@
-import { createIdGenerator } from '../utils.js';
+import { createRandomIntegerFromRangeGenerator, createIdGenerator } from '../utils.js';
+import { getDataArrays } from '../data.js';
+
+/**
+ * Деструктуризация импортированных данных
+ */
+const { MAX_PHOTOS } = getDataArrays();
+
 /**
  * Генерация id
  */
-const generatePhotoId = createIdGenerator();
-const generatePhotoUrl = createIdGenerator();
-const generateCommentsId = createIdGenerator();
-const generateAvatarsId = createIdGenerator();
-const generateLikesId = createIdGenerator();
+const photoId = createIdGenerator();
+const photoUrl = createIdGenerator();
+const commentsId = createRandomIntegerFromRangeGenerator(1, MAX_PHOTOS);
 
 export {
-  generatePhotoId,
-  generatePhotoUrl,
-  generateCommentsId,
-  generateAvatarsId,
-  generateLikesId
+  photoId,
+  photoUrl,
+  commentsId
 };

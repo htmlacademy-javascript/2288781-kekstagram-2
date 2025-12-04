@@ -1,6 +1,6 @@
 import { getDataArrays } from '../data.js';
 import { getRandomInteger, getRandomElements } from '../utils.js';
-import { generatePhotoId, generatePhotoUrl } from '/js/create-photos/get-id.js';
+import { photoId, photoUrl } from '/js/create-photos/get-id.js';
 import { generateComment } from '/js/create-photos/comments-photo.js';
 
 /**
@@ -18,8 +18,8 @@ const { DESCRIPTIONS, LIKES, MAX_PHOTOS } = getDataArrays();
   * @returns
 */
 const createPhoto = () => ({
-  id: generatePhotoId(),
-  url: `photos/${ generatePhotoUrl() }.jpg`,
+  id: photoId(),
+  url: `photos/${ photoUrl() }.jpg`,
   description: getRandomElements(DESCRIPTIONS),
   likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
   comments: generateComment()
@@ -28,4 +28,6 @@ const createPhoto = () => ({
 /**
  * Функция для создания массива объектов длиной MAX_PHOTOS с описанием фотографий
 */
-export const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, createPhoto);
+const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, createPhoto);
+
+export { getAllPhotoUsers };

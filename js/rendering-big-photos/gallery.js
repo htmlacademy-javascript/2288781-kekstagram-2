@@ -13,15 +13,15 @@
 */
 
 import { getAllPhotoUsers } from '/js/create-photos/create-data.js';
-import { renderPhotos } from '/js/create-photos/thumbnails.js';
+import { renderThumbnails } from '/js/create-photos/thumbnails.js';
 import { openModal } from '/js/rendering-big-photos/big-photos.js';
 
 const photos = getAllPhotoUsers();
-const pictures = document.querySelector('.pictures');
+const photosList = document.querySelector('.pictures');
 
-renderPhotos(photos);
+renderThumbnails(photos);
 
-const onPictureClick = (evt) => {
+const onPhotoClick = (evt) => {
   const card = evt.target.closest('.picture');
 
   if(card) {
@@ -31,4 +31,4 @@ const onPictureClick = (evt) => {
   }
 };
 
-pictures.addEventListener('click', onPictureClick);
+photosList.addEventListener('click', onPhotoClick);
