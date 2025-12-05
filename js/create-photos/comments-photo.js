@@ -1,13 +1,11 @@
 import { getDataArrays } from '../data.js';
 import { getRandomInteger, getRandomElements } from '../utils';
-import { commentsId } from '/js/create-photos/get-id.js';
+import { generateCommentsId } from '/js/create-photos/get-id.js';
 
 /**
  * Деструктуризация импортированных данных
  */
-const { AVATARS, MESSAGES, NAMES, COMMENTS } = getDataArrays();
-
-const createMessage = () => Array.from({ length: getRandomInteger(1, 2) }, () => getRandomElements(MESSAGES)).join(' ');
+const { COMMENTS, AVATARS, MESSAGES, NAMES } = getDataArrays();
 
 /** Функция, которая создает комментарии к фотографиям
   * @param {*} id - идентификатор комментария
@@ -17,13 +15,17 @@ const createMessage = () => Array.from({ length: getRandomInteger(1, 2) }, () =>
   * @param {Array} return createComments - возвращает массив комментариев
   *
 */
-const createComments = () => ({
-  id: commentsId(),
-  avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-  message: createMessage(),
-  name: getRandomElements(NAMES),
-});
+const createComments = () => {
+  const arrayComments = [];
+  for (let i = 0; i < getRandomInteger(COMMENTS.MIN, COMMENTS.MAX); i++) {
+    arrayComments.push({
+      id: generateCommentsId(),
+      avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
+      message: getRandomElements(MESSAGES),
+      name: getRandomElements(NAMES),
+    });
+  }
+  return createComments;
+};
 
-const generateComment = () => Array.from({ length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createComments);
-
-export { createComments, generateComment };
+export { createComments };

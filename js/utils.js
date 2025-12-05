@@ -1,5 +1,3 @@
-// МОДУЛЬ С ВСПОМОГАТЕЛЬНЫМИ ФУНКЦИЯМИ
-
 /**
  * Функция для генерации случайного числа в диапозоне от а до b
  * @param {number} a - нижняя граница диапазона,
@@ -12,29 +10,6 @@ export const getRandomInteger = (a, b) => {
   // исключаем повторение значения в следующих вызовах для комментариев
   const result = Math.random() * (upper - lower + 1) + lower; // подставляет следующий
   return Math.floor(result);
-};
-
-/**
- * Функция получения уникального случайного идентификатора
- * @param {*} min
- * @param {*} max
- * @returns
- */
-export const createRandomIntegerFromRangeGenerator = (min, max) => {
-  const previousValues = [];
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      // eslint-disable-next-line no-console
-      console.error(`Перебраны все числа из диапазона от ${ min } до ${ max }`);
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
 };
 
 /**
@@ -74,3 +49,10 @@ export const toggleClass = (element, className = '') => {
  * @returns
  */
 export const isEscapeKeydown = (evt) => evt.key === 'Escape';
+
+/**
+ * Функция проверки нажатой клавиши Enter
+ * @param {*} evt
+ * @returns
+ */
+export const isEnterKeydown = (evt) => evt.key === 'Enter';

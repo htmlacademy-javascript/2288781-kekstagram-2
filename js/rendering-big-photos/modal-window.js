@@ -1,15 +1,13 @@
-// + 2. После открытия окна добавьте тегу <body> класс modal-open, чтобы контейнер с фотографиями позади не прокручивался при скролле. При закрытии окна не забудьте удалить этот класс.
-// + 3. Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия
-
 import { toggleClass, isEscapeKeydown } from '../utils.js';
-import { isBody, bigPicture, bigImageButtonClose, socialCommentTotalCount, commentsLoader } from '/js/rendering-big-photos/const-big-photos.js';
+import { isBody, bigPicture, bigImageButtonClose, bigImageTotalComment, bigImageLoader } from '/js/rendering-big-photos/const-big-photos.js';
 
+// Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия.
 const toggleModal = () => {
   toggleClass(bigPicture, 'hidden');
   toggleClass(isBody, 'modal-open');
 
-  socialCommentTotalCount.classList.remove('hidden');
-  commentsLoader.classList.remove('hidden');
+  bigImageTotalComment.classList.remove('hidden');
+  bigImageLoader.classList.remove('hidden');
 
   // eslint-disable-next-line no-use-before-define
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -32,5 +30,3 @@ bigPicture.addEventListener('click', (evt) => {
     toggleModal();
   }
 });
-
-

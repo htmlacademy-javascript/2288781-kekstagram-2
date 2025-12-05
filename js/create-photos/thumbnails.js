@@ -1,40 +1,37 @@
 // МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
 // Задача - отобразить фотографии других пользователей
 
-const photosList = document.querySelector('.pictures');
-const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
+// Шаблон изображения случайного пользователя
+const pictureTemplateFragment = document.querySelector('#picture').content;
+// Одна фотография
+const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
+// Список с фотографиями
+const picturesList = document.querySelector('.pictures');
 
 /**
- * Функция - создаем данные DOM-элемента в блоке .picture
+ * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
  * @param {string} url - адрес изображения с атрибутом src
  * @param {string} description - описание изображения в атрибуте alt
  * @param {*} likes - количество лайков (блок .picture__likes)
  * @param {*} comments - количество комментариев (блок .picture__comments)
+ * @param {*} DocumentFragment - вставка элементов
  */
-const createThumbnail = ({ url, description, likes, comments, id }) => {
-  const clonePhotoFragment = thumbnailTemplate.cloneNode(true);
-
-  const imageElement = clonePhotoFragment.querySelector('.picture__img');
-  imageElement.src = url;
-  imageElement.alt = description;
-  clonePhotoFragment.querySelector('.picture__likes').textContent = likes;
-  clonePhotoFragment.querySelector('.picture__comments').textContent = comments.length;
-  imageElement.dataset.id = id;
-
-  return clonePhotoFragment;
-};
-
-/**
- * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
- */
-const renderThumbnails = (pictures) => {
-  const previewFragment = document.createDocumentFragment(); // вставка элементов
-
-  pictures.forEach((picture) => {
-    const thumbnail = createThumbnail(picture);
-    previewFragment.append(thumbnail);
+const renderPictures = (element) => {
+  const DocumentFragment = document.createDocumentFragment();
+  // eslint-disable-next-line no-console
+  console.log(element);
+  element.forEach(({ url, description, likes, comments, id }) => {
+    const pictureElement = pictureTemplate.cloneNode(true);
+    const isImage = pictureElement.querySelector('.picture__img');
+    isImage.src = url;
+    isImage.alt = description;
+    pictureElement.querySelector('.picture__likes').textContent = likes;
+    pictureElement.querySelector('.picture__comments').textContent = comments.length;
+    pictureElement.dataset.id = id;
+    DocumentFragment.appendChild(pictureElement);
   });
-  photosList.appendChild(previewFragment);
+
+  picturesList.appendChild(DocumentFragment);
 };
 
-export { renderThumbnails };
+export { renderPictures };
