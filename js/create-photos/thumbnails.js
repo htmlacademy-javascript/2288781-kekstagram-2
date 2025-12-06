@@ -17,21 +17,26 @@ const picturesList = document.querySelector('.pictures');
  * @param {*} DocumentFragment - вставка элементов
  */
 const renderPictures = (element) => {
-  const DocumentFragment = document.createDocumentFragment();
-  // eslint-disable-next-line no-console
-  console.log(element);
-  element.forEach(({ url, description, likes, comments, id }) => {
+
+  const documentFragment = document.createDocumentFragment();
+
+  element.forEach(({ id, url, description, likes, comments }) => {
     const pictureElement = pictureTemplate.cloneNode(true);
+
+    pictureElement.dataset.id = id;
+
     const isImage = pictureElement.querySelector('.picture__img');
     isImage.src = url;
     isImage.alt = description;
-    pictureElement.querySelector('.picture__likes').textContent = likes;
-    pictureElement.querySelector('.picture__comments').textContent = comments.length;
-    pictureElement.dataset.id = id;
-    DocumentFragment.appendChild(pictureElement);
+
+    const pictureElementInfo = pictureElement.querySelector('.picture__info');
+    pictureElementInfo.querySelector('.picture__likes').textContent = likes;
+    pictureElementInfo.querySelector('.picture__comments').textContent = comments.length;
+
+    documentFragment.appendChild(pictureElement);
   });
 
-  picturesList.appendChild(DocumentFragment);
+  picturesList.appendChild(documentFragment);
 };
 
 export { renderPictures };

@@ -2,25 +2,30 @@
 
 const isBody = document.body;
 const bigPicture = document.querySelector('.big-picture');
+const bigPictureButtonClose = bigPicture.querySelector('.big-picture__cancel');
+
 const bigImage = document.querySelector('.big-picture__img img');
 const bigImageLikes = document.querySelector('.likes-count');
-const commentList = document.querySelector('.social__comments');
-const bigImageCaption = document.querySelector('.social__caption');
-const bigImageShownComments = document.querySelector('.social__comment-shown-count');
 
-const bigImageButtonClose = bigPicture.querySelector('.big-picture__cancel');
-const bigImageTotalComment = document.querySelector('.social__comment-count');
+const commentsList = document.querySelector('.social__comments');
+const socialComment = document.querySelector('.social__comment');
+const bigImageCaption = document.querySelector('.social__caption');
+const bigImageShownCommentsCount = document.querySelector('.social__comment-shown-count');
+const bigImageTotalCommentsCount = document.querySelector('.social__comment-total-count');
+
+
 const bigImageLoader = document.querySelector('.comments-loader');
 
 export {
   isBody,
   bigPicture,
+  bigPictureButtonClose,
   bigImage,
   bigImageLikes,
-  commentList,
+  commentsList,
+  socialComment,
   bigImageCaption,
-  bigImageShownComments,
-  bigImageButtonClose,
-  bigImageTotalComment,
+  bigImageShownCommentsCount,
+  bigImageTotalCommentsCount,
   bigImageLoader
 };
