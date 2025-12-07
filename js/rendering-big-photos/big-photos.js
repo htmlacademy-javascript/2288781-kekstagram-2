@@ -8,6 +8,7 @@ import { bigImage, bigImageLikes, bigImageCaption, bigImageShownCommentsCount, b
 // +- поставить «лайк», -> (likes-big-photos.js) ???
 // +? почитать комментарии, оставленные другими пользователями - comment-big-photos.js
 
+
 /**
 * Меняет данные случайной полноразмерной фотографии
 */
