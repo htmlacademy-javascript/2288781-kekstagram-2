@@ -1,7 +1,8 @@
 import { toggleClass, isEscapeKeydown } from '../utils.js';
-import { isBody, bigPicture, bigPictureButtonClose, socialComment, bigImageLoader, commentsList, bigImageShownCommentsCount } from '/js/rendering-big-photos/constanta-big-photos.js';
+import { bigPicture, isBody, socialComment, bigImageLoader, bigPictureButtonClose, commentsList, bigImageShownCommentsCount } from '/js/rendering-big-photos/constanta-big-photos.js';
 import { updateCommentSection } from '/js/rendering-big-photos/comment-big-photo.js';
 import { addDataBigPhoto } from '/js/rendering-big-photos/big-photos.js';
+import { likesNumber } from '/js/rendering-big-photos/likes-big-photo.js';
 
 // Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия.
 
@@ -58,6 +59,9 @@ const openModal = (picture) => {
   // Заполняет данными фотокарточку
   addDataBigPhoto(picture);
   updateCommentSection(picture.comments);
+
+  // Обработчик лайков
+  likesNumber(picture);
 
   // Инициализирует комменатрии
   const currentComments = picture.comments;

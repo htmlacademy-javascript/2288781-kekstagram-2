@@ -1,9 +1,11 @@
 import { createComments } from '/js/create-photos/comments-photo.js';
-import { commentsList, bigImageShownCommentsCount, bigImageLoader } from '/js/rendering-big-photos/constanta-big-photos.js';
+import { commentsList, bigImageShownCommentsCount, bigImageLoader, COMMENTS_LIMIT, currentComments } from '/js/rendering-big-photos/constanta-big-photos.js';
+import { getDataArrays } from '../data.js';
 
-const COMMENTS_LIMIT = 5;
-let commentsShown = 0;
-const currentComments = [];
+/**
+ * Деструктуризация импортированных данных
+ */
+const { AVATARS, MESSAGES, NAMES, DESCRIPTIONS } = getDataArrays();
 
 /**
  * Создает DOM-элемент комментария - шаблон одного комментария в полноразмерном фотокарточке
@@ -18,20 +20,20 @@ const createСommentBigPicture = () => {
 
   const avatarImages = newCommentElement.createElement('img');
   avatarImages.classList.add('social__picture');
-  avatarImages.src = createComments().avatar;
-  avatarImages.alt = createComments().name;
+  avatarImages.src = createComments(AVATARS).avatar;
+  avatarImages.alt = createComments(NAMES).name;
   avatarImages.width = 35;
   avatarImages.height = 35;
   newComment.appendChild(avatarImages);
 
   const descriptionText = newComment.createElement('p');
   descriptionText.classList.add('social__caption');
-  descriptionText.textContent = createComments().description;
+  descriptionText.textContent = createComments(DESCRIPTIONS).description;
   newComment.append(descriptionText);
 
   const paragraphText = newComment.createElement('p');
   paragraphText.classList.add('social__text');
-  paragraphText.textContent = createComments().message;
+  paragraphText.textContent = createComments(MESSAGES).message;
   newComment.append(paragraphText);
 
   return newCommentElement;
@@ -45,7 +47,7 @@ const renderPortionСomments = (comments) => {
   const fragmentComment = document.createDocumentFragment();
 
   comments.forEach((comment) => {
-    fragmentComment.appendChild(createСommentBigPicture(comment.avatar, comment.name, comment.massage));
+    fragmentComment.appendChild(createСommentBigPicture(comment.avatar, comment.name, comment.description, comment.massage));
   });
 
   commentsList.appendChild(fragmentComment);
@@ -55,6 +57,7 @@ const renderPortionСomments = (comments) => {
  * Показывает первую порцию комментариев
  */
 const updateCommentSection = () => {
+  let commentsShown = 0;
   const commentator = currentComments.slice(commentsShown, commentsShown + COMMENTS_LIMIT);
 
   renderPortionСomments(commentator);

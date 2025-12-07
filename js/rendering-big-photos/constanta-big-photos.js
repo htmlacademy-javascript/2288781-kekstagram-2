@@ -16,6 +16,9 @@ const bigImageTotalCommentsCount = document.querySelector('.social__comment-tota
 
 const bigImageLoader = document.querySelector('.comments-loader');
 
+const COMMENTS_LIMIT = 5;
+const currentComments = [];
+
 export {
   isBody,
   bigPicture,
@@ -27,5 +30,7 @@ export {
   bigImageCaption,
   bigImageShownCommentsCount,
   bigImageTotalCommentsCount,
-  bigImageLoader
+  bigImageLoader,
+  COMMENTS_LIMIT,
+  currentComments
 };
