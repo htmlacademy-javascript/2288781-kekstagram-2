@@ -3,6 +3,8 @@ import { getRandomInteger, getRandomElements } from '../utils.js';
 import { generatePhotoId, generatePhotoUrl } from '/js/create-photos/get-id.js';
 import { createComments } from '/js/create-photos/comments-photo.js';
 
+// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА СОЗДАНИЕ ОБЪЕКТА С ОПИСАНИЕМ ФОТОГРАФИИ
+
 /**
  * Деструктуризация импортированных данных
  */

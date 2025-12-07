@@ -1,4 +1,4 @@
-import { toggleClass, isEscapeKeydown } from '../utils.js';
+import { toggleClass, isEscapeKeydown, isEnterKeydown } from '../utils.js';
 import { bigPicture, isBody, socialComment, bigImageLoader, bigPictureButtonClose, commentsList, bigImageShownCommentsCount } from '/js/rendering-big-photos/constanta-big-photos.js';
 import { updateCommentSection } from '/js/rendering-big-photos/comment-big-photo.js';
 import { addDataBigPhoto } from '/js/rendering-big-photos/big-photos.js';
@@ -19,7 +19,7 @@ const toggleModal = () => {
 };
 
 /**
- * Обработчик нажатия клавиши Esc
+ * Обработчик нажатия клавиши Esc - кнопка закрытия с помощью Tab
  * @param {Event} evt - объект события
  */
 const onEscKeydown = (evt) => {
@@ -56,6 +56,9 @@ const openModal = (picture) => {
   bigPicture.classList.remove('hidden');
   isBody.classList.add('modal-open');
 
+  // eslint-disable-next-line no-use-before-define
+  document.addEventListener('keydown', onEnterKeydown);
+
   // Заполняет данными фотокарточку
   addDataBigPhoto(picture);
   updateCommentSection(picture.comments);
@@ -79,6 +82,17 @@ const openModal = (picture) => {
 
   // Обработчик кнопки "Загрузить еще"
   bigImageLoader.addEventListener('click', updateCommentSection);
+};
+
+/**
+ * Обработчик нажатия клавиши Enter - кнопка открытия с помощью Tab
+ * @param {Event} evt - объект события
+ */
+const onEnterKeydown = (evt) => {
+  if (isEnterKeydown(evt)) {
+    evt.preventDefault();
+    openModal();
+  }
 };
 
 // Обработчик кнопки закрытия

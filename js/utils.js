@@ -44,8 +44,15 @@ export const toggleClass = (element, className = '') => {
 };
 
 /**
- * Функция проверки нажатой клавиши Esc
+ * Функция проверки нажатой клавиши Esc - кнопка с крестиком, кнопка закрытия
  * @param {*} evt
  * @returns
  */
 export const isEscapeKeydown = (evt) => evt.key === 'Escape';
+
+/**
+ * Функция проверки нажатой клавиши Enter - кнопка открытия
+ * @param {*} evt
+ * @returns
+ */
+export const isEnterKeydown = (evt) => evt.key === 'Enter';

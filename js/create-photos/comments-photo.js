@@ -2,6 +2,8 @@ import { getDataArrays } from '../data.js';
 import { getRandomInteger, getRandomElements } from '../utils';
 import { generateCommentsId } from '/js/create-photos/get-id.js';
 
+// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА СОЗДАНИЕ МАССИВА И ЗАПОЛНЕНИЕ ЕГО КОММЕНАТРИЯМИ
+
 /**
  * Деструктуризация импортированных данных
  */
