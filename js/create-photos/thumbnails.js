@@ -1,36 +1,45 @@
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИТЮР (thumbnails)
-// Задача - отобразить фотографии других пользователей
+// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
 
-// Шаблон изображения случайного пользователя
+import { openModal } from '../rendering-big-photos/modal-window.js';
+
 const pictureTemplateFragment = document.querySelector('#picture').content;
-// Одна фотография
 const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
-// Список с фотографиями
-const picturesList = document.querySelector('.pictures');
+const picturesContainer = document.querySelector('.pictures');
 
-/**
- * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
- * @param {string} url - адрес изображения с атрибутом src
- * @param {string} description - описание изображения в атрибуте alt
- * @param {*} likes - описание лайков (блок .picture__likes)
- * @param {*} comments - количество комментариев (блок .picture__comments)
- * @param {*} DocumentFragment - вставка элементов
- */
-const renderPictures = (element) => {
-  const DocumentFragment = document.createDocumentFragment();
-  // eslint-disable-next-line no-console
-  console.log(element);
-  element.forEach(({ url, description, likes, comments }) => {
+let localPictures;
+
+const renderPictures = (pictures) => {
+  localPictures = [...pictures];
+  const documentFragment = document.createDocumentFragment();
+
+  pictures.forEach(({ id, url, description, likes, comments }) => {
     const pictureElement = pictureTemplate.cloneNode(true);
+
+    pictureElement.dataset.id = id;
+
     const isImage = pictureElement.querySelector('.picture__img');
     isImage.src = url;
     isImage.alt = description;
-    pictureElement.querySelector('.picture__likes').textContent = likes;
-    pictureElement.querySelector('.picture__comments').textContent = comments.length;
-    DocumentFragment.appendChild(pictureElement);
+
+    const pictureElementInfo = pictureElement.querySelector('.picture__info');
+    pictureElementInfo.querySelector('.picture__likes').textContent = likes;
+    pictureElementInfo.querySelector('.picture__comments').textContent = comments.length;
+
+    documentFragment.appendChild(pictureElement);
   });
 
-  picturesList.appendChild(DocumentFragment);
+  picturesContainer.append(documentFragment);
 };
+
+const onPictureClick = (evt) => {
+  const card = evt.target.closest('.picture');
+  if (card) {
+    const id = Number(card.dataset.id);
+    const photo = localPictures.find((item) => item.id === id);
+    openModal(photo);
+  }
+};
+
+picturesContainer.addEventListener('click', onPictureClick);
 
 export { renderPictures };
