@@ -1,3 +1,5 @@
-// ГЛАВНЫЙ МОДУЛЬ И ТОЧКА ВХОДА - модуль, который связывает другие модули
+import { getAllPhotoUsers } from './create-photos/create-data.js';
+import { renderPictures } from './create-photos/thumbnails.js';
 
-import '/js/rendering-big-photos/gallery.js';
+const photos = getAllPhotoUsers();
+renderPictures(photos);
