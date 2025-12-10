@@ -1,3 +1,5 @@
-import '/js/rendering-big-photos/gallery.js';
+import { getAllPhotoUsers } from './create-photos/create-data.js';
+import { renderPictures } from './create-photos/thumbnails.js';
 
-// ГЛАВНЫЙ МОДУЛЬ И ТОЧКА ВХОДА - модуль, который связывает другие модули
+const photos = getAllPhotoUsers();
+renderPictures(photos);

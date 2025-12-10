@@ -1,27 +1,18 @@
 // МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
 
-// Задача - отобразить фотографии других пользователей
+import { openModal } from '../rendering-big-photos/modal-window.js';
 
-// Шаблон изображения случайного пользователя
 const pictureTemplateFragment = document.querySelector('#picture').content;
-// Одна фотография
 const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
-// Список с фотографиями
-const picturesList = document.querySelector('.pictures');
+const picturesContainer = document.querySelector('.pictures');
 
-/**
- * Функция - отрисовать сгенерированные DOM-элементы в блоке .pictures
- * @param {string} url - адрес изображения с атрибутом src
- * @param {string} description - описание изображения в атрибуте alt
- * @param {*} likes - количество лайков (блок .picture__likes)
- * @param {*} comments - количество комментариев (блок .picture__comments)
- * @param {*} DocumentFragment - вставка элементов
- */
-const renderPictures = (element) => {
+let localPictures;
 
+const renderPictures = (pictures) => {
+  localPictures = [...pictures];
   const documentFragment = document.createDocumentFragment();
 
-  element.forEach(({ id, url, description, likes, comments }) => {
+  pictures.forEach(({ id, url, description, likes, comments }) => {
     const pictureElement = pictureTemplate.cloneNode(true);
 
     pictureElement.dataset.id = id;
@@ -37,7 +28,18 @@ const renderPictures = (element) => {
     documentFragment.appendChild(pictureElement);
   });
 
-  picturesList.appendChild(documentFragment);
+  picturesContainer.append(documentFragment);
 };
+
+const onPictureClick = (evt) => {
+  const card = evt.target.closest('.picture');
+  if (card) {
+    const id = Number(card.dataset.id);
+    const photo = localPictures.find((item) => item.id === id);
+    openModal(photo);
+  }
+};
+
+picturesContainer.addEventListener('click', onPictureClick);
 
 export { renderPictures };

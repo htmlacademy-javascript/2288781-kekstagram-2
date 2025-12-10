@@ -2,9 +2,6 @@ import { createIdGenerator } from '../utils.js';
 
 // МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ГЕНЕРАЦИЮ ИНДЕНТИФИКАТОРА
 
-/**
- * Генерация id
- */
 const generatePhotoId = createIdGenerator();
 const generatePhotoUrl = createIdGenerator();
 const generateCommentsId = createIdGenerator();

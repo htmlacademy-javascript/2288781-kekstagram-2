@@ -1,6 +1,6 @@
 // МОДУЛЬ С КОНСТАНТАМИ, СВЯЗАННЫМИ С ДАННЫМИ ПОЛНОРАЗМЕРНЫХ ИЗОБРАЖЕНИЙ
 
-const isBody = document.body;
+const body = document.body;
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureButtonClose = bigPicture.querySelector('.big-picture__cancel');
 
@@ -17,10 +17,9 @@ const bigImageTotalCommentsCount = document.querySelector('.social__comment-tota
 const bigImageLoader = document.querySelector('.comments-loader');
 
 const COMMENTS_LIMIT = 5;
-const currentComments = [];
 
 export {
-  isBody,
+  body,
   bigPicture,
   bigPictureButtonClose,
   bigImage,
@@ -31,6 +30,5 @@ export {
   bigImageShownCommentsCount,
   bigImageTotalCommentsCount,
   bigImageLoader,
-  COMMENTS_LIMIT,
-  currentComments
+  COMMENTS_LIMIT
 };
