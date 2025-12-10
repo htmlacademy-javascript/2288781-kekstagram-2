@@ -1,28 +1,36 @@
 import { bigImage, bigImageLikes, bigImageShownCommentsCount, bigImageTotalCommentsCount, bigImageCaption } from '../rendering-big-photos/constanta-big-photos.js';
+import { likesNumber } from '../rendering-big-photos/likes-big-photo.js';
 
 export const addDataBigPhoto = (data) => {
   const { url, description, likes, comments } = data;
   bigImage.src = url;
   bigImage.alt = description;
   bigImageLikes.textContent = likes;
-  bigImageShownCommentsCount.textContent = comments.length;
+  bigImageShownCommentsCount.textContent = 0; // временно не показываем
   bigImageTotalCommentsCount.textContent = comments.length;
   bigImageCaption.textContent = description;
 };
 
+bigImageLikes.addEventListener('click', (evt) => {
+  if (evt.target === bigImageLikes) {
+    // eslint-disable-next-line no-console
+    console.log(likesNumber);
+  }
+});
+
 // Задача - реализовать сценарий просмотра фотографий в полноразмерном режиме.
 // В таком режиме пользователь получает несколько дополнительных возможностей:
 // + детально рассмотреть изображение, -> modal-windows.js
-// +- поставить «лайк», -> (likes-big-photos.js) не нужен
+// + поставить «лайк», -> (likes-big-photos.js) в принципе не нужен, но я решила оставить
 // + почитать комментарии, оставленные другими пользователями -> comment-big-photos.js
 
-// Для отображения окна нужно удалять класс hidden у элемента .big-picture
+// Для отображения окна нужно удалять класс hidden у элемента .big-picture (bigPicture)
 // и каждый раз заполнять его данными о конкретной фотографии:
-// + адрес изображения url подставьте как src изображения внутри блока .big-picture__img
-// + количество показанных комментариев подставьте как текстовое содержание элемента .social__comment-shown-count
-// + общее количество комментариев к фотографии comments подставьте как текстовое содержание элемента .social__comment-total-count
-// + cписок комментариев под фотографией: комментарии должны вставляться в блок .social__comments.
-// + описание фотографии description вставьте строкой в блок .social__caption
+// + адрес изображения url подставьте как src изображения внутри блока .big-picture__img (bigImag)
+// + количество показанных комментариев подставьте как текстовое содержание элемента .social__comment-shown-count (bigImageShownCommentsCount)
+// + общее количество комментариев к фотографии comments подставьте как текстовое содержание элемента .social__comment-total-count (bigImageTotalCommentsCount)
+// + cписок комментариев под фотографией: комментарии должны вставляться в блок .social__comments (commentsList)
+// + описание фотографии description вставьте строкой в блок .social__caption (bigImageCaption)
 // + Шаблон комментария - разметка каждого комментария должна выглядеть так:
 // <li class="social__comment">
 //   <img
@@ -36,7 +44,7 @@ export const addDataBigPhoto = (data) => {
 // </li>
 // + После открытия окна добавьте тегу <body> класс modal-open, чтобы контейнер с фотографиями позади не прокручивался при скролле. При закрытии окна не забудьте удалить этот класс.
 // + Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия - modal-window.js
-// + Подключите модуль в проект - gallery.js
+// + Подключите модуль в проект
 
 // const createСommentBigPicture = () => {
 //   const newCommentElement = commentsList.cloneNode(true);

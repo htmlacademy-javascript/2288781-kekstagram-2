@@ -8,7 +8,7 @@ const bigImage = document.querySelector('.big-picture__img img');
 const bigImageLikes = document.querySelector('.likes-count');
 
 const commentsList = document.querySelector('.social__comments');
-const socialComment = document.querySelector('.social__comment');
+const template = document.querySelector('.social__comment');
 const bigImageCaption = document.querySelector('.social__caption');
 const bigImageShownCommentsCount = document.querySelector('.social__comment-shown-count');
 const bigImageTotalCommentsCount = document.querySelector('.social__comment-total-count');
@@ -25,7 +25,7 @@ export {
   bigImage,
   bigImageLikes,
   commentsList,
-  socialComment,
+  template,
   bigImageCaption,
   bigImageShownCommentsCount,
   bigImageTotalCommentsCount,
