@@ -2,7 +2,7 @@
 
 * Студент: [Оксана Арефьева](https://up.htmlacademy.ru/javascript-individual/2/user/2288781).
 * Наставник: [Виктория Никитина](https://htmlacademy.ru/profile/id1217273).
-* Личный проект: [«Кекстаграм»]().
+* Личный проект: [«Кекстаграм»](https://htmlacademy-javascript.github.io/2288781-kekstagram-2/20/).
 
 ---
 
