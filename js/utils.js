@@ -1,5 +1,3 @@
-// МОДУЛЬ С ВСПОМОГАТЕЛЬНЫМИ ФУНКЦИЯМИ
-
 /**
  * Функция для генерации случайного числа в диапозоне от а до b
  * @param {number} a - нижняя граница диапазона,
@@ -33,3 +31,21 @@ export const createIdGenerator = (start = 0) => {
     return lastGeneratedId;
   };
 };
+
+/**
+ * Функция-переключатель
+ * @param {*} element
+ * @param {*} className
+ */
+export const toggleClass = (element, className = '') => {
+  if (element) {
+    element.classList.toggle(className);
+  }
+};
+
+/**
+ * Функция проверки нажатой клавиши Esc - кнопка с крестиком, кнопка закрытия
+ * @param {*} evt
+ * @returns
+ */
+export const isEscapeKeydown = (evt) => evt.key === 'Escape';
