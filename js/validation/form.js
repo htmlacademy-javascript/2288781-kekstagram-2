@@ -1,4 +1,7 @@
+// eslint-disable-next-line no-redeclare
+/* global Pristine:readonly */
 /* eslint-disable no-console */
+
 /*
   + Первая задача - прописать тегу <form> правильные значения атрибутов method и enctype и адрес action для отправки формы на сервер.
 
@@ -23,13 +26,21 @@
     - добавление хэштегов.
 */
 
-// Форма загрузки нового изображения
-const imageUploadForm = document.querySelector('.img-upload__form');
+const imageUploadForm = document.querySelector('.img-upload__form'); // Форма загрузки нового изображения
 
-// // выбор файла с изображением для загрузки;
-// const imageUploadInput = document.querySelector('.img-upload__input');
+// const imageUploadInput = document.querySelector('.img-upload__input'); // выбор файла с изображением для загрузки;
+// const // изменение масштаба изображения
+// const // применение одного из заранее заготовленных эффектов
+// const // выбор глубины эффекта с помощью ползунка
+// const // добавление текстового комментария
+// const // добавление хэштегов
 
-const pristine = new Pristine(imageUploadForm);
+
+const pristine = new Pristine(imageUploadForm, {
+  classTo: 'img-upload__label',
+  errorTextParent: 'img-upload__label',
+  errorTextClass: 'error__inner',
+});
 
 imageUploadForm.addEventListener('sumbit', (evt) => {
   evt.preventDefault();
