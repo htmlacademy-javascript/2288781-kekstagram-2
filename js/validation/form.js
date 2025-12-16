@@ -22,8 +22,10 @@
     - добавление хэштегов.
 */
 
-// // Форма загрузки нового изображения
-// const imageUploadForm = document.querySelector('.img-upload__form');
+// Форма загрузки нового изображения
+const imageUploadForm = document.querySelector('.img-upload__form');
 
 // // выбор файла с изображением для загрузки;
 // const imageUploadInput = document.querySelector('.img-upload__input');
+
+new Pristine(imageUploadForm);
