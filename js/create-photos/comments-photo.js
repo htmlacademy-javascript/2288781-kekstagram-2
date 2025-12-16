@@ -1,5 +1,5 @@
 import { getDataArrays } from '../data.js';
-import { getRandomInteger, getRandomElements } from '../utils';
+import { getRandomInteger, getRandomElements } from '../utils.js';
 import { generateCommentsId } from '../create-photos/get-id.js';
 
 // МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА СОЗДАНИЕ МАССИВА И ЗАПОЛНЕНИЕ ЕГО КОММЕНАТРИЯМИ
