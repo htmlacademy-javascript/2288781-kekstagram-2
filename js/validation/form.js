@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
   + Первая задача - прописать тегу <form> правильные значения атрибутов method и enctype и адрес action для отправки формы на сервер.
 
@@ -28,4 +29,15 @@ const imageUploadForm = document.querySelector('.img-upload__form');
 // // выбор файла с изображением для загрузки;
 // const imageUploadInput = document.querySelector('.img-upload__input');
 
-new Pristine(imageUploadForm);
+const pristine = new Pristine(imageUploadForm);
+
+imageUploadForm.addEventListener('sumbit', (evt) => {
+  evt.preventDefault();
+
+  const isValid = pristine.validate();
+  if (isValid) {
+    console.log('Можно опубликовать');
+  } else {
+    console.log('Форма невалидна');
+  }
+});
