@@ -1,5 +1,6 @@
 import { isEscapeKeydown } from '../utils.js';
 import { imageUploadForm, imageUploadInput, imageUploadOverlay, imageUploadCancel, textDescription, textHashtags } from '../validation/form-data.js';
+import { isValidation } from '../validation/validation-form.js';
 
 /*
   1.2. Выбор изображения для загрузки осуществляется с помощью стандартного контрола загрузки файла .img-upload__input,
@@ -24,6 +25,9 @@ import { imageUploadForm, imageUploadInput, imageUploadOverlay, imageUploadCance
 1.3 Закрытие формы редактирования изображения производится либо нажатием на кнопку .img-upload__cancel, либо нажатием клавиши Esc (onDocumentKeydown) +
 
     Элементу .img-upload__overlay возвращается класс hidden. У элемента body удаляется класс modal-open (closeEditingForm) +
+
+?Как отменить обработчик Esc при фокусе?
+Задача не имеет одного верного решения, однако намекнём на самый простой — использовать stopPropagation для события нажатия клавиш в поле при фокусе +
 
 */
 
@@ -51,20 +55,13 @@ imageUploadCancel.addEventListener('click', () => {
   closeEditingForm();
 });
 
-
 function onDocumentKeydown(evt) {
   if (isEscapeKeydown(evt)) {
     evt.preventDefault();
 
     closeEditingForm();
   }
-};
-
-
-/*
-Как отменить обработчик Esc при фокусе?
-Задача не имеет одного верного решения, однако намекнём на самый простой — использовать stopPropagation для события нажатия клавиш в поле при фокусе.
-*/
+}
 
 textDescription.addEventListener('keydown', (evt) => {
   if (isEscapeKeydown(evt)) {
@@ -78,8 +75,8 @@ textHashtags.addEventListener('keydown', (evt) => {
   }
 });
 
-// imageUploadForm.addEventListener('submit', (evt) => {
-//   if(!isValidation()){
-//     evt.preventDefault();
-//   }
-// });
+imageUploadForm.addEventListener('submit', (evt) => {
+  if(!isValidation()){
+    evt.preventDefault();
+  }
+});

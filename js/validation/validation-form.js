@@ -1,4 +1,4 @@
-import { textDescription, textHashtags, MAX_HASHTAGS, MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH } from '../validation/form-data.js';
+import { textDescription, textHashtags, MAX_HASHTAGS, MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH } from './form-data.js';
 
 /*
 
@@ -50,7 +50,6 @@ import { textDescription, textHashtags, MAX_HASHTAGS, MAX_HASHTAG_LENGTH, MAX_DE
 Количество одновременно показываемых сообщений для одного поля разработчик определяет самостоятельно.
 
 
-
 ?Валидация хеш-тегов?
 Для валидации хэштегов вам придётся вспомнить, как работать с массивами.
 Набор хэштегов можно превратить в массив, воспользовавшись методом .split().
@@ -70,6 +69,7 @@ export const isValidation = () => {
 
 
   if (hashtagsArray.length > MAX_HASHTAGS) {
+    // eslint-disable-next-line no-alert
     alert(`Нельзя указать больше ${MAX_HASHTAGS} хэш-тегов`);
     return false;
   }
@@ -77,22 +77,26 @@ export const isValidation = () => {
   const lowerCaseTags = hashtagsArray.map((tag) => tag.toLowerCase());
   const uniqueTags = new Set(lowerCaseTags);
   if (uniqueTags.size < lowerCaseTags.length) {
+    // eslint-disable-next-line no-alert
     alert('Один и тот же хэш-тег не может быть использован дважды');
     return false;
   }
 
-  for (let tag of hashtagsArray) {
+  for (const tag of hashtagsArray) {
     if (tag.length > MAX_HASHTAG_LENGTH) {
+      // eslint-disable-next-line no-alert
       alert(`Максимальная длина одного хэш-тега ${MAX_HASHTAG_LENGTH} символов`);
       return false;
     }
     if (!/^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/.test(tag)) {
+      // eslint-disable-next-line no-alert
       alert('Хэш-тег должен начинаться с символа # и содержать только буквы и цифры');
       return false;
     }
   }
 
   if (descriptionValue.length > MAX_DESCRIPTION_LENGTH) {
+    // eslint-disable-next-line no-alert
     alert(`Максимальная длина описания фотографии ${MAX_DESCRIPTION_LENGTH} символов`);
     return false;
   }
