@@ -35,20 +35,26 @@ const imageUploadForm = document.querySelector('.img-upload__form'); // Форм
 // const // добавление текстового комментария
 // const // добавление хэштегов
 
-
+/**
+ * Расставляем атрибуты в HTML
+ */
 const pristine = new Pristine(imageUploadForm, {
-  classTo: 'img-upload__label',
-  errorTextParent: 'img-upload__label',
-  errorTextClass: 'error__inner',
+  classTo: 'img-upload__form', // Элемент, на который будут добавляться классы
+  errorClass: 'img-upload__form--invalid', // Класс, обозначающий невалидное поле
+  successClass: 'img-upload__form--valid', // Класс, обозначающий валидное поле
+  errorTextParent: 'img-upload', // Элемент, куда будет выводиться текст с ошибкой
+  errorTextTag: 'span', // Тег, который будет обрамлять текст ошибки
+  errorTextClass: 'form__error' // Класс для элемента с текстом ошибки
 });
 
 imageUploadForm.addEventListener('sumbit', (evt) => {
   evt.preventDefault();
+  pristine.validate();
 
-  const isValid = pristine.validate();
-  if (isValid) {
-    console.log('Можно опубликовать');
-  } else {
-    console.log('Форма невалидна');
-  }
+  // const isValid = pristine.validate();
+  // if (isValid) {
+  //   console.log('Можно опубликовать');
+  // } else {
+  //   console.log('Форма невалидна');
+  // }
 });
