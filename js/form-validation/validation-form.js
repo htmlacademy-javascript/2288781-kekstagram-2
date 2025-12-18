@@ -1,4 +1,4 @@
-import { textDescription, textHashtags, MAX_HASHTAGS, MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH } from './form-data.js';
+import { textDescription, textHashtags, MAX_HASHTAGS, MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH } from '../form-validation/form-data.js';
 
 /*
 
