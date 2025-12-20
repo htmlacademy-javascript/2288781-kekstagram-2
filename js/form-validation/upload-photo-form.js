@@ -2,7 +2,7 @@ import { isEscapeKeydown } from '../utils.js';
 import { pageBody, uploadForm, uploadFileControl, photoEditorForm, photoEditorResetButton, descriptionInput, hashtagsInput } from '../form-validation/form-data.js';
 
 /*
-  - Третья задача - реализовать закрытие формы.
+  + Третья задача - реализовать закрытие формы.
 
     !!!Обратите внимание, что при закрытии формы дополнительно необходимо сбрасывать значение поля выбора файла .img-upload__input.
     В принципе, всё будет работать, если при повторной попытке загрузить в поле другую фотографию.
@@ -14,15 +14,16 @@ import { pageBody, uploadForm, uploadFileControl, photoEditorForm, photoEditorRe
        который стилизован под букву «О» в логотипе.
        После выбора изображения (изменения значения поля .img-upload__input), показывается форма редактирования изображения.
        У элемента .img-upload__overlay удаляется класс hidden, а body задаётся класс modal-open.
+
       ??? После выбора изображения пользователем с помощью стандартного контрола загрузки файла .img-upload__input,
       нужно подставить его в форму редактирования вместо тестового изображения в блок предварительного просмотра и в превью эффектов.
 
-1.3 Закрытие формы редактирования изображения производится либо нажатием на кнопку .img-upload__cancel, либо нажатием клавиши Esc.
-    Элементу .img-upload__overlay возвращается класс hidden. У элемента body удаляется класс modal-open.
+  1.3 Закрытие формы редактирования изображения производится либо нажатием на кнопку .img-upload__cancel, либо нажатием клавиши Esc.
+      Элементу .img-upload__overlay возвращается класс hidden. У элемента body удаляется класс modal-open.
 
-?Как отменить обработчик Esc при фокусе?
-Задача не имеет одного верного решения, однако намекнём на самый простой — использовать stopPropagation для события нажатия клавиш в поле при фокусе.
-
+  ?Как отменить обработчик Esc при фокусе?
+  Задача не имеет одного верного решения, однако намекнём на самый простой — использовать stopPropagation
+  для события нажатия клавиш в поле при фокусе.
 */
 
 const onPhotoEditorResetButtonClick = () => closePhotoEditor();
@@ -31,6 +32,7 @@ const onDocumentKeydown = (evt) => {
   if (isEscapeKeydown(evt)) {
     evt.preventDefault();
 
+    // обработчик Esc при фокусе
     if (document.activeElement !== descriptionInput && document.activeElement !== hashtagsInput) {
       evt.stopPropagation();
     } else {
@@ -59,6 +61,3 @@ export const initUploadForm = () => {
     photoEditorResetButton.addEventListener('click', onPhotoEditorResetButtonClick);
   });
 };
-
-// eslint-disable-next-line no-console
-console.log('initUploadForm');
