@@ -1,0 +1,85 @@
+const pageBody = document.querySelector('body'); // Тег body страницы
+
+const uploadForm = document.querySelector('.img-upload__form'); // Форма загрузки нового изображения
+
+const uploadFileControl = uploadForm.querySelector('.img-upload__input'); // Выбор файла с изображением для загрузки
+
+const photoEditorForm = uploadForm.querySelector('.img-upload__overlay'); // Применение одного из заранее заготовленных эффектов
+const photoEditorScale = photoEditorForm.querySelector('.img-upload__scale'); // Изменение масштаба изображения
+const photoEditorResetButton = photoEditorForm.querySelector('.img-upload__cancel'); // Выбор глубины эффекта с помощью ползунка
+
+const hashtagsInput = uploadForm.querySelector('.text__hashtags'); // Добавление хэштегов
+const descriptionInput = uploadForm.querySelector('.text__description'); // Добавление текстового комментария
+
+
+const DATA_FORM_SET = {
+  HASHTAG: /^#[a-zа-яё0-9]{1,19}$/i,
+  HASHTAG_FIRST_SYMBOL: /^#/,
+  HASHTAG_COUNT_MIN: 2,
+  HASHTAG_COUNT_MAX: 5,
+  MAX_HASHTAG_LENGTH: 20,
+  MAX_DESCRIPTION_LENGTH: 140,
+};
+
+const ERROR_MESSAGE = {
+  ERROR_NO_FIRST_SYMBOL_HASHTAG: 'Хэштег начинается с символа # (решётка)', // хэштег начинается с символа # (решётка);
+  ERROR_NO_VALID_HASHTAG: 'После решётки допустимы только буквы и числа', // строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
+  ERROR_ONLY_SYMBOL_HASHTAG: 'Хештег не может состоять только из одной решётки', // хэштег не может состоять только из одной решётки;
+  ERROR_LENGTH_HASHTAG: `Максимальная длина одного хэштега ${DATA_FORM_SET.MAX_HASHTAG_LENGTH} символов, включая решётку`, // максимальная длина одного хэштега 20 символов, включая решётку;
+  ERROR_ONE_AND_THE_SAME: 'Введены невалидные хештеги - один и тот же тег', // хэштеги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
+  ERROR_WHITESPACE: 'Не должен быть пробел внутри хэштега', // хэштеги разделяются пробелами;
+  ERROR_REPEAT: 'Один и тот же хэштег не может быть использован дважды', // один и тот же хэштег не может быть использован дважды;
+  ERROR_MAX_HASHTAG: `Максимальное количество ${DATA_FORM_SET.HASHTAG_COUNT_MAX} хэштэгов`, // нельзя указать больше пяти хэштегов;
+  ERROR_MAX_LENGTH_DESCRIPTION: `Максимальная длина комментария не более ${DATA_FORM_SET.MAX_DESCRIPTION_LENGTH} символов`, // длина комментария не может составлять больше 140 символов;
+};
+
+const VALID_MESSAGE = {
+  COMMENT_ARE_OPTIONAL: 'Комментарий не обязателен', // комментарий не обязателен;
+  HASHTAGS_ARE_OPTIONAL: 'Хэштеги не обязательны' // хэштеги не обязательны;
+};
+
+export {
+  pageBody,
+  uploadForm,
+
+  uploadFileControl,
+
+  photoEditorForm,
+  photoEditorScale,
+  photoEditorResetButton,
+
+  descriptionInput,
+  hashtagsInput,
+
+  DATA_FORM_SET,
+  ERROR_MESSAGE,
+  VALID_MESSAGE
+};
+
+
+/*
+  Основная задача домашней работы раздела 9 (первая часть) - реализовать функционал загрузки нового изображения на сайт и заполнения информации о нём.
+
+  Задание состоит из двух частей:
+  1. Загрузка нового изображения на сайт и заполнение информации о нём.
+  2. Валидация формы загрузки изображения.
+
+  1. Загрузка нового изображения на сайт и заполнение информации о нём.
+
+  + Первая задача - прописать тегу <form> правильные значения атрибутов method и enctype и адрес action для отправки формы на сервер - index.html.
+  + Вторая задача - изучить, что значит загрузка изображения, и как, когда и каким образом показывается форма редактирования изображения - upload-photo-form.js.
+    Написать код и добавьте необходимые обработчики для реализации этого пункта техзадания.
+
+    1.1. Загрузка нового изображения (данные форм в файле form-data.js):
+
+      + выбор файла с изображением для загрузки;
+
+      + изменение масштаба изображения;
+      + применение одного из заранее заготовленных эффектов;
+      + выбор глубины эффекта с помощью ползунка;
+
+      + добавление текстового комментария;
+      + добавление хэштегов.
+
+    2. Валидация формы загрузки изображения ( => validation.js).
+*/
