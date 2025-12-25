@@ -1,31 +1,41 @@
 import { isEscapeKeydown } from '../utils.js';
-import { pageBody, uploadForm, uploadFileControl, photoEditorForm, photoEditorResetButton, descriptionInput, hashtagsInput } from '../form-validation/form-data.js';
-import { isValid } from '../form-validation/validation.js';
+import {
+  pageBody,
+  uploadForm,
+  uploadFileControl,
+  photoEditorForm,
+  photoEditorResetButton,
+  descriptionInput,
+  hashtagsInput
+} from '../form-validation/form-data.js';
+import { isValid, resetValidation } from '../form-validation/validation.js';
 
-const onPhotoEditorResetButtonClick = () => closePhotoEditor();
+const onDocumentKeydown = (event) => {
+  // обработчик Esc при фокусе
+  // если фокус находится в поле ввода комментария/хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
+  if (document.activeElement !== descriptionInput && document.activeElement !== hashtagsInput && document.activeElement) {
+    event.stopPropagation();
+    return;
+  }
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKeydown(evt)) {
-    evt.preventDefault();
-
-    // обработчик Esc при фокусе
-    if (document.activeElement !== descriptionInput && document.activeElement !== hashtagsInput && document.activeElement) {
-      evt.stopPropagation();
-    } else {
-      uploadForm.reset();
-      closePhotoEditor();
-    }
+  if (isEscapeKeydown(event)) {
+    event.preventDefault();
+    closePhotoEditor();
   }
 };
+const onCloseButtonClick = (event) => (event.preventDefault(), closePhotoEditor());
 
 function closePhotoEditor () {
+  photoEditorForm.value = '';
+
   photoEditorForm.classList.add('hidden');
   pageBody.classList.remove('modal-open');
 
   document.addEventListener('keydown', onDocumentKeydown);
-  photoEditorResetButton.removeEventListener('click', onPhotoEditorResetButtonClick);
+  photoEditorResetButton.removeEventListener('click', onCloseButtonClick);
 
-  uploadFileControl.value = '';
+  uploadForm.reset();
+  resetValidation();
 }
 
 export const initUploadForm = () => {
@@ -34,15 +44,17 @@ export const initUploadForm = () => {
     pageBody.classList.add('modal-open');
 
     document.removeEventListener('keydown', onDocumentKeydown);
-    photoEditorResetButton.addEventListener('click', onPhotoEditorResetButtonClick);
   });
+  photoEditorResetButton.addEventListener('click', onCloseButtonClick);
 };
 
 // Отправка формы с валидацией
-uploadForm.addEventListener('submit', (evt) => {
-  if (!isValid()) {
-    evt.preventDefault();
+uploadForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!isValid) {
+    return;
   }
+  uploadForm.submit();
 });
 
 
