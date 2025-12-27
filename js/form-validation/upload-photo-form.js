@@ -19,6 +19,12 @@ import {
 
 
 const onDocumentKeydown = (event) => {
+  // если фокус находится в поле ввода комментария/хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
+  if (document.activeElement !== descriptionInput && document.activeElement !== hashtagsInput && document.activeElement) {
+    event.stopPropagation();
+    return;
+  }
+
   if (isEscapeKeydown(event)) {
     event.preventDefault();
     closePhotoEditor();
@@ -29,9 +35,6 @@ const onCloseButtonClick = (event) => (event.preventDefault(), closePhotoEditor(
 
 function closePhotoEditor () {
   photoEditorForm.value = '';
-  uploadFileControl.value = '';
-  descriptionInput.value = '';
-  hashtagsInput.value = '';
 
   photoEditorForm.classList.add('hidden');
   pageBody.classList.remove('modal-open');
@@ -60,21 +63,6 @@ uploadForm.addEventListener('submit', (event) => {
     return;
   }
   uploadForm.submit();
-});
-
-
-// если фокус находится в поле ввода комментария, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
-descriptionInput.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' || event.key === 'Esc') {
-    event.stopPropagation();
-  }
-});
-
-// если фокус находится в поле ввода хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
-hashtagsInput.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' || event.key === 'Esc') {
-    event.stopPropagation();
-  }
 });
 
 

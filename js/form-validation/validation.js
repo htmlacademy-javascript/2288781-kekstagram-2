@@ -55,8 +55,7 @@ const checkHashtagsMaxSymbols = (value) => {
   if (!value.trim().length) {
     return true;
   }
-  const itselfHashtag = getHashtags(value);
-  return itselfHashtag.every((hashtag) => hashtag.length <= DATA_FORM_SET.MAX_HASHTAG_LENGTH);
+  return value.trim().length <= DATA_FORM_SET.MAX_HASHTAG_LENGTH;
 };
 
 const checkUniqueHashtags = (value) => {
