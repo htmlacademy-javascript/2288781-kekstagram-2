@@ -14,28 +14,17 @@ const descriptionInput = uploadForm.querySelector('.text__description'); // До
 
 const DATA_FORM_SET = {
   HASHTAG: /^#[a-zа-яё0-9]{1,19}$/i,
-  HASHTAG_FIRST_SYMBOL: /^#/,
-  HASHTAG_COUNT_MIN: 2,
-  HASHTAG_COUNT_MAX: 5,
+  HASHTAGS_LIMIT: 5,
   MAX_HASHTAG_LENGTH: 20,
   MAX_DESCRIPTION_LENGTH: 140,
 };
 
 const ERROR_MESSAGE = {
-  ERROR_NO_FIRST_SYMBOL_HASHTAG: 'Хэштег начинается с символа # (решётка)', // хэштег начинается с символа # (решётка);
-  ERROR_NO_VALID_HASHTAG: 'После решётки допустимы только буквы и числа', // строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
-  ERROR_ONLY_SYMBOL_HASHTAG: 'Хештег не может состоять только из одной решётки', // хэштег не может состоять только из одной решётки;
-  ERROR_LENGTH_HASHTAG: `Максимальная длина одного хэштега ${DATA_FORM_SET.MAX_HASHTAG_LENGTH} символов, включая решётку`, // максимальная длина одного хэштега 20 символов, включая решётку;
-  ERROR_ONE_AND_THE_SAME: 'Введены невалидные хештеги - один и тот же тег', // хэштеги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
-  ERROR_WHITESPACE: 'Не должен быть пробел внутри хэштега', // хэштеги разделяются пробелами;
-  ERROR_REPEAT: 'Один и тот же хэштег не может быть использован дважды', // один и тот же хэштег не может быть использован дважды;
-  ERROR_MAX_HASHTAG: `Максимальное количество ${DATA_FORM_SET.HASHTAG_COUNT_MAX} хэштэгов`, // нельзя указать больше пяти хэштегов;
-  ERROR_MAX_LENGTH_DESCRIPTION: `Максимальная длина комментария не более ${DATA_FORM_SET.MAX_DESCRIPTION_LENGTH} символов`, // длина комментария не может составлять больше 140 символов;
-};
-
-const VALID_MESSAGE = {
-  COMMENT_ARE_OPTIONAL: 'Комментарий не обязателен', // комментарий не обязателен;
-  HASHTAGS_ARE_OPTIONAL: 'Хэштеги не обязательны' // хэштеги не обязательны;
+  ERROR_MAX_LENGTH_DESCRIPTION: `Максимальная длина комментария не более ${DATA_FORM_SET.MAX_DESCRIPTION_LENGTH} символов`,
+  ERROR__HASHTAG: 'Хэштег должен начинаться с символа # и содержать только буквы и цифры без пробелов и спецсимволов',
+  ERROR_MAX_LENGTH_HASHTAG: `Максимальная длина одного хэштега ${DATA_FORM_SET.MAX_HASHTAG_LENGTH} символов, включая решётку`,
+  ERROR_MAX_HASHTAGS: 'Превышено количество хэштегов, их должно быть не более 5',
+  ERROR_REPEAT: 'Хэштеги повторяются'
 };
 
 export {
@@ -52,10 +41,8 @@ export {
   hashtagsInput,
 
   DATA_FORM_SET,
-  ERROR_MESSAGE,
-  VALID_MESSAGE
+  ERROR_MESSAGE
 };
-
 
 /*
   Основная задача домашней работы раздела 9 (первая часть) - реализовать функционал загрузки нового изображения на сайт и заполнения информации о нём.
