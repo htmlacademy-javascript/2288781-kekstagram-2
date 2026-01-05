@@ -1,7 +1,7 @@
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const scaleControlValue = document.querySelector('.scale__control--value');
-const uploaPreviewImage = document.querySelector('.img-upload__preview img');
+const uploadPreviewImage = document.querySelector('.img-upload__preview img');
 
 const effectLevelSliderParrent = document.querySelector('.img-upload__effect-level');
 const effectLevelSlider = effectLevelSliderParrent.querySelector('.effect-level__slider');
@@ -73,7 +73,7 @@ export {
   scaleControlSmaller,
   scaleControlBigger,
   scaleControlValue,
-  uploaPreviewImage,
+  uploadPreviewImage,
 
   effectLevelSliderParrent,
   effectLevelSlider,

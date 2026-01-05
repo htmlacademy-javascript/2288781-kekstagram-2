@@ -3,15 +3,16 @@ import {
   effectLevelSlider,
   effectLevelInput,
   effectChecked,
-  uploaPreviewImage,
+  uploadPreviewImage,
   EFFECTS,
-  DATA_EFFECTS } from '../image-editing/image-editing-data.js';
+  DATA_EFFECTS
+} from '../image-editing/image-editing-data.js';
 
 const sliderVisableToggle = (isShown = true) => {
   effectLevelSliderParrent.classList.toggle('hidden', isShown);
 };
 
-const searhEffect = (value, array) => array.find((element) => element.name === value);
+const setEffectValue = (value, array) => array.find((element) => element.name === value);
 
 noUiSlider.create(effectLevelSlider, {
   range: {
@@ -23,10 +24,10 @@ noUiSlider.create(effectLevelSlider, {
 });
 
 const sliderUpdateOptions = (value) => {
-  const effect = searhEffect(value, EFFECTS);
+  const effect = setEffectValue(value, EFFECTS);
   if(!effect){
     sliderVisableToggle();
-    uploaPreviewImage.style.removeProperty('filter');
+    uploadPreviewImage.style.removeProperty('filter');
     return;
   }
   const {min, max, start, step, unit} = effect;
@@ -42,7 +43,7 @@ const sliderUpdateOptions = (value) => {
   effectLevelSlider.noUiSlider.on('update', () => {
     const effectLevelInputValue = effectLevelSlider.noUiSlider.get();
     effectLevelInput.value = effectLevelInputValue;
-    uploaPreviewImage.style.filter = `${effect.style}(${effectLevelInputValue}${unit})`;
+    uploadPreviewImage.style.filter = `${effect.style}(${effectLevelInputValue}${unit})`;
   });
 };
 
@@ -52,6 +53,11 @@ export const effectCheckedListener = () => {
       sliderUpdateOptions(evt.target.value);
     }
   });
+};
+
+export const resetEffects = () => {
+  sliderVisableToggle();
+  uploadPreviewImage.style.filter = '';
 };
 
 

@@ -2,14 +2,14 @@ import {
   scaleControlSmaller,
   scaleControlBigger,
   scaleControlValue,
-  uploaPreviewImage,
+  uploadPreviewImage,
   DATA_IMAGE_EDITING
-} from './image-editing-data.js';
+} from '../image-editing/image-editing-data.js';
 
 const setScaleValue = (value) => {
   scaleControlValue.value = `${value}%`;
   const scale = value / 100;
-  uploaPreviewImage.style.transform = `scale(${scale})`;
+  uploadPreviewImage.style.transform = `scale(${scale})`;
 };
 
 // Установка значения по умолчанию
@@ -32,6 +32,11 @@ export const scaleListener = () => {
     }
   });
 };
+
+export const resetScale = () => {
+  setScaleValue(100);
+};
+
 
 /**
  *   Реализацию сценария загрузки изображения и его редактирования на примере заглушки
