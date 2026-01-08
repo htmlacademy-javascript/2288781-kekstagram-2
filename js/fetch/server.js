@@ -2,8 +2,15 @@
  * Модуль для работы с серверными запросами через fetch API
  */
 
-export const serverFetch = () => {
+import { BASE_URL, ROUTES } from '../fetch/server-data.js';
 
+export const serverFetch = () => {
+  fetch(`${BASE_URL}${ROUTES.DATA}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // eslint-disable-next-line no-console
+      console.log(data);
+    });
 };
 
 
