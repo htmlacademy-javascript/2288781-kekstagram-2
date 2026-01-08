@@ -10,12 +10,20 @@ import {
   photoEditorResetButton,
   descriptionInput,
   hashtagsInput
-} from './form-data.js';
+} from '../form-validation/form-data.js';
 
 import {
   isValid,
   resetValidation
-} from './validation.js';
+} from '../form-validation/validation.js';
+
+import {
+  resetEffects
+} from '../image-editing/slider.js';
+
+import {
+  resetScale
+} from '../image-editing/scale.js';
 
 
 const onDocumentKeydown = (event) => {
@@ -35,15 +43,19 @@ const onCloseButtonClick = (event) => (event.preventDefault(), closePhotoEditor(
 
 function closePhotoEditor () {
   photoEditorForm.value = '';
+  uploadFileControl.value = '';
+  hashtagsInput.value = '';
+  descriptionInput.value = '';
 
   photoEditorForm.classList.add('hidden');
   pageBody.classList.remove('modal-open');
 
   document.addEventListener('keydown', onDocumentKeydown);
-  photoEditorResetButton.removeEventListener('click', onCloseButtonClick);
 
   uploadForm.reset();
   resetValidation();
+  resetEffects();
+  resetScale();
 }
 
 export const initUploadForm = () => {
