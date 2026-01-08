@@ -12,6 +12,7 @@ const hashtagsInput = uploadForm.querySelector('.text__hashtags'); // Добав
 const descriptionInput = uploadForm.querySelector('.text__description'); // Добавление текстового комментария
 
 
+// Настройки и сообщения для валидации формы загрузки изображения
 const DATA_FORM_SET = {
   HASHTAG: /^#[a-zа-яё0-9]{1,19}$/i,
   HASHTAGS_LIMIT: 5,
@@ -19,6 +20,7 @@ const DATA_FORM_SET = {
   MAX_DESCRIPTION_LENGTH: 140,
 };
 
+// Сообщения об ошибках для формы загрузки изображения
 const ERROR_MESSAGE = {
   ERROR_MAX_LENGTH_DESCRIPTION: `Максимальная длина комментария не более ${DATA_FORM_SET.MAX_DESCRIPTION_LENGTH} символов`,
   ERROR__HASHTAG: 'Хэштег должен начинаться с символа # и содержать только буквы и цифры без пробелов и спецсимволов',
