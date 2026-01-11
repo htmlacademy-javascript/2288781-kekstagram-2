@@ -1,21 +1,37 @@
-import {
-  dataErrorTemplate,
-  errorElement,
-  successTemplate,
-  successElement
-} from '../fetch/server-data.js';
-
-import { getDataArrays } from '../data.js';
-
 import { isEscapeKeydown } from '../utils.js';
+import { getDataArrays } from '../data.js';
+import {
+  ALERT_SHOW_TIME,
+  successElement,
+  errorElement
+} from '../fetch/api-data.js';
 
 
 const { pageBody } = getDataArrays();
 
-export const showSuccessMessage = () => {
-  successTemplate.cloneNode(true);
-  successElement();
+// Показ сообщения
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
 
+  alertContainer.textContent = message;
+
+  pageBody.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+const showSuccessMessage = () => {
   const close = () => {
     successElement.remove();
     document.removeEventListener('keydown', onEscape);
@@ -37,10 +53,7 @@ export const showSuccessMessage = () => {
   pageBody.appendChild(successElement);
 };
 
-export const showErrorMessage = () => {
-  dataErrorTemplate.cloneNode(true);
-  errorElement();
-
+const showErrorMessage = () => {
   const close = () => {
     errorElement.remove();
     document.removeEventListener('keydown', onEscape);
@@ -61,3 +74,5 @@ export const showErrorMessage = () => {
   document.addEventListener('keydown', onEscape);
   pageBody.appendChild(errorElement);
 };
+
+export { showAlert, showSuccessMessage, showErrorMessage };

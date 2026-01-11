@@ -1,3 +1,7 @@
+import { getDataArrays } from '../data.js';
+
+
+const { pageBody } = getDataArrays();
 const uploadForm = document.querySelector('.img-upload__form'); // Форма загрузки нового изображения
 
 const uploadFileControl = uploadForm.querySelector('.img-upload__input'); // Выбор файла с изображением для загрузки
@@ -30,6 +34,7 @@ const ERROR_MESSAGE = {
 };
 
 export {
+  pageBody,
   uploadForm,
 
   uploadFileControl,

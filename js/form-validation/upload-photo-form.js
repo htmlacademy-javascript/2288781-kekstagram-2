@@ -1,9 +1,8 @@
 import { isEscapeKeydown } from '../utils.js';
 
-import { getDataArrays } from '../data.js';
-
 import {
   uploadForm,
+  pageBody,
   uploadFileControl,
   photoEditorForm,
   photoEditorResetButton,
@@ -21,22 +20,13 @@ import { resetEffects } from '../image-editing/slider.js';
 
 import { resetScale } from '../image-editing/scale.js';
 
-import { sendData } from '../fetch/server.js';
+import { sendData } from '../fetch/server-api.js';
 
 import {
   showSuccessMessage,
   showErrorMessage
-} from '../fetch/show-alert.js';
+} from '../fetch/api-message.js';
 
-import { showErrorAlert } from '../fetch/server-data.js'
-
-
-const { pageBody } = getDataArrays();
-
-const submitButtonText = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Отправка...'
-};
 
 const onDocumentKeydown = (event) => {
   // если фокус находится в поле ввода комментария/хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
@@ -55,9 +45,9 @@ const onCloseButtonClick = (event) => (event.preventDefault(), closePhotoEditor(
 
 function closePhotoEditor () {
   photoEditorForm.value = '';
-  // uploadFileControl.value = '';
-  // hashtagsInput.value = '';
-  // descriptionInput.value = '';
+  uploadFileControl.value = '';
+  hashtagsInput.value = '';
+  descriptionInput.value = '';
 
   photoEditorForm.classList.add('hidden');
   pageBody.classList.remove('modal-open');
@@ -80,14 +70,9 @@ export const initUploadForm = () => {
   photoEditorResetButton.addEventListener('click', onCloseButtonClick);
 };
 
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = submitButtonText.SENDING;
-};
-
-const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = submitButtonText.IDLE;
+const blockSubmitButton = (isDisabled = true) => {
+  submitButton.disabled = isDisabled;
+  submitButton.textContent = isDisabled ? 'Отправка...' : 'Опубликовать';
 };
 
 // Отправка формы с валидацией
@@ -97,20 +82,22 @@ uploadForm.addEventListener('submit', (event) => {
   if (!isValid) {
     return;
   }
-  uploadForm.submit();
-  blockSubmitButton();
 
-  sendData(new FormData(uploadForm))
+  const uploadFormData = new FormData(uploadForm);
+  blockSubmitButton();
+  sendData(uploadFormData)
     .then(() => {
       closePhotoEditor();
-      showSuccessMessage();
-    })
-    .catch(() => {
-      showErrorAlert();
+      initUploadForm(showSuccessMessage);
     })
     .finally(() => {
-      unblockSubmitButton();
+      blockSubmitButton(false);
+    })
+    .catch(() => {
+      initUploadForm(showErrorMessage);
     });
+
+  uploadForm.submit();
 });
 
 

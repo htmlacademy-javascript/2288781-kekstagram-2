@@ -17,7 +17,8 @@ import { generateCommentsId } from '../create-photos/get-id.js';
 const {
   AVATARS,
   MESSAGES,
-  NAMES } = getDataArrays();
+  NAMES
+} = getDataArrays();
 
 /** Функция, которая создает случайный комментарии с уникальным ID случайным аватаром со случайным текстом и именем к фотографиям
   * @param {*} id - идентификатор комментария

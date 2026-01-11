@@ -6,11 +6,13 @@ import { getDataArrays } from '../data.js';
 
 import {
   getRandomInteger,
-  getRandomElements } from '../utils.js';
+  getRandomElements
+} from '../utils.js';
 
 import {
   generatePhotoId,
-  generatePhotoUrl } from '../create-photos/get-id.js';
+  generatePhotoUrl
+} from '../create-photos/get-id.js';
 
 import { createComments } from '../create-photos/comments-photo.js';
 
@@ -19,7 +21,8 @@ const {
   DESCRIPTIONS,
   LIKES,
   COMMENTS,
-  MAX_PHOTOS } = getDataArrays();
+  MAX_PHOTOS
+} = getDataArrays();
 
 const getPhotoUsers = () => ({
   id: generatePhotoId(),
