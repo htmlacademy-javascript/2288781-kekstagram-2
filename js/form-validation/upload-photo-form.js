@@ -1,15 +1,15 @@
-import {
-  isEscapeKeydown
-} from '../utils.js';
+import { isEscapeKeydown } from '../utils.js';
+
+import { getDataArrays } from '../data.js';
 
 import {
-  pageBody,
   uploadForm,
   uploadFileControl,
   photoEditorForm,
   photoEditorResetButton,
   descriptionInput,
-  hashtagsInput
+  hashtagsInput,
+  submitButton
 } from '../form-validation/form-data.js';
 
 import {
@@ -17,14 +17,26 @@ import {
   resetValidation
 } from '../form-validation/validation.js';
 
-import {
-  resetEffects
-} from '../image-editing/slider.js';
+import { resetEffects } from '../image-editing/slider.js';
+
+import { resetScale } from '../image-editing/scale.js';
+
+import { sendData } from '../fetch/server.js';
 
 import {
-  resetScale
-} from '../image-editing/scale.js';
+  showSuccessMessage,
+  showErrorMessage
+} from '../fetch/show-alert.js';
 
+import { showErrorAlert } from '../fetch/server-data.js'
+
+
+const { pageBody } = getDataArrays();
+
+const submitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Отправка...'
+};
 
 const onDocumentKeydown = (event) => {
   // если фокус находится в поле ввода комментария/хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
@@ -43,9 +55,9 @@ const onCloseButtonClick = (event) => (event.preventDefault(), closePhotoEditor(
 
 function closePhotoEditor () {
   photoEditorForm.value = '';
-  uploadFileControl.value = '';
-  hashtagsInput.value = '';
-  descriptionInput.value = '';
+  // uploadFileControl.value = '';
+  // hashtagsInput.value = '';
+  // descriptionInput.value = '';
 
   photoEditorForm.classList.add('hidden');
   pageBody.classList.remove('modal-open');
@@ -68,13 +80,37 @@ export const initUploadForm = () => {
   photoEditorResetButton.addEventListener('click', onCloseButtonClick);
 };
 
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = submitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = submitButtonText.IDLE;
+};
+
 // Отправка формы с валидацией
 uploadForm.addEventListener('submit', (event) => {
   event.preventDefault();
+
   if (!isValid) {
     return;
   }
   uploadForm.submit();
+  blockSubmitButton();
+
+  sendData(new FormData(uploadForm))
+    .then(() => {
+      closePhotoEditor();
+      showSuccessMessage();
+    })
+    .catch(() => {
+      showErrorAlert();
+    })
+    .finally(() => {
+      unblockSubmitButton();
+    });
 });
 
 

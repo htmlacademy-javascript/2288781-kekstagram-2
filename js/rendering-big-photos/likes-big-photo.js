@@ -1,5 +1,5 @@
 const heartBigPhotos = document.querySelector('.social__likes');
-const likesNumber = document.querySelector('.likes-count');
+export const likesNumber = document.querySelector('.likes-count');
 
 heartBigPhotos.onclick = () => {
   if (heartBigPhotos.classList.contains('added')) {
@@ -10,5 +10,3 @@ heartBigPhotos.onclick = () => {
 
   heartBigPhotos.classList.toggle('added');
 };
-
-export { likesNumber };

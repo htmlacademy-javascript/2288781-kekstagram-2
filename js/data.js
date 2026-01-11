@@ -83,5 +83,16 @@ export const getDataArrays = () => {
     'Елена'
   ];
 
-  return { MAX_PHOTOS, LIKES, COMMENTS, AVATARS, DESCRIPTIONS, MESSAGES, NAMES };
+  const pageBody = document.querySelector('body'); // Тег body страницы
+
+  return {
+    MAX_PHOTOS,
+    LIKES,
+    COMMENTS,
+    AVATARS,
+    DESCRIPTIONS,
+    MESSAGES,
+    NAMES,
+    pageBody
+  };
 };

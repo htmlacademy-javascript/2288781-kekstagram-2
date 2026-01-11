@@ -77,6 +77,9 @@ export const resetEffects = () => {
   sliderVisableToggle(); // скрытие слайдера
 };
 
+effectCheckedListener();
+resetEffects();
+
 
 /**
  * + С помощью библиотеки noUiSlider (скрипт и стили находятся в директории /vendor/nouislider)

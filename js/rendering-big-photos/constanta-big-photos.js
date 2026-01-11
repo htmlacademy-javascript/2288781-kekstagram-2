@@ -1,6 +1,5 @@
 // МОДУЛЬ С КОНСТАНТАМИ, СВЯЗАННЫМИ С ДАННЫМИ ПОЛНОРАЗМЕРНЫХ ИЗОБРАЖЕНИЙ
 
-const body = document.body;
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureButtonClose = bigPicture.querySelector('.big-picture__cancel');
 
@@ -19,7 +18,6 @@ const bigImageLoader = document.querySelector('.comments-loader');
 const COMMENTS_LIMIT = 5;
 
 export {
-  body,
   bigPicture,
   bigPictureButtonClose,
   bigImage,

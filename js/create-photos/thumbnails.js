@@ -2,13 +2,27 @@
 
 import { openModal } from '../rendering-big-photos/modal-window.js';
 
+import {
+  dataErrorTemplate,
+  dataError,
+  DATA_ERROR_TIMEOUT
+} from '../fetch/server-data.js';
+
+import { getDataArrays } from '../data.js';
+
+import { getData } from '../fetch/server.js';
+
+import { showErrorMessage } from '../fetch/show-alert.js';
+
+const { MAX_PHOTOS } = getDataArrays();
 const pictureTemplateFragment = document.querySelector('#picture').content;
 const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
 const picturesContainer = document.querySelector('.pictures');
+const { pageBody } = getDataArrays();
 
 let localPictures;
 
-const renderPictures = (pictures) => {
+export const renderPictures = (pictures) => {
   localPictures = [...pictures];
   const documentFragment = document.createDocumentFragment();
 
@@ -31,8 +45,8 @@ const renderPictures = (pictures) => {
   picturesContainer.append(documentFragment);
 };
 
-const onPictureClick = (evt) => {
-  const card = evt.target.closest('.picture');
+const onPictureClick = (event) => {
+  const card = event.target.closest('.picture');
   if (card) {
     const id = Number(card.dataset.id);
     const photo = localPictures.find((item) => item.id === id);
@@ -42,4 +56,25 @@ const onPictureClick = (evt) => {
 
 picturesContainer.addEventListener('click', onPictureClick);
 
-export { renderPictures };
+const showDataErrorMessage = () => {
+  showErrorMessage();
+  dataErrorTemplate.cloneNode(true);
+  pageBody.appendChild(dataErrorTemplate);
+
+  setTimeout(() => {
+    const message = dataError();
+    if (message) {
+      message.remove();
+    }
+  }, DATA_ERROR_TIMEOUT);
+};
+
+// getData()
+//   .then((dataset) => {
+//     renderPictures(dataset.slice(0, MAX_PHOTOS));
+//   })
+//   .catch(
+//     (error) => {
+//       showDataErrorMessage(error.message);
+//     }
+//   );

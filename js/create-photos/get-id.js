@@ -1,6 +1,9 @@
+/**
+ * МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ГЕНЕРАЦИЮ ИНДЕНТИФИКАТОРА
+ */
+
 import { createIdGenerator } from '../utils.js';
 
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ГЕНЕРАЦИЮ ИНДЕНТИФИКАТОРА
 
 const generatePhotoId = createIdGenerator();
 const generatePhotoUrl = createIdGenerator();

@@ -39,6 +39,8 @@ export const resetScale = () => {
   setScaleValue(100);
 };
 
+scaleListener();
+resetScale();
 
 /**
  *   Реализацию сценария загрузки изображения и его редактирования на примере заглушки

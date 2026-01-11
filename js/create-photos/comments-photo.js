@@ -1,13 +1,23 @@
+/**
+ * МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА СОЗДАНИЕ МАССИВА И ЗАПОЛНЕНИЕ ЕГО КОММЕНТАРИЯМИ
+ */
+
 import { getDataArrays } from '../data.js';
-import { getRandomInteger, getRandomElements } from '../utils.js';
+
+import {
+  getRandomInteger,
+  getRandomElements } from '../utils.js';
+
 import { generateCommentsId } from '../create-photos/get-id.js';
 
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА СОЗДАНИЕ МАССИВА И ЗАПОЛНЕНИЕ ЕГО КОММЕНАТРИЯМИ
 
 /**
  * Деструктуризация импортированных данных
  */
-const { AVATARS, MESSAGES, NAMES } = getDataArrays();
+const {
+  AVATARS,
+  MESSAGES,
+  NAMES } = getDataArrays();
 
 /** Функция, которая создает случайный комментарии с уникальным ID случайным аватаром со случайным текстом и именем к фотографиям
   * @param {*} id - идентификатор комментария

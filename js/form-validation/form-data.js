@@ -1,5 +1,3 @@
-const pageBody = document.querySelector('body'); // Тег body страницы
-
 const uploadForm = document.querySelector('.img-upload__form'); // Форма загрузки нового изображения
 
 const uploadFileControl = uploadForm.querySelector('.img-upload__input'); // Выбор файла с изображением для загрузки
@@ -10,6 +8,8 @@ const photoEditorResetButton = photoEditorForm.querySelector('.img-upload__cance
 
 const hashtagsInput = uploadForm.querySelector('.text__hashtags'); // Добавление хэштегов
 const descriptionInput = uploadForm.querySelector('.text__description'); // Добавление текстового комментария
+
+const submitButton = document.querySelector('.img-upload__submit');
 
 
 // Настройки и сообщения для валидации формы загрузки изображения
@@ -30,7 +30,6 @@ const ERROR_MESSAGE = {
 };
 
 export {
-  pageBody,
   uploadForm,
 
   uploadFileControl,
@@ -41,6 +40,8 @@ export {
 
   descriptionInput,
   hashtagsInput,
+
+  submitButton,
 
   DATA_FORM_SET,
   ERROR_MESSAGE
