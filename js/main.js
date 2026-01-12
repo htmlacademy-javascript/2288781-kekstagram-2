@@ -1,6 +1,5 @@
-import { getAllPhotoUsers } from './create-photos/create-data.js';
 import { renderPictures } from './create-photos/thumbnails.js';
-import { initUploadForm } from './form-validation/upload-photo-form.js';
+import { initForm } from './form-validation/upload-photo-form.js';
 import {
   scaleListener,
   resetScale
@@ -13,11 +12,6 @@ import { getData } from './fetch/server-api.js';
 import { showAlert } from './fetch/api-message.js';
 
 
-const photos = getAllPhotoUsers();
-
-renderPictures(photos);
-initUploadForm();
-
 scaleListener();
 resetScale();
 effectCheckedListener();
@@ -28,5 +22,6 @@ getData()
     renderPictures(data);
   })
   .catch((error) => showAlert(error.message));
-initUploadForm();
+
+initForm();
 

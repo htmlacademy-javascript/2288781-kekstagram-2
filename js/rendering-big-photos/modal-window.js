@@ -3,6 +3,7 @@ import { bigPicture, pageBody, bigPictureButtonClose } from '../rendering-big-ph
 import { renderComments } from '../rendering-big-photos/comment-big-photo.js';
 import { addDataBigPhoto } from '../rendering-big-photos/big-photos.js';
 
+
 const toggleModal = () => {
   toggleClass(bigPicture, 'hidden');
   toggleClass(pageBody, 'modal-open');
@@ -20,8 +21,8 @@ const closePhotoCard = () => {
   document.addEventListener('keydown', onEscKeydown);
 };
 
-bigPicture.addEventListener('click', (evt) => {
-  if (evt.target === bigPicture) {
+bigPicture.addEventListener('click', (target) => {
+  if (target === bigPicture) {
     toggleModal();
   }
 });

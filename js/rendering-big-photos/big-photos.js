@@ -19,10 +19,9 @@ export const addDataBigPhoto = (data) => {
   bigImageCaption.textContent = description;
 };
 
-bigImageLikes.addEventListener('click', (evt) => {
-  if (evt.target === bigImageLikes) {
-    // eslint-disable-next-line no-console
-    console.log(likesNumber);
+bigImageLikes.addEventListener('click', (target) => {
+  if (target === bigImageLikes) {
+    addDataBigPhoto(likesNumber);
   }
 });
 

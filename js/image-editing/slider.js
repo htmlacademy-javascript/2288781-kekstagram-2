@@ -8,6 +8,7 @@ import {
   DATA_EFFECTS
 } from '../image-editing/image-editing-data.js';
 
+
 // Когда слайдер движется, то меняется фильтр на изображении и значение в скрытом поле
 const sliderVisableToggle = (isShown = true) => {
   effectLevelSliderParrent.classList.toggle('hidden', isShown);
@@ -60,10 +61,10 @@ const sliderUpdateOptions = (value) => {
 // Слушатель изменения выбранного эффекта
 export const effectCheckedListener = () => {
   // Слушатель изменения выбранного эффекта
-  effectChecked.addEventListener('change', (evt) => {
+  effectChecked.addEventListener('change', (target) => {
     // Если выбран эффект, обновить настройки слайдера
-    if (evt.target.checked) {
-      sliderUpdateOptions(evt.target.value); // обновление слайдера в зависимости от выбранного эффекта
+    if (target.checked) {
+      sliderUpdateOptions(target.value); // обновление слайдера в зависимости от выбранного эффекта
     }
   });
 };

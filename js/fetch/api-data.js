@@ -1,35 +1,59 @@
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
-const routes = {
+const Routes = {
   GET_DATA: '/data',
   SEND_DATA: '/',
 };
 
-const methods = {
+const Methods = {
   GET: 'GET',
   POST: 'POST',
 };
 
-const errorTexts = {
-  GET: 'Ошибка загрузки данных. Попробуйте обновить страницу',
-  POST: 'Ошибка отправки данных. Попробуйте ещё раз',
+const ErrorTexts = {
+  GET_DATA: 'Ошибка загрузки данных. Попробуйте обновить страницу',
+  POST_DATA: 'Ошибка отправки данных. Попробуйте ещё раз',
 };
 
-const templateSuccess = document.querySelector('#success').content.cloneNode(true);
+const SubmitButtonTexts = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Отправка...'
+};
+
+const alertTemplate = document.querySelector('#data-error').content;
+const alertContainer = alertTemplate.querySelector('.data-error');
+
+const templateSuccess = document.querySelector('#success').content;
 const successElement = templateSuccess.querySelector('.success');
-const templateError = document.querySelector('#error').content.cloneNode(true);
+
+const templateError = document.querySelector('#error').content;
 const errorElement = templateError.querySelector('.error');
+
+const MESSAGE_TYPES = {
+  SUCCESS: 'success',
+  ERROR: 'error'
+};
+
+const messageTemplates = {
+  [MESSAGE_TYPES.SUCCESS]: successElement,
+  [MESSAGE_TYPES.ERROR]: errorElement
+};
 
 const ALERT_SHOW_TIME = 5000;
 
 export {
   BASE_URL,
-  routes,
-  methods,
-  errorTexts,
-  templateSuccess,
+  Routes,
+  Methods,
+  ErrorTexts,
+  SubmitButtonTexts,
+
+  alertContainer,
   successElement,
-  templateError,
   errorElement,
+
+  MESSAGE_TYPES,
+  messageTemplates,
+
   ALERT_SHOW_TIME
 };

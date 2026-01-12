@@ -2,77 +2,52 @@ import { isEscapeKeydown } from '../utils.js';
 import { getDataArrays } from '../data.js';
 import {
   ALERT_SHOW_TIME,
-  successElement,
-  errorElement
+  alertTemplate,
+  messageTemplates
 } from '../fetch/api-data.js';
 
 
 const { pageBody } = getDataArrays();
 
-// Показ сообщения
-const showAlert = (message) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = '100';
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.left = '0';
-  alertContainer.style.top = '0';
-  alertContainer.style.right = '0';
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'red';
-
-  alertContainer.textContent = message;
-
+const showAlert = () => {
+  const alertContainer = alertTemplate.cloneNode(true);
   pageBody.append(alertContainer);
 
+  const alertBlock = pageBody.querySelector('.data-error');
+
   setTimeout(() => {
-    alertContainer.remove();
+    alertBlock.remove();
   }, ALERT_SHOW_TIME);
 };
 
-const showSuccessMessage = () => {
+const showMessage = (type, blockClass, buttonClass) => {
+  const messageElement = messageTemplates(type).cloneNode(true);
+  const messageBlock = messageElement.querySelector(blockClass);
+
+  pageBody.append(messageBlock);
+
   const close = () => {
-    successElement.remove();
+    messageBlock.remove();
     document.removeEventListener('keydown', onEscape);
   };
 
-  function onEscape (event) {
-    if (isEscapeKeydown(event)) {
+  function onEscape(evt) {
+    if (isEscapeKeydown(evt)) {
       close();
     }
   }
 
-  successElement.addEventListener('click', (event) => {
-    if (event.target.classList.contains('success') || event.target.classList.contains('success__button')) {
+  messageBlock.querySelector(buttonClass).addEventListener('click', ({target}) => {
+    if (target.classList.contains(type) || target.classList.contains(`${type}__button`)) {
       close();
     }
   });
 
   document.addEventListener('keydown', onEscape);
-  pageBody.appendChild(successElement);
+  pageBody.appendChild(messageBlock);
 };
 
-const showErrorMessage = () => {
-  const close = () => {
-    errorElement.remove();
-    document.removeEventListener('keydown', onEscape);
-  };
-
-  function onEscape (event) {
-    if (isEscapeKeydown(event)) {
-      close();
-    }
-  }
-
-  errorElement.addEventListener('click', (event) => {
-    if (event.target.classList.contains('error') || event.target.classList.contains('error__button')) {
-      close();
-    }
-  });
-
-  document.addEventListener('keydown', onEscape);
-  pageBody.appendChild(errorElement);
+export {
+  showAlert,
+  showMessage
 };
-
-export { showAlert, showSuccessMessage, showErrorMessage };

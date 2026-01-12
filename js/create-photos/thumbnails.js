@@ -1,11 +1,9 @@
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
-
 import { openModal } from '../rendering-big-photos/modal-window.js';
+import {
+  pictureTemplate,
+  picturesContainer
+} from '../create-photos/create-data.js';
 
-
-const pictureTemplateFragment = document.querySelector('#picture').content;
-const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
-const picturesContainer = document.querySelector('.pictures');
 
 let localPictures;
 
@@ -32,8 +30,8 @@ export const renderPictures = (pictures) => {
   picturesContainer.append(documentFragment);
 };
 
-const onPictureClick = (event) => {
-  const card = event.target.closest('.picture');
+const onPictureClick = (target) => {
+  const card = target.closest('.picture');
   if (card) {
     const id = Number(card.dataset.id);
     const photo = localPictures.find((item) => item.id === id);

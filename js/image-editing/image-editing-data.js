@@ -8,7 +8,6 @@ const effectLevelSlider = document.querySelector('.effect-level__slider'); // с
 const effectValue = document.querySelector('.effect-level__value'); // скрытое поле для значения эффекта
 const effectChecked = document.querySelector('.effects'); // контейнер с радиокнопками эффектов
 
-// Данные об эффектах
 const EFFECTS = [
   {
     name: 'original',
