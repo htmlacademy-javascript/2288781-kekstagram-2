@@ -14,7 +14,7 @@ const processPromise = (route, errorText = null, method = methods.GET, body = nu
       }
       return response.json();
     })
-    .catch(() => {
+    .catch((error) => {
       throw new Error(errorText ?? error.message);
     });
 
