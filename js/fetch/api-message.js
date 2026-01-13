@@ -2,32 +2,41 @@ import { isEscapeKeydown } from '../utils.js';
 import { getDataArrays } from '../data.js';
 import {
   ALERT_SHOW_TIME,
-  alertTemplate,
-  messageTemplates
+  successElement,
+  errorElement
 } from '../fetch/api-data.js';
 
+export const MESSAGE_TYPES = {
+  SUCCESS: 'success',
+  ERROR: 'error'
+};
+
+const alertTemplate = document.querySelector('#data-error')
+  .content
+  .querySelector('.data-error');
+
+const messageTemplates = {
+  [MESSAGE_TYPES.SUCCESS]: successElement,
+  [MESSAGE_TYPES.ERROR]: errorElement
+};
 
 const { pageBody } = getDataArrays();
 
+// Показ сообщения
 const showAlert = () => {
   const alertContainer = alertTemplate.cloneNode(true);
   pageBody.append(alertContainer);
 
-  const alertBlock = pageBody.querySelector('.data-error');
-
   setTimeout(() => {
-    alertBlock.remove();
+    alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
 
-const showMessage = (type, blockClass, buttonClass) => {
-  const messageElement = messageTemplates(type).cloneNode(true);
-  const messageBlock = messageElement.querySelector(blockClass);
-
-  pageBody.append(messageBlock);
+const showMessage = (type) => {
+  const message = messageTemplates[type].cloneNode(true);
 
   const close = () => {
-    messageBlock.remove();
+    message.remove();
     document.removeEventListener('keydown', onEscape);
   };
 
@@ -37,17 +46,14 @@ const showMessage = (type, blockClass, buttonClass) => {
     }
   }
 
-  messageBlock.querySelector(buttonClass).addEventListener('click', ({target}) => {
+  message.addEventListener('click', ({target}) => {
     if (target.classList.contains(type) || target.classList.contains(`${type}__button`)) {
       close();
     }
   });
 
   document.addEventListener('keydown', onEscape);
-  pageBody.appendChild(messageBlock);
+  pageBody.appendChild(message);
 };
 
-export {
-  showAlert,
-  showMessage
-};
+export { showAlert, showMessage };

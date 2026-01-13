@@ -1,5 +1,9 @@
-import { isEscapeKeydown } from '../utils.js';
-import { getDataArrays } from '../data.js';
+import {
+  isEscapeKeydown
+} from '../utils.js';
+import {
+  getDataArrays
+} from '../data.js';
 import {
   uploadForm,
   uploadFileControl,
@@ -13,11 +17,19 @@ import {
   isValid,
   resetValidation
 } from '../form-validation/validation.js';
-import { resetEffects } from '../image-editing/slider.js';
-import { resetScale } from '../image-editing/scale.js';
-import { sendData } from '../fetch/server-api.js';
-import { showMessage } from '../fetch/api-message.js';
-import { MESSAGE_TYPES } from '../fetch/api-data.js';
+import {
+  resetEffects
+} from '../image-editing/slider.js';
+import {
+  resetScale
+} from '../image-editing/scale.js';
+import {
+  sendData
+} from '../fetch/server-api.js';
+import {
+  showMessage,
+  MESSAGE_TYPES
+} from '../fetch/api-message.js';
 
 
 const { pageBody } = getDataArrays();
@@ -66,21 +78,18 @@ const initPhotoUploadForm = () => {
 
 const blockSubmitButton = (isDisabled = true) => {
   submitButton.disabled = isDisabled;
-  submitButton.textContent = 'Отправка...';
+  submitButton.textContent = isDisabled ? 'Отправка...' : 'Опубликовать';
 };
 
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  if (!isValid) {
-    blockSubmitButton();
+  if (!isValid()) {
     return;
   }
 
-  blockSubmitButton();
-
   const uploadFormData = new FormData(uploadForm);
-
+  blockSubmitButton();
   sendData(uploadFormData)
     .then(() => {
       closePhotoEditor();
@@ -88,7 +97,6 @@ uploadForm.addEventListener('submit', (evt) => {
     })
     .finally(() => {
       blockSubmitButton(false);
-      submitButton.textContent = 'Отправить';
     })
     .catch(() => {
       showMessage(MESSAGE_TYPES.ERROR);

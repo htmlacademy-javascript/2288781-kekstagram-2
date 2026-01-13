@@ -30,8 +30,8 @@ export const renderPictures = (pictures) => {
   picturesContainer.append(documentFragment);
 };
 
-const onPictureClick = (target) => {
-  const card = target.closest('.picture');
+const onPictureClick = (evt) => {
+  const card = evt.target.closest('.picture');
   if (card) {
     const id = Number(card.dataset.id);
     const photo = localPictures.find((item) => item.id === id);

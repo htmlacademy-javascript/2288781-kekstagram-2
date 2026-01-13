@@ -5,55 +5,31 @@ const Routes = {
   SEND_DATA: '/',
 };
 
-const Methods = {
+const methods = {
   GET: 'GET',
   POST: 'POST',
 };
 
-const ErrorTexts = {
-  GET_DATA: 'Ошибка загрузки данных. Попробуйте обновить страницу',
-  POST_DATA: 'Ошибка отправки данных. Попробуйте ещё раз',
+const errorTexts = {
+  GET: 'Ошибка загрузки данных. Попробуйте обновить страницу',
+  POST: 'Ошибка отправки данных. Попробуйте ещё раз',
 };
 
-const SubmitButtonTexts = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Отправка...'
-};
-
-const alertTemplate = document.querySelector('#data-error').content;
-const alertContainer = alertTemplate.querySelector('.data-error');
-
-const templateSuccess = document.querySelector('#success').content;
+const templateSuccess = document.querySelector('#success').content.cloneNode(true);
 const successElement = templateSuccess.querySelector('.success');
-
-const templateError = document.querySelector('#error').content;
+const templateError = document.querySelector('#error').content.cloneNode(true);
 const errorElement = templateError.querySelector('.error');
-
-const MESSAGE_TYPES = {
-  SUCCESS: 'success',
-  ERROR: 'error'
-};
-
-const messageTemplates = {
-  [MESSAGE_TYPES.SUCCESS]: successElement,
-  [MESSAGE_TYPES.ERROR]: errorElement
-};
 
 const ALERT_SHOW_TIME = 5000;
 
 export {
   BASE_URL,
   Routes,
-  Methods,
-  ErrorTexts,
-  SubmitButtonTexts,
-
-  alertContainer,
+  methods,
+  errorTexts,
+  templateSuccess,
   successElement,
+  templateError,
   errorElement,
-
-  MESSAGE_TYPES,
-  messageTemplates,
-
   ALERT_SHOW_TIME
 };

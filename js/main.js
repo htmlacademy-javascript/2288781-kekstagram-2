@@ -1,5 +1,5 @@
 import { renderPictures } from './create-photos/thumbnails.js';
-import { initForm } from './form-validation/upload-photo-form.js';
+import { initPhotoUploadForm } from './form-validation/upload-photo-form.js';
 import {
   scaleListener,
   resetScale
@@ -11,7 +11,6 @@ import {
 import { getData } from './fetch/server-api.js';
 import { showAlert } from './fetch/api-message.js';
 
-
 scaleListener();
 resetScale();
 effectCheckedListener();
@@ -20,8 +19,7 @@ resetEffects();
 getData()
   .then((data) => {
     renderPictures(data);
+    initPhotoUploadForm();
   })
-  .catch((error) => showAlert(error.message));
-
-initForm();
+  .catch(() => showAlert());
 
