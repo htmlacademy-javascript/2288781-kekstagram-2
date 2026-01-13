@@ -6,9 +6,6 @@ import {
   bigImageCaption
 } from '../rendering-big-photos/constanta-big-photos.js';
 
-import { likesNumber } from '../rendering-big-photos/likes-big-photo.js';
-
-
 export const addDataBigPhoto = (data) => {
   const { url, description, likes, comments } = data;
   bigImage.src = url;
@@ -21,7 +18,7 @@ export const addDataBigPhoto = (data) => {
 
 bigImageLikes.addEventListener('click', (target) => {
   if (target === bigImageLikes) {
-    addDataBigPhoto(likesNumber);
+    addDataBigPhoto();
   }
 });
 
