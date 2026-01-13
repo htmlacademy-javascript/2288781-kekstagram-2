@@ -16,20 +16,22 @@ import {
 import {
   isValid,
   resetValidation
-} from '../form-validation/validation.js';
+} from './validation.js';
+import {
+  sendData
+} from '../fetch/server-api.js';
+import {
+  showMessage
+} from '../fetch/api-message.js';
+import {
+  MESSAGE_TYPES
+} from '../fetch/api-data.js';
 import {
   resetEffects
 } from '../image-editing/slider.js';
 import {
   resetScale
 } from '../image-editing/scale.js';
-import {
-  sendData
-} from '../fetch/server-api.js';
-import {
-  showMessage,
-  MESSAGE_TYPES
-} from '../fetch/api-message.js';
 
 
 const { pageBody } = getDataArrays();
