@@ -5,31 +5,47 @@ const Routes = {
   SEND_DATA: '/',
 };
 
-const methods = {
+const Methods = {
   GET: 'GET',
   POST: 'POST',
 };
 
-const errorTexts = {
+const ErrorTexts = {
   GET: 'Ошибка загрузки данных. Попробуйте обновить страницу',
   POST: 'Ошибка отправки данных. Попробуйте ещё раз',
 };
 
-const templateSuccess = document.querySelector('#success').content.cloneNode(true);
-const successElement = templateSuccess.querySelector('.success');
-const templateError = document.querySelector('#error').content.cloneNode(true);
-const errorElement = templateError.querySelector('.error');
+const alertTemplate = document
+  .querySelector('#data-error')
+  .content
+  .querySelector('.data-error');
+
+const templateSuccess = document
+  .querySelector('#success')
+  .content
+  .cloneNode(true);
+
+const successElement = templateSuccess
+  .querySelector('.success');
+
+const templateError = document
+  .querySelector('#error')
+  .content
+  .cloneNode(true);
+
+const errorElement = templateError
+  .querySelector('.error');
 
 const ALERT_SHOW_TIME = 5000;
 
 export {
   BASE_URL,
   Routes,
-  methods,
-  errorTexts,
-  templateSuccess,
+  Methods,
+  ErrorTexts,
+
+  alertTemplate,
   successElement,
-  templateError,
   errorElement,
   ALERT_SHOW_TIME
 };

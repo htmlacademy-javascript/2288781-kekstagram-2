@@ -21,9 +21,7 @@ import {
   sendData
 } from '../fetch/server-api.js';
 import {
-  showMessage
-} from '../fetch/api-message.js';
-import {
+  showMessage,
   MESSAGE_TYPES
 } from '../fetch/api-message.js';
 import {
@@ -95,7 +93,7 @@ uploadForm.addEventListener('submit', (evt) => {
   sendData(uploadFormData)
     .then(() => {
       closePhotoEditor();
-      showMessage(MESSAGE_TYPES.SUSSES);
+      showMessage(MESSAGE_TYPES.SUCCESS);
     })
     .finally(() => {
       blockSubmitButton(false);

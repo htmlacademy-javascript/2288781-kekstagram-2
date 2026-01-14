@@ -1,28 +1,29 @@
-import { isEscapeKeydown } from '../utils.js';
-import { getDataArrays } from '../data.js';
+import {
+  isEscapeKeydown
+} from '../utils.js';
+import {
+  getDataArrays
+} from '../data.js';
 import {
   ALERT_SHOW_TIME,
+  alertTemplate,
   successElement,
   errorElement
 } from '../fetch/api-data.js';
+
+
+const { pageBody } = getDataArrays();
 
 export const MESSAGE_TYPES = {
   SUCCESS: 'success',
   ERROR: 'error'
 };
 
-const alertTemplate = document.querySelector('#data-error')
-  .content
-  .querySelector('.data-error');
-
 const messageTemplates = {
   [MESSAGE_TYPES.SUCCESS]: successElement,
   [MESSAGE_TYPES.ERROR]: errorElement
 };
 
-const { pageBody } = getDataArrays();
-
-// Показ сообщения
 const showAlert = () => {
   const alertContainer = alertTemplate.cloneNode(true);
   pageBody.append(alertContainer);
