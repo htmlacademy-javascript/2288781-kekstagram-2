@@ -1,45 +1,53 @@
 import {
   isEscapeKeydown
 } from '../utils.js';
-
 import {
-  pageBody,
+  getDataArrays
+} from '../data.js';
+import {
   uploadForm,
   uploadFileControl,
   photoEditorForm,
   photoEditorResetButton,
   descriptionInput,
-  hashtagsInput
+  hashtagsInput,
+  submitButton
 } from '../form-validation/form-data.js';
-
 import {
   isValid,
   resetValidation
-} from '../form-validation/validation.js';
-
+} from './validation.js';
+import {
+  sendData
+} from '../fetch/server-api.js';
+import {
+  showMessage,
+  MESSAGE_TYPES
+} from '../fetch/api-message.js';
 import {
   resetEffects
 } from '../image-editing/slider.js';
-
 import {
   resetScale
 } from '../image-editing/scale.js';
 
 
-const onDocumentKeydown = (event) => {
+const { pageBody } = getDataArrays();
+
+const onDocumentKeydown = (evt) => {
   // если фокус находится в поле ввода комментария/хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
   if (document.activeElement !== descriptionInput && document.activeElement !== hashtagsInput && document.activeElement) {
-    event.stopPropagation();
+    evt.stopPropagation();
     return;
   }
 
-  if (isEscapeKeydown(event)) {
-    event.preventDefault();
+  if (isEscapeKeydown(evt)) {
+    evt.preventDefault();
     closePhotoEditor();
   }
 };
 
-const onCloseButtonClick = (event) => (event.preventDefault(), closePhotoEditor());
+const onCloseButtonClick = (evt) => (evt.preventDefault(), closePhotoEditor());
 
 function closePhotoEditor () {
   photoEditorForm.value = '';
@@ -58,7 +66,7 @@ function closePhotoEditor () {
   resetScale();
 }
 
-export const initUploadForm = () => {
+const initPhotoUploadForm = () => {
   uploadFileControl.addEventListener('change', () => {
     photoEditorForm.classList.remove('hidden');
     pageBody.classList.add('modal-open');
@@ -68,37 +76,31 @@ export const initUploadForm = () => {
   photoEditorResetButton.addEventListener('click', onCloseButtonClick);
 };
 
-// Отправка формы с валидацией
-uploadForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  if (!isValid) {
+const blockSubmitButton = (isDisabled = true) => {
+  submitButton.disabled = isDisabled;
+  submitButton.textContent = isDisabled ? 'Отправка...' : 'Опубликовать';
+};
+
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  if (!isValid()) {
     return;
   }
-  uploadForm.submit();
+
+  const uploadFormData = new FormData(uploadForm);
+  blockSubmitButton();
+  sendData(uploadFormData)
+    .then(() => {
+      closePhotoEditor();
+      showMessage(MESSAGE_TYPES.SUCCESS);
+    })
+    .finally(() => {
+      blockSubmitButton(false);
+    })
+    .catch(() => {
+      showMessage(MESSAGE_TYPES.ERROR);
+    });
 });
 
-
-/*
-  + Третья задача - реализовать закрытие формы.
-
-    !!!Обратите внимание, что при закрытии формы дополнительно необходимо сбрасывать значение поля выбора файла .img-upload__input.
-    В принципе, всё будет работать, если при повторной попытке загрузить в поле другую фотографию.
-    Но! Событие change не сработает, если пользователь попробует загрузить ту же фотографию, а значит окно с формой не отобразится,
-    что будет нарушением техзадания.
-    Значение других полей формы также нужно сбрасывать.
-
-  1.2. Выбор изображения для загрузки осуществляется с помощью стандартного контрола загрузки файла .img-upload__input,
-       который стилизован под букву «О» в логотипе.
-       После выбора изображения (изменения значения поля .img-upload__input), показывается форма редактирования изображения.
-       У элемента .img-upload__overlay удаляется класс hidden, а body задаётся класс modal-open.
-
-      ??? После выбора изображения пользователем с помощью стандартного контрола загрузки файла .img-upload__input,
-      нужно подставить его в форму редактирования вместо тестового изображения в блок предварительного просмотра и в превью эффектов.
-
-  1.3 Закрытие формы редактирования изображения производится либо нажатием на кнопку .img-upload__cancel, либо нажатием клавиши Esc.
-      Элементу .img-upload__overlay возвращается класс hidden. У элемента body удаляется класс modal-open.
-
-  ?Как отменить обработчик Esc при фокусе?
-  + Задача не имеет одного верного решения, однако намекнём на самый простой — использовать stopPropagation
-  для события нажатия клавиш в поле при фокусе.
-*/
+export { initPhotoUploadForm };

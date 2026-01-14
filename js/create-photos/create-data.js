@@ -1,11 +1,21 @@
 import { getDataArrays } from '../data.js';
-import { getRandomInteger, getRandomElements } from '../utils.js';
-import { generatePhotoId, generatePhotoUrl } from '../create-photos/get-id.js';
+import {
+  getRandomInteger,
+  getRandomElements
+} from '../utils.js';
+import {
+  generatePhotoId,
+  generatePhotoUrl
+} from '../create-photos/get-id.js';
 import { createComments } from '../create-photos/comments-photo.js';
 
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА СОЗДАНИЕ ОБЪЕКТА С ОПИСАНИЕМ ФОТОГРАФИИ
 
-const { DESCRIPTIONS, LIKES, COMMENTS, MAX_PHOTOS } = getDataArrays();
+const {
+  DESCRIPTIONS,
+  LIKES,
+  COMMENTS,
+  MAX_PHOTOS
+} = getDataArrays();
 
 const getPhotoUsers = () => ({
   id: generatePhotoId(),
@@ -15,4 +25,15 @@ const getPhotoUsers = () => ({
   comments: Array.from({ length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX) }, createComments),
 });
 
-export const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, getPhotoUsers);
+const getAllPhotoUsers = () => Array.from({ length: MAX_PHOTOS }, getPhotoUsers);
+
+const pictureTemplateFragment = document.querySelector('#picture').content;
+const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
+const picturesContainer = document.querySelector('.pictures');
+
+export {
+  getAllPhotoUsers,
+
+  pictureTemplate,
+  picturesContainer
+};
