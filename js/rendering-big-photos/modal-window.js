@@ -1,11 +1,12 @@
 import { toggleClass, isEscapeKeydown } from '../utils.js';
-import { bigPicture, body, bigPictureButtonClose } from '../rendering-big-photos/constanta-big-photos.js';
+import { bigPicture, pageBody, bigPictureButtonClose } from '../rendering-big-photos/constanta-big-photos.js';
 import { renderComments } from '../rendering-big-photos/comment-big-photo.js';
 import { addDataBigPhoto } from '../rendering-big-photos/big-photos.js';
 
+
 const toggleModal = () => {
   toggleClass(bigPicture, 'hidden');
-  toggleClass(body, 'modal-open');
+  toggleClass(pageBody, 'modal-open');
 };
 
 const onEscKeydown = (evt) => {
@@ -20,15 +21,15 @@ const closePhotoCard = () => {
   document.addEventListener('keydown', onEscKeydown);
 };
 
-bigPicture.addEventListener('click', (evt) => {
-  if (evt.target === bigPicture) {
+bigPicture.addEventListener('click', (target) => {
+  if (target === bigPicture) {
     toggleModal();
   }
 });
 
 const showModal = () => {
   bigPicture.classList.remove('hidden');
-  body.classList.add('modal-open');
+  pageBody.classList.add('modal-open');
 };
 
 const openModal = (picture) => {

@@ -1,14 +1,15 @@
-// МОДУЛЬ, КОТОРЫЙ БУДЕТ ОТВЕЧАТЬ ЗА ОТРИСОВКУ МИНИАТЮР (thumbnails)
+import {
+  openModal
+} from '../rendering-big-photos/modal-window.js';
+import {
+  pictureTemplate,
+  picturesContainer
+} from '../create-photos/create-data.js';
 
-import { openModal } from '../rendering-big-photos/modal-window.js';
-
-const pictureTemplateFragment = document.querySelector('#picture').content;
-const pictureTemplate = pictureTemplateFragment.querySelector('.picture');
-const picturesContainer = document.querySelector('.pictures');
 
 let localPictures;
 
-const renderPictures = (pictures) => {
+export const renderPictures = (pictures) => {
   localPictures = [...pictures];
   const documentFragment = document.createDocumentFragment();
 
@@ -41,5 +42,3 @@ const onPictureClick = (evt) => {
 };
 
 picturesContainer.addEventListener('click', onPictureClick);
-
-export { renderPictures };
