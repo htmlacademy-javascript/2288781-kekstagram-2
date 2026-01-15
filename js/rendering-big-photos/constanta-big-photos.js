@@ -1,8 +1,6 @@
 // МОДУЛЬ С КОНСТАНТАМИ, СВЯЗАННЫМИ С ДАННЫМИ ПОЛНОРАЗМЕРНЫХ ИЗОБРАЖЕНИЙ
 
-import { getDataArrays } from '../data.js';
-
-const { pageBody } = getDataArrays();
+const pageBody = document.querySelector('body'); // Тег body страницы
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureButtonClose = bigPicture.querySelector('.big-picture__cancel');

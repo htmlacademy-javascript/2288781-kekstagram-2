@@ -11,7 +11,10 @@ const descriptionInput = uploadForm.querySelector('.text__description'); // До
 
 const submitButton = document.querySelector('.img-upload__submit');
 
+const pageBody = document.querySelector('body'); // Тег body страницы
 
+
+// Настройки и сообщения для валидации формы загрузки изображения
 // Настройки и сообщения для валидации формы загрузки изображения
 const DATA_FORM_SET = {
   HASHTAG: /^#[a-zа-яё0-9]{1,19}$/i,
@@ -20,6 +23,7 @@ const DATA_FORM_SET = {
   MAX_DESCRIPTION_LENGTH: 140,
 };
 
+// Сообщения об ошибках для формы загрузки изображения
 // Сообщения об ошибках для формы загрузки изображения
 const ERROR_MESSAGE = {
   ERROR_MAX_LENGTH_DESCRIPTION: `Максимальная длина комментария не более ${DATA_FORM_SET.MAX_DESCRIPTION_LENGTH} символов`,
@@ -42,6 +46,8 @@ export {
   hashtagsInput,
 
   submitButton,
+
+  pageBody,
 
   DATA_FORM_SET,
   ERROR_MESSAGE

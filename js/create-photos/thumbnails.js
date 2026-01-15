@@ -1,4 +1,6 @@
-import { openModal } from '../rendering-big-photos/modal-window.js';
+import {
+  openModal
+} from '../rendering-big-photos/modal-window.js';
 import {
   pictureTemplate,
   picturesContainer
@@ -7,8 +9,13 @@ import {
 
 let localPictures;
 
+const clearPictures = () => {
+  document.querySelectorAll('.picture').forEach((picture) => picture.remove());
+};
+
 export const renderPictures = (pictures) => {
   localPictures = [...pictures];
+  clearPictures();
   const documentFragment = document.createDocumentFragment();
 
   pictures.forEach(({ id, url, description, likes, comments }) => {

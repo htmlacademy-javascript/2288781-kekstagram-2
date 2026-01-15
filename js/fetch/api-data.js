@@ -15,6 +15,8 @@ const ErrorTexts = {
   POST: 'Ошибка отправки данных. Попробуйте ещё раз',
 };
 
+const pageBody = document.querySelector('body'); // Тег body страницы
+
 const alertTemplate = document
   .querySelector('#data-error')
   .content
@@ -43,7 +45,7 @@ export {
   Routes,
   Methods,
   ErrorTexts,
-
+  pageBody,
   alertTemplate,
   successElement,
   errorElement,

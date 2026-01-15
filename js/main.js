@@ -1,5 +1,9 @@
-import { renderPictures } from './create-photos/thumbnails.js';
-import { initPhotoUploadForm } from './form-validation/upload-photo-form.js';
+import {
+  renderPictures
+} from './create-photos/thumbnails.js';
+import {
+  initPhotoUploadForm
+} from './form-validation/upload-photo-form.js';
 import {
   scaleListener,
   resetScale
@@ -8,8 +12,16 @@ import {
   effectCheckedListener,
   resetEffects
 } from './image-editing/slider.js';
-import { getData } from './fetch/server-api.js';
-import { showAlert } from './fetch/api-message.js';
+import {
+  getData
+} from './fetch/server-api.js';
+import {
+  showAlert
+} from './fetch/api-message.js';
+import {
+  listenerButtonsFilter
+} from './filter/filter.js';
+
 
 scaleListener();
 resetScale();
@@ -19,7 +31,12 @@ resetEffects();
 getData()
   .then((data) => {
     renderPictures(data);
-    initPhotoUploadForm();
+    listenerButtonsFilter(data);
   })
-  .catch(() => showAlert());
+  .catch(
+    (err) => {
+      showAlert(err.message);
+    }
+  );
 
+initPhotoUploadForm();

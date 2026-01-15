@@ -1,20 +1,15 @@
-import { getDataArrays } from '../data.js';
 import {
   getRandomInteger,
-  getRandomElements
+  getRandomElements,
+  createIdGenerator
 } from '../utils.js';
-import { generateCommentsId } from '../create-photos/get-id.js';
 
 
-const {
-  AVATARS,
-  MESSAGES,
-  NAMES
-} = getDataArrays();
+const generateCommentsId = createIdGenerator();
 
-export const createComments = () => ({
+export const createComments = (avatar, message, name) => ({
   id: generateCommentsId(),
-  avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-  message: getRandomElements(MESSAGES),
-  name: getRandomElements(NAMES),
+  avatar: `img/avatar-${getRandomInteger(avatar)}.svg`,
+  message: getRandomElements(message),
+  name: getRandomElements(name),
 });

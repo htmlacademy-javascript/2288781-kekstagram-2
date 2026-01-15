@@ -2,17 +2,13 @@ import {
   isEscapeKeydown
 } from '../utils.js';
 import {
-  getDataArrays
-} from '../data.js';
-import {
   ALERT_SHOW_TIME,
+  pageBody,
   alertTemplate,
   successElement,
   errorElement
 } from '../fetch/api-data.js';
 
-
-const { pageBody } = getDataArrays();
 
 export const MESSAGE_TYPES = {
   SUCCESS: 'success',

@@ -2,16 +2,14 @@ import {
   isEscapeKeydown
 } from '../utils.js';
 import {
-  getDataArrays
-} from '../data.js';
-import {
   uploadForm,
   uploadFileControl,
   photoEditorForm,
   photoEditorResetButton,
   descriptionInput,
   hashtagsInput,
-  submitButton
+  submitButton,
+  pageBody
 } from '../form-validation/form-data.js';
 import {
   isValid,
@@ -31,8 +29,6 @@ import {
   resetScale
 } from '../image-editing/scale.js';
 
-
-const { pageBody } = getDataArrays();
 
 const onDocumentKeydown = (evt) => {
   // если фокус находится в поле ввода комментария/хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
