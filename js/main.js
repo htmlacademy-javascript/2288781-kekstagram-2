@@ -31,10 +31,7 @@ resetEffects();
 getData()
   .then((data) => {
     renderPictures(data);
-    listenerButtonsFilter(data); //??
-    // setEyesClick(debounce(
-    //  () => renderSimilarList(wizards),
-    //  RERENDER_DELAY,
+    listenerButtonsFilter(data);
   })
   .catch(
     (err) => {
