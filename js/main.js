@@ -21,7 +21,9 @@ import {
 import {
   listenerButtonsFilter
 } from './filter/filter.js';
-
+import {
+  initPreview
+} from './filter/preview.js';
 
 scaleListener();
 resetScale();
@@ -41,3 +43,4 @@ getData()
   );
 
 initPhotoUploadForm();
+initPreview();
