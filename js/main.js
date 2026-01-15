@@ -18,17 +18,21 @@ import {
 import {
   showAlert
 } from './fetch/api-message.js';
+import {
+  listenerButtonsFilter
+} from './filter/filter.js';
 
 
 scaleListener();
 resetScale();
+
 effectCheckedListener();
 resetEffects();
 
 getData()
   .then((data) => {
     renderPictures(data);
-    initPhotoUploadForm();
+    listenerButtonsFilter(data);
   })
   .catch(
     (err) => {
@@ -36,3 +40,4 @@ getData()
     }
   );
 
+initPhotoUploadForm();

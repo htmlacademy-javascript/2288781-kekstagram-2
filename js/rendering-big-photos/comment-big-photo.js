@@ -35,23 +35,29 @@ const renderLoader = () => {
 
 const renderPortion = () => {
   const fragment = document.createDocumentFragment();
-  localComments.splice(0, COMMENTS_LIMIT).forEach((item) => {
-    fragment.append(renderComment(item));
-    shownComments++;
-  });
-  commentsList.append(fragment);
+  localComments
+    .splice(0, COMMENTS_LIMIT)
+    .forEach((item) => {
+      fragment
+        .append(renderComment(item));
+      shownComments++;
+    });
+  commentsList
+    .append(fragment);
 
   renderStatistic();
   renderLoader();
 };
 
 export const renderComments = (comments) => {
-  commentsList.innerHTML = '';
+  commentsList
+    .innerHTML = '';
   shownComments = 0;
   localComments = [...comments];
   renderPortion();
 };
 
-bigImageLoader.addEventListener('click', () => {
-  renderPortion();
-});
+bigImageLoader
+  .addEventListener('click', () => {
+    renderPortion();
+  });

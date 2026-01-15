@@ -9,8 +9,15 @@ import {
 
 let localPictures;
 
+const clearPictures = () => {
+  document
+    .querySelectorAll('.picture')
+    .forEach((picture) => picture.remove());
+};
+
 export const renderPictures = (pictures) => {
   localPictures = [...pictures];
+  clearPictures();
   const documentFragment = document.createDocumentFragment();
 
   pictures.forEach(({ id, url, description, likes, comments }) => {
@@ -23,13 +30,21 @@ export const renderPictures = (pictures) => {
     isImage.alt = description;
 
     const pictureElementInfo = pictureElement.querySelector('.picture__info');
-    pictureElementInfo.querySelector('.picture__likes').textContent = likes;
-    pictureElementInfo.querySelector('.picture__comments').textContent = comments.length;
 
-    documentFragment.appendChild(pictureElement);
+    pictureElementInfo
+      .querySelector('.picture__likes')
+      .textContent = likes;
+
+    pictureElementInfo
+      .querySelector('.picture__comments')
+      .textContent = comments.length;
+
+    documentFragment
+      .appendChild(pictureElement);
   });
 
-  picturesContainer.append(documentFragment);
+  picturesContainer
+    .append(documentFragment);
 };
 
 const onPictureClick = (evt) => {
@@ -41,4 +56,5 @@ const onPictureClick = (evt) => {
   }
 };
 
-picturesContainer.addEventListener('click', onPictureClick);
+picturesContainer
+  .addEventListener('click', onPictureClick);
