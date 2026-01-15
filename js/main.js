@@ -18,6 +18,9 @@ import {
 import {
   showAlert
 } from './fetch/api-message.js';
+import {
+  listenerButtonsFilter
+} from './filter/filter.js';
 
 
 scaleListener();
@@ -28,7 +31,10 @@ resetEffects();
 getData()
   .then((data) => {
     renderPictures(data);
-    initPhotoUploadForm();
+    listenerButtonsFilter(data); //??
+    // setEyesClick(debounce(
+    //  () => renderSimilarList(wizards),
+    //  RERENDER_DELAY,
   })
   .catch(
     (err) => {
@@ -36,3 +42,4 @@ getData()
     }
   );
 
+initPhotoUploadForm();
