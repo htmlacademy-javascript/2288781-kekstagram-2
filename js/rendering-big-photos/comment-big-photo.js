@@ -6,6 +6,14 @@ import {
   bigImageLoader
 } from '../rendering-big-photos/constanta-big-photos.js';
 
+import {
+  template,
+  commentsList,
+  COMMENTS_LIMIT,
+  bigImageShownCommentsCount,
+  bigImageLoader
+} from '../rendering-big-photos/constanta-big-photos.js';
+
 
 let localComments;
 let shownComments;

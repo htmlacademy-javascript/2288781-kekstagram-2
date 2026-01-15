@@ -22,6 +22,14 @@ import {
   showMessage,
   MESSAGE_TYPES
 } from '../fetch/api-message.js';
+} from './validation.js';
+import {
+  sendData
+} from '../fetch/server-api.js';
+import {
+  showMessage,
+  MESSAGE_TYPES
+} from '../fetch/api-message.js';
 import {
   resetEffects
 } from '../image-editing/slider.js';
@@ -39,10 +47,13 @@ const onDocumentKeydown = (evt) => {
 
   if (isEscapeKeydown(evt)) {
     evt.preventDefault();
+  if (isEscapeKeydown(evt)) {
+    evt.preventDefault();
     closePhotoEditor();
   }
 };
 
+const onCloseButtonClick = (evt) => (evt.preventDefault(), closePhotoEditor());
 const onCloseButtonClick = (evt) => (evt.preventDefault(), closePhotoEditor());
 
 function closePhotoEditor () {
@@ -63,6 +74,7 @@ function closePhotoEditor () {
 }
 
 const initPhotoUploadForm = () => {
+const initPhotoUploadForm = () => {
   uploadFileControl.addEventListener('change', () => {
     photoEditorForm.classList.remove('hidden');
     pageBody.classList.add('modal-open');
@@ -81,8 +93,34 @@ uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   if (!isValid()) {
+const blockSubmitButton = (isDisabled = true) => {
+  submitButton.disabled = isDisabled;
+  submitButton.textContent = isDisabled ? 'Отправка...' : 'Опубликовать';
+};
+
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  if (!isValid()) {
     return;
   }
+
+  const uploadFormData = new FormData(uploadForm);
+  blockSubmitButton();
+  sendData(uploadFormData)
+    .then(() => {
+      closePhotoEditor();
+      showMessage(MESSAGE_TYPES.SUCCESS);
+    })
+    .finally(() => {
+      blockSubmitButton(false);
+    })
+    .catch(() => {
+      showMessage(MESSAGE_TYPES.ERROR);
+    });
+});
+
+export { initPhotoUploadForm };
 
   const uploadFormData = new FormData(uploadForm);
   blockSubmitButton();
