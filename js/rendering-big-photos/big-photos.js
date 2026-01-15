@@ -5,13 +5,6 @@ import {
   bigImageTotalCommentsCount,
   bigImageCaption
 } from '../rendering-big-photos/constanta-big-photos.js';
-import {
-  bigImage,
-  bigImageLikes,
-  bigImageShownCommentsCount,
-  bigImageTotalCommentsCount,
-  bigImageCaption
-} from '../rendering-big-photos/constanta-big-photos.js';
 
 export const addDataBigPhoto = (data) => {
   const { url, description, likes, comments } = data;
