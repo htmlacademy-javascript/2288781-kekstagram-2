@@ -1,21 +1,18 @@
-const uploadForm = document.querySelector('.img-upload__form'); // Форма загрузки нового изображения
+const uploadForm = document.querySelector('.img-upload__form');
 
-const uploadFileControl = uploadForm.querySelector('.img-upload__input'); // Выбор файла с изображением для загрузки
+const uploadFileControl = uploadForm.querySelector('.img-upload__input');
 
-const photoEditorForm = uploadForm.querySelector('.img-upload__overlay'); // Применение одного из заранее заготовленных эффектов
-const photoEditorScale = photoEditorForm.querySelector('.img-upload__scale'); // Изменение масштаба изображения
-const photoEditorResetButton = photoEditorForm.querySelector('.img-upload__cancel'); // Выбор глубины эффекта с помощью ползунка
+const photoEditorForm = uploadForm.querySelector('.img-upload__overlay');
+const photoEditorScale = photoEditorForm.querySelector('.img-upload__scale');
+const photoEditorResetButton = photoEditorForm.querySelector('.img-upload__cancel');
 
-const hashtagsInput = uploadForm.querySelector('.text__hashtags'); // Добавление хэштегов
-const descriptionInput = uploadForm.querySelector('.text__description'); // Добавление текстового комментария
+const hashtagsInput = uploadForm.querySelector('.text__hashtags');
+const descriptionInput = uploadForm.querySelector('.text__description');
 
 const submitButton = document.querySelector('.img-upload__submit');
 
-const pageBody = document.querySelector('body'); // Тег body страницы
+const pageBody = document.querySelector('body');
 
-
-// Настройки и сообщения для валидации формы загрузки изображения
-// Настройки и сообщения для валидации формы загрузки изображения
 const DATA_FORM_SET = {
   HASHTAG: /^#[a-zа-яё0-9]{1,19}$/i,
   HASHTAGS_LIMIT: 5,
@@ -23,8 +20,6 @@ const DATA_FORM_SET = {
   MAX_DESCRIPTION_LENGTH: 140,
 };
 
-// Сообщения об ошибках для формы загрузки изображения
-// Сообщения об ошибках для формы загрузки изображения
 const ERROR_MESSAGE = {
   ERROR_MAX_LENGTH_DESCRIPTION: `Максимальная длина комментария не более ${DATA_FORM_SET.MAX_DESCRIPTION_LENGTH} символов`,
   ERROR__HASHTAG: 'Хэштег должен начинаться с символа # и содержать только буквы и цифры без пробелов и спецсимволов',
