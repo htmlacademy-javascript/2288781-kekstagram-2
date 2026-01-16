@@ -1,6 +1,4 @@
-// МОДУЛЬ С КОНСТАНТАМИ, СВЯЗАННЫМИ С ДАННЫМИ ПОЛНОРАЗМЕРНЫХ ИЗОБРАЖЕНИЙ
-
-const pageBody = document.querySelector('body'); // Тег body страницы
+const pageBody = document.querySelector('body');
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureButtonClose = bigPicture.querySelector('.big-picture__cancel');
