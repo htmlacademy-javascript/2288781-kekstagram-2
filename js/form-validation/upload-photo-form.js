@@ -31,7 +31,6 @@ import {
 
 
 const onDocumentKeydown = (evt) => {
-  // если фокус находится в поле ввода комментария/хэштега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения
   if (document.activeElement !== descriptionInput && document.activeElement !== hashtagsInput && document.activeElement) {
     evt.stopPropagation();
     return;
