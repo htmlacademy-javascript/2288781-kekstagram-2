@@ -11,7 +11,7 @@ export const addDataBigPhoto = (data) => {
   bigImage.src = url;
   bigImage.alt = description;
   bigImageLikes.textContent = likes;
-  bigImageShownCommentsCount.textContent = 0; // временно не показываем
+  bigImageShownCommentsCount.textContent = 0;
   bigImageTotalCommentsCount.textContent = comments.length;
   bigImageCaption.textContent = description;
 };

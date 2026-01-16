@@ -8,15 +8,13 @@ import {
   DATA_EFFECTS
 } from '../image-editing/image-editing-data.js';
 
-// Когда слайдер движется, то меняется фильтр на изображении и значение в скрытом поле
+
 const sliderVisableToggle = (isShown = true) => {
   effectLevelSliderParrent.classList.toggle('hidden', isShown);
 };
 
-// Поиск эффекта по имени
 const searchEffect = (value, array) => array.find((element) => element.name === value);
 
-// Инициализация слайдера noUiSlider
 noUiSlider.create(effectLevelSlider, {
   start: DATA_EFFECTS.DEFAULT_START,
   connect: 'lower',
@@ -26,20 +24,16 @@ noUiSlider.create(effectLevelSlider, {
   }
 });
 
-// Обновление настроек слайдера в зависимости от выбранного эффекта
 const sliderUpdateOptions = (value) => {
-  const effect = searchEffect(value, EFFECTS); // поиск эффекта по имени
-  // Если эффект не найден, скрыть слайдер и убрать фильтр
+  const effect = searchEffect(value, EFFECTS);
   if (!effect) {
-    sliderVisableToggle(); // скрыть слайдер
-    uploadPreviewImage.style.removeProperty('filter'); // убрать фильтр с изображения
+    sliderVisableToggle();
+    uploadPreviewImage.style.removeProperty('filter');
     return;
   }
 
-  // Обновление настроек слайдера
-  const { min, max, start, step, unit } = effect; // деструктуризация параметров эффекта
-  sliderVisableToggle(false); // показать слайдер
-  // Обновление опций слайдера
+  const { min, max, start, step, unit } = effect;
+  sliderVisableToggle(false);
   effectLevelSlider.noUiSlider.updateOptions({
     range: {
       min: min,
@@ -49,32 +43,27 @@ const sliderUpdateOptions = (value) => {
     step: step
   });
 
-  // Обработчик события обновления слайдера
   effectLevelSlider.noUiSlider.on('update', () => {
-    const effectLevelInputValue = effectLevelSlider.noUiSlider.get(); // получение текущего значения слайдера
-    effectValue.value = effectLevelInputValue; // обновление скрытого поля
-    uploadPreviewImage.style.filter = `${effect.style}(${effectLevelInputValue}${unit})`; // применение фильтра к изображению
+    const effectLevelInputValue = effectLevelSlider.noUiSlider.get();
+    effectValue.value = effectLevelInputValue;
+    uploadPreviewImage.style.filter = `${effect.style}(${effectLevelInputValue}${unit})`;
   });
 };
 
-// Слушатель изменения выбранного эффекта
 export const effectCheckedListener = () => {
-  // Слушатель изменения выбранного эффекта
   effectChecked.addEventListener('change', (evt) => {
-    // Если выбран эффект, обновить настройки слайдера
     if (evt.target.checked) {
-      sliderUpdateOptions(evt.target.value); // обновление слайдера в зависимости от выбранного эффекта
+      sliderUpdateOptions(evt.target.value);
     }
   });
 };
 
-// Сброс эффектов к исходному состоянию
 export const resetEffects = () => {
-  effectLevelSlider.noUiSlider.set(DATA_EFFECTS.DEFAULT_MAX); // сброс слайдера к максимальному значению
-  uploadPreviewImage.style.filter = ''; // удаление фильтра с изображения
-  uploadPreviewImage.classList.add('effects__preview--none'); // добавление класса для эффекта "оригинал"
-  effectValue.value = 100; // сброс значения скрытого поля к 100
-  sliderVisableToggle(); // скрытие слайдера
+  effectLevelSlider.noUiSlider.set(DATA_EFFECTS.DEFAULT_MAX);
+  uploadPreviewImage.style.filter = '';
+  uploadPreviewImage.classList.add('effects__preview--none');
+  effectValue.value = 100;
+  sliderVisableToggle();
 };
 
 effectCheckedListener();

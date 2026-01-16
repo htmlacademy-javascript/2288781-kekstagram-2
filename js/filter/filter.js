@@ -16,7 +16,8 @@ let pictures = [];
 let currentButton = '';
 
 const showFilterPanel = () => {
-  imageFilters.classList
+  imageFilters
+    .classList
     .remove('img-filters--inactive');
 };
 
