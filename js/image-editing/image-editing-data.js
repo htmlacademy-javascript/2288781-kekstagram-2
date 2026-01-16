@@ -1,12 +1,14 @@
-const scaleControlSmaller = document.querySelector('.scale__control--smaller'); // кнопка уменьшения масштаба
-const scaleControlBigger = document.querySelector('.scale__control--bigger'); // кнопка увеличения масштаба
-const scaleControlValue = document.querySelector('.scale__control--value'); // поле значения масштаба
-const uploadPreviewImage = document.querySelector('.img-upload__preview img'); // изображение для редактирования
+const scaleControlSmaller = document.querySelector('.scale__control--smaller');
+const scaleControlBigger = document.querySelector('.scale__control--bigger');
+const scaleControlValue = document.querySelector('.scale__control--value');
+const uploadPreviewImage = document.querySelector('.img-upload__preview img');
 
-const effectLevelSliderParrent = document.querySelector('.img-upload__effect-level'); // родитель слайдера эффектов
-const effectLevelSlider = document.querySelector('.effect-level__slider'); // слайдер эффектов
-const effectValue = document.querySelector('.effect-level__value'); // скрытое поле для значения эффекта
-const effectChecked = document.querySelector('.effects'); // контейнер с радиокнопками эффектов
+const effectLevelSliderParrent = document.querySelector('.img-upload__effect-level');
+const effectLevelSlider = document.querySelector('.effect-level__slider');
+const effectValue = document.querySelector('.effect-level__value');
+const effectChecked = document.querySelector('.effects');
+
+const SCALE_FACTOR = 0.01;
 
 const EFFECTS = [
   {
@@ -65,17 +67,14 @@ const EFFECTS = [
   },
 ];
 
-// Эффект по умолчанию
 const defaultEffect = EFFECTS.find((effect) => effect.name === 'none');
 
-// Константы для масштабирования изображения
 const DATA_IMAGE_EDITING = {
   STEP_SCALE: 25,
   MIN_SCALE: 25,
   MAX_SCALE: 100
 };
 
-// Константы для эффектов изображения
 const DATA_EFFECTS = {
   DEFAULT_MIN: 0,
   DEFAULT_MAX: 100,
@@ -94,6 +93,8 @@ export {
   effectChecked,
 
   defaultEffect,
+
+  SCALE_FACTOR,
 
   EFFECTS,
 
