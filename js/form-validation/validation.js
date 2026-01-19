@@ -1,4 +1,4 @@
-import {  DATA_FORM_SET,
+import { DATA_FORM_SET,
   ERROR_MESSAGE,
   uploadForm,
   descriptionInput,
