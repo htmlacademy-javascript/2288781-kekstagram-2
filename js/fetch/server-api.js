@@ -1,10 +1,9 @@
 import {
-  BASE_URL,
   Routes,
   Methods,
-  ErrorTexts
+  ErrorTexts,
+  BASE_URL
 } from '../fetch/api-data.js';
-
 
 const processPromise = (route, method = Methods.GET, errorText = null, body = null) =>
   fetch(`${BASE_URL}${route}`, { method, body })

@@ -1,7 +1,4 @@
 import {
-  isEscapeKeydown
-} from '../utils.js';
-import {
   uploadForm,
   uploadFileControl,
   photoEditorForm,
@@ -19,8 +16,8 @@ import {
   sendData
 } from '../fetch/server-api.js';
 import {
-  showMessage,
-  MESSAGE_TYPES
+  MESSAGE_TYPES,
+  showMessage
 } from '../fetch/api-message.js';
 import {
   resetEffects
@@ -28,33 +25,20 @@ import {
 import {
   resetScale
 } from '../image-editing/scale.js';
+import {
+  registerWindow,
+  removeRegistrationWindow
+} from '../keydown-controller.js';
 
+const canCloseForm = () => !(document.activeElement === descriptionInput || document.activeElement === hashtagsInput);
 
-const onDocumentKeydown = (evt) => {
-  if (document.activeElement !== descriptionInput && document.activeElement !== hashtagsInput && document.activeElement) {
-    evt.stopPropagation();
-    return;
-  }
-
-  if (isEscapeKeydown(evt)) {
-    evt.preventDefault();
-    closePhotoEditor();
-  }
-};
-
-const onCloseButtonClick = (evt) => (evt.preventDefault(), closePhotoEditor());
-
-function closePhotoEditor () {
-  photoEditorForm.value = '';
-  uploadFileControl.value = '';
-  hashtagsInput.value = '';
-  descriptionInput.value = '';
-
-  photoEditorForm.classList.add('hidden');
-  pageBody.classList.remove('modal-open');
-
-  document.addEventListener('keydown', onDocumentKeydown);
-
+function closePhotoEditor() {
+  photoEditorForm
+    .classList
+    .add('hidden');
+  pageBody
+    .classList
+    .remove('modal-open');
   uploadForm.reset();
   resetValidation();
   resetEffects();
@@ -63,13 +47,22 @@ function closePhotoEditor () {
 
 const initPhotoUploadForm = () => {
   uploadFileControl.addEventListener('change', () => {
-    photoEditorForm.classList.remove('hidden');
-    pageBody.classList.add('modal-open');
+    photoEditorForm
+      .classList
+      .remove('hidden');
+    pageBody
+      .classList
+      .add('modal-open');
 
-    document.removeEventListener('keydown', onDocumentKeydown);
+    registerWindow(closePhotoEditor, canCloseForm);
   });
-  photoEditorResetButton.addEventListener('click', onCloseButtonClick);
 };
+
+photoEditorResetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  closePhotoEditor();
+  removeRegistrationWindow();
+});
 
 const blockSubmitButton = (isDisabled = true) => {
   submitButton.disabled = isDisabled;
@@ -88,6 +81,7 @@ uploadForm.addEventListener('submit', (evt) => {
   sendData(uploadFormData)
     .then(() => {
       closePhotoEditor();
+      removeRegistrationWindow();
       showMessage(MESSAGE_TYPES.SUCCESS);
     })
     .finally(() => {
@@ -98,4 +92,6 @@ uploadForm.addEventListener('submit', (evt) => {
     });
 });
 
-export { initPhotoUploadForm };
+export {
+  initPhotoUploadForm
+};

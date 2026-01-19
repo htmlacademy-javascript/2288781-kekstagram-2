@@ -1,13 +1,3 @@
-const scaleControlSmaller = document.querySelector('.scale__control--smaller');
-const scaleControlBigger = document.querySelector('.scale__control--bigger');
-const scaleControlValue = document.querySelector('.scale__control--value');
-const uploadPreviewImage = document.querySelector('.img-upload__preview img');
-
-const effectLevelSliderParrent = document.querySelector('.img-upload__effect-level');
-const effectLevelSlider = document.querySelector('.effect-level__slider');
-const effectValue = document.querySelector('.effect-level__value');
-const effectChecked = document.querySelector('.effects');
-
 const SCALE_FACTOR = 0.01;
 
 const EFFECTS = [
@@ -67,8 +57,6 @@ const EFFECTS = [
   },
 ];
 
-const defaultEffect = EFFECTS.find((effect) => effect.name === 'none');
-
 const DATA_IMAGE_EDITING = {
   STEP_SCALE: 25,
   MIN_SCALE: 25,
@@ -81,23 +69,44 @@ const DATA_EFFECTS = {
   DEFAULT_START: 0
 };
 
+const scaleControlSmaller = document
+  .querySelector('.scale__control--smaller');
+
+const scaleControlBigger = document
+  .querySelector('.scale__control--bigger');
+
+const scaleControlValue = document
+  .querySelector('.scale__control--value');
+
+const uploadPreviewImage = document
+  .querySelector('.img-upload__preview img');
+
+const effectLevelSliderParrent = document
+  .querySelector('.img-upload__effect-level');
+
+const effectLevelSlider = document
+  .querySelector('.effect-level__slider');
+
+const effectValue = document
+  .querySelector('.effect-level__value');
+
+const effectChecked = document
+  .querySelector('.effects');
+
+const defaultEffect = EFFECTS.find((effect) => effect.name === 'none');
+
 export {
+  SCALE_FACTOR,
+  EFFECTS,
+  DATA_IMAGE_EDITING,
+  DATA_EFFECTS,
   scaleControlSmaller,
   scaleControlBigger,
   scaleControlValue,
   uploadPreviewImage,
-
   effectLevelSliderParrent,
   effectLevelSlider,
   effectValue,
   effectChecked,
-
-  defaultEffect,
-
-  SCALE_FACTOR,
-
-  EFFECTS,
-
-  DATA_IMAGE_EDITING,
-  DATA_EFFECTS
+  defaultEffect
 };

@@ -1,16 +1,15 @@
 import {
-  isEscapeKeydown
-} from '../utils.js';
-import {
   ALERT_SHOW_TIME,
   pageBody,
   alertTemplate,
   successElement,
   errorElement
 } from '../fetch/api-data.js';
+import {
+  registerWindow,
+  removeRegistrationWindow } from '../keydown-controller.js';
 
-
-export const MESSAGE_TYPES = {
+const MESSAGE_TYPES = {
   SUCCESS: 'success',
   ERROR: 'error'
 };
@@ -34,23 +33,20 @@ const showMessage = (type) => {
 
   const close = () => {
     message.remove();
-    document.removeEventListener('keydown', onEscape);
   };
 
-  function onEscape(evt) {
-    if (isEscapeKeydown(evt)) {
-      close();
-    }
-  }
-
-  message.addEventListener('click', ({target}) => {
+  message.addEventListener('click', ({ target }) => {
     if (target.classList.contains(type) || target.classList.contains(`${type}__button`)) {
       close();
+      removeRegistrationWindow();
     }
   });
-
-  document.addEventListener('keydown', onEscape);
+  registerWindow(close);
   pageBody.appendChild(message);
 };
 
-export { showAlert, showMessage };
+export {
+  MESSAGE_TYPES,
+  showAlert,
+  showMessage
+};

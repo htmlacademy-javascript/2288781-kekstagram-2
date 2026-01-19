@@ -1,9 +1,9 @@
 import {
+  DATA_FORM_SET,
+  ERROR_MESSAGE,
   uploadForm,
   descriptionInput,
-  hashtagsInput,
-  DATA_FORM_SET,
-  ERROR_MESSAGE
+  hashtagsInput
 } from './form-data.js';
 
 const uploadImageValidator = new Pristine(
@@ -17,7 +17,6 @@ const uploadImageValidator = new Pristine(
     errorTextClass: 'img-upload__field-wrapper--error'
   }
 );
-
 
 const validateDescription = (value) => {
   if (!value.trim().length) {

@@ -1,18 +1,3 @@
-const uploadForm = document.querySelector('.img-upload__form');
-
-const uploadFileControl = uploadForm.querySelector('.img-upload__input');
-
-const photoEditorForm = uploadForm.querySelector('.img-upload__overlay');
-const photoEditorScale = photoEditorForm.querySelector('.img-upload__scale');
-const photoEditorResetButton = photoEditorForm.querySelector('.img-upload__cancel');
-
-const hashtagsInput = uploadForm.querySelector('.text__hashtags');
-const descriptionInput = uploadForm.querySelector('.text__description');
-
-const submitButton = document.querySelector('.img-upload__submit');
-
-const pageBody = document.querySelector('body');
-
 const DATA_FORM_SET = {
   HASHTAG: /^#[a-zа-яё0-9]{1,19}$/i,
   HASHTAGS_LIMIT: 5,
@@ -28,22 +13,43 @@ const ERROR_MESSAGE = {
   ERROR_REPEAT: 'Хэштеги повторяются'
 };
 
+const uploadForm = document
+  .querySelector('.img-upload__form');
+
+const uploadFileControl = uploadForm
+  .querySelector('.img-upload__input');
+
+const photoEditorForm = uploadForm
+  .querySelector('.img-upload__overlay');
+
+const photoEditorScale = photoEditorForm
+  .querySelector('.img-upload__scale');
+
+const photoEditorResetButton = photoEditorForm
+  .querySelector('.img-upload__cancel');
+
+const hashtagsInput = uploadForm
+  .querySelector('.text__hashtags');
+
+const descriptionInput = uploadForm
+  .querySelector('.text__description');
+
+const submitButton = document
+  .querySelector('.img-upload__submit');
+
+const pageBody = document
+  .querySelector('body');
+
 export {
+  DATA_FORM_SET,
+  ERROR_MESSAGE,
   uploadForm,
-
   uploadFileControl,
-
   photoEditorForm,
   photoEditorScale,
   photoEditorResetButton,
-
   descriptionInput,
   hashtagsInput,
-
   submitButton,
-
-  pageBody,
-
-  DATA_FORM_SET,
-  ERROR_MESSAGE
+  pageBody
 };

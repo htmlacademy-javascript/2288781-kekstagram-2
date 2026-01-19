@@ -1,13 +1,20 @@
 const FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'jfif'];
 
-const uploadFileInputElement = document.querySelector('#upload-file');
-const uploadPreview = document.querySelector('.img-upload__preview img');
-const uploadPreviewEffects = document.querySelectorAll('.effects__preview');
+const uploadFileInputElement = document
+  .querySelector('#upload-file');
+
+const uploadPreview = document
+  .querySelector('.img-upload__preview img');
+
+const uploadPreviewEffects = document
+  .querySelectorAll('.effects__preview');
 
 export function initPreview() {
   uploadFileInputElement.addEventListener('change', () => {
     const file = uploadFileInputElement.files[0];
-    const fileName = file.name.toLowerCase();
+    const fileName = file
+      .name
+      .toLowerCase();
     const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
 
     if (!matches) {
