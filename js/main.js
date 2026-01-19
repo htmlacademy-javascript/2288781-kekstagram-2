@@ -5,10 +5,6 @@ import {
   initPhotoUploadForm
 } from './form-validation/upload-photo-form.js';
 import {
-  effectCheckedListener,
-  resetEffects
-} from './image-editing/slider.js';
-import {
   getData
 } from './fetch/server-api.js';
 import {
@@ -20,9 +16,6 @@ import {
 import {
   initPreview
 } from './filter/preview.js';
-
-effectCheckedListener();
-resetEffects();
 
 getData()
   .then((data) => {

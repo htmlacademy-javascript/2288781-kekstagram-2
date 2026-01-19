@@ -1,5 +1,3 @@
-const imageFilters = document.querySelector('.img-filters');
-
 const SortFunction = {
   RANDOM: () => 0.5 - Math.random(),
   DISCUSSED: (a, b) => b.comments.length - a.comments.length
@@ -12,9 +10,12 @@ const ButtonValue = {
 
 const RANDOM_PHOTO_LIMIT = 10;
 
+const imageFilters = document
+  .querySelector('.img-filters');
+
 export {
-  imageFilters,
   SortFunction,
   ButtonValue,
-  RANDOM_PHOTO_LIMIT
+  RANDOM_PHOTO_LIMIT,
+  imageFilters
 };

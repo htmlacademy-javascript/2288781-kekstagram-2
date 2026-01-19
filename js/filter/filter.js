@@ -5,12 +5,11 @@ import {
   renderPictures
 } from '../create-photos/thumbnails.js';
 import {
-  imageFilters,
   SortFunction,
   ButtonValue,
-  RANDOM_PHOTO_LIMIT
+  RANDOM_PHOTO_LIMIT,
+  imageFilters
 } from '../filter/filter-data.js';
-
 
 let pictures = [];
 let currentButton = '';

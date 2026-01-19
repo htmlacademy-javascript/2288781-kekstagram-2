@@ -1,12 +1,11 @@
 import {
+  SCALE_FACTOR,
+  DATA_IMAGE_EDITING,
   scaleControlSmaller,
   scaleControlBigger,
   scaleControlValue,
-  uploadPreviewImage,
-  SCALE_FACTOR,
-  DATA_IMAGE_EDITING
+  uploadPreviewImage
 } from './image-editing-data.js';
-
 
 const setScaleValue = (value) => {
   scaleControlValue.value = `${value}%`;

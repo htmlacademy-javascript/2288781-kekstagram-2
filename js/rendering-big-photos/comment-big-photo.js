@@ -1,11 +1,10 @@
 import {
+  COMMENTS_LIMIT,
   template,
   commentsList,
-  COMMENTS_LIMIT,
   bigImageShownCommentsCount,
   bigImageLoader
 } from '../rendering-big-photos/constanta-big-photos.js';
-
 
 let localComments;
 let shownComments;
