@@ -22,7 +22,7 @@ const showFilterPanel = () => {
 
 const debounceRender = debounce(renderPictures);
 
-const setActiveFilter = (evt) => {
+const onActiveFilter = (evt) => {
   const target = evt.target;
 
   const activeButton = document
@@ -59,9 +59,9 @@ function filterChange () {
         .slice(0, RANDOM_PHOTO_LIMIT);
       break;
 
-    case ButtonValue.DISCUSSED:
+    case ButtonValue.DISCUSS:
       addPhotoThumbnails = pictures
-        .toSorted(SortFunction.DISCUSSED);
+        .toSorted(SortFunction.DISCUSS);
       break;
     default:
       addPhotoThumbnails = pictures;
@@ -72,7 +72,7 @@ function filterChange () {
 
 const listenerButtonsFilter = (photos) => {
   imageFilters
-    .addEventListener('click', setActiveFilter);
+    .addEventListener('click', onActiveFilter);
 
   showFilterPanel();
 
