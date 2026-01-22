@@ -12,7 +12,7 @@ const toggleSliderVisable = (isShown = true) => {
   effectLevelSliderParrent.classList.toggle('hidden', isShown);
 };
 
-const searchEffect = (value, array) => array.find((element) => element.name === value);
+const searchEffect = (value, effects) => effects.find((element) => element.name === value);
 
 noUiSlider.create(effectLevelSlider, {
   start: DATA_EFFECTS.DEFAULT_START,
