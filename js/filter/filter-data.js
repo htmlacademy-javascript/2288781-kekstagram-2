@@ -1,11 +1,11 @@
 const SortFunction = {
-  RANDOM: () => 0.5 - Math.random(),
-  DISCUSS: (a, b) => b.comments.length - a.comments.length,
+  GET_RANDOM: () => 0.5 - Math.random(),
+  GET_DISCUSSED: (a, b) => b.comments.length - a.comments.length,
 };
 
 const ButtonValue = {
   RANDOM: 'filter-random',
-  DISCUSS: 'filter-discuss',
+  DISCUSS: 'filter-discussed',
 };
 
 const RANDOM_PHOTO_LIMIT = 10;
